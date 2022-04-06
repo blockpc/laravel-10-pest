@@ -18,6 +18,11 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('key')->nullable();
         });
+
+        Schema::table('roles', function (Blueprint $table) {
+            $table->string('display_name')->nullable();
+            $table->string('description')->nullable();
+        });
     }
 
     /**
@@ -31,6 +36,11 @@ return new class extends Migration
             $table->dropColumn('display_name');
             $table->dropColumn('description');
             $table->dropColumn('key');
+        });
+
+        Schema::table('roles', function (Blueprint $table) {
+            $table->dropColumn('display_name');
+            $table->dropColumn('description');
         });
     }
 };

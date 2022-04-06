@@ -5108,6 +5108,28 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+// TailwindCSS Dark Mode
+// buttons switch mode
+
+document.querySelectorAll(".setMode").forEach(function (item) {
+  return item.addEventListener("click", function () {
+    var htmlClasses = document.querySelector('html').classList;
+
+    if (localStorage.theme == 'dark') {
+      htmlClasses.remove('dark');
+      localStorage.theme = '';
+    } else {
+      htmlClasses.add('dark');
+      localStorage.theme = 'dark';
+    }
+  });
+}); // Dark mode persist
+
+if (localStorage.theme === 'dark' || !'theme' in localStorage && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  document.querySelector('html').classList.add('dark');
+} else if (localStorage.theme === 'dark') {
+  document.querySelector('html').classList.add('dark');
+}
 
 /***/ }),
 
