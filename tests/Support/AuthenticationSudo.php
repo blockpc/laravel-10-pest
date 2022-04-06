@@ -21,6 +21,12 @@ trait AuthenticationSudo
         $this->afterApplicationCreated(function () {
             $this->role_sudo = $this->new_role('sudo', 'Super Administrador');
 
+            $permission = $this->new_permission('super admin');
+
+            $this->role_sudo->givePermissionTo([
+                $permissions, 
+            ]);
+
             $this->sudo = User::factory()->create();
             $this->sudo->assignRole($this->role_sudo);
             Profile::factory()->forUser($this->sudo)->create();

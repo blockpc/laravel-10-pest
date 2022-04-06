@@ -9,7 +9,7 @@
         </button>
         <x-dropdown align="right" width="64">
             <x-slot name="trigger">
-                <button class="flex items-center space-x-2 text-sm font-medium text-dark transition duration-150 ease-in-out mx-2">
+                <button class="flex items-center space-x-2 text-sm font-medium text-dark transition duration-150 ease-in-out">
                     <img class="rounded-full w-8 h-8 text-gray-600" src="{{ image_profile() }}" alt="{{ current_user()->profile->fullname }}">
                 </button>
             </x-slot>
@@ -23,7 +23,7 @@
                         <div class="font-medium text-sm text-gray-500 dark:text-gray-400">{{ current_user()->cargo }}</div>
                     </div>
                 </div>
-                <x-sidebar-link :href="route('profile')" :active="request()->routeIs('profile')">
+                <x-sidebar-link :href="route('profile')">
                     <div class="flex justify-between items-center">
                         <span>{{ __('Profile User') }}</span>
                         <x-bx-user-pin class="w-5 h-5" />

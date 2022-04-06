@@ -1,17 +1,17 @@
 @extends('layouts.backend.app')
 
-@section('title', 'Perfil Usuario')
+@section('title', __('pages.users.titles.profile'))
 
 @section('content')
-<div class="bg-dark overflow-hidden shadow-sm sm:rounded-lg">
-    <div class="p-4 bg-dark border-b border-gray-200 dark:border-gray-600 flex justify-between items-center">
+<div class="overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="page-header">
         <div class="flex space-x-2 items-center">
             <x-bx-layout class="w-6 h-6" />
-            <span>{{__('Perfil Usuario')}}</span>
+            <span>{{__('pages.users.titles.profile')}}</span>
         </div>
         <div class=""></div>
     </div>
-    <div class="">
+    <div class="page-content">
         <p class="mt-4">Perfil Usuario.</p>
     </div>
 </div>

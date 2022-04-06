@@ -63,13 +63,13 @@
                                     <div class="font-medium text-sm text-gray-500 dark:text-gray-400">{{ current_user()->email }}</div>
                                 </div>
                             </div>
-                            <x-responsive-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
+                            <x-responsive-nav-link :href="route('profile')">
                                 <div class="flex justify-between items-center">
                                     <span>{{ __('Profile User') }}</span>
                                     <x-bx-user-pin class="w-5 h-5" />
                                 </div>
                             </x-responsive-nav-link>
-                            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            <x-responsive-nav-link :href="route('dashboard')">
                                 <div class="flex justify-between items-center">
                                     <span>{{ __('Dashboard') }}</span>
                                     <x-bx-layout class="w-5 h-5" />

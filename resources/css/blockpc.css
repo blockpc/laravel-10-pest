@@ -22,31 +22,31 @@
         @apply inline-flex items-center px-2 py-1 text-xs;
     }
     .btn-primary {
-        @apply bg-blue-600 hover:bg-blue-500 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-blue-900 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150;
+        @apply bg-blue-600 hover:bg-blue-500 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-blue-900 disabled:opacity-25 transition ease-in-out duration-150;
     }
     .btn-success {
-        @apply bg-green-600 hover:bg-green-500 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-green-900 focus:ring ring-green-300 disabled:opacity-25 transition ease-in-out duration-150;
+        @apply bg-green-600 hover:bg-green-500 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-green-900 disabled:opacity-25 transition ease-in-out duration-150;
     }
     .btn-warning {
-        @apply  bg-yellow-600 hover:bg-yellow-500 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-yellow-900 focus:ring ring-yellow-300 disabled:opacity-25 transition ease-in-out duration-150;
+        @apply  bg-yellow-600 hover:bg-yellow-500 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-yellow-900 disabled:opacity-25 transition ease-in-out duration-150;
     }
     .btn-danger {
-        @apply bg-red-600 hover:bg-red-500 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-red-900 focus:ring ring-red-300 disabled:opacity-25 transition ease-in-out duration-150;
+        @apply bg-red-600 hover:bg-red-500 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-red-900 disabled:opacity-25 transition ease-in-out duration-150;
     }
     .btn-ban {
-        @apply bg-pink-600 hover:bg-pink-500 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-pink-900 focus:ring ring-pink-300 disabled:opacity-25 transition ease-in-out duration-150;
+        @apply bg-pink-600 hover:bg-pink-500 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-pink-900 disabled:opacity-25 transition ease-in-out duration-150;
     }
     .btn-info {
-        @apply bg-indigo-600 hover:bg-indigo-500 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-indigo-900 focus:ring ring-indigo-300 disabled:opacity-25 transition ease-in-out duration-150;
+        @apply bg-indigo-600 hover:bg-indigo-500 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-indigo-900 disabled:opacity-25 transition ease-in-out duration-150;
     }
     .btn-default {
-        @apply bg-gray-800 hover:bg-gray-600 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150;
+        @apply bg-gray-800 hover:bg-gray-600 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-gray-900 disabled:opacity-25 transition ease-in-out duration-150;
     }
     .label {
         @apply block font-medium text-sm;
     }
     .input-search {
-        @apply block h-8 w-full pl-10 pr-12 text-sm text-dark bg-dark focus:ring-gray-500 border-gray-500 focus:border-gray-400 rounded-md;
+        @apply block h-8 w-full pl-10 pr-12 text-sm text-dark bg-dark border-gray-500 focus:border-gray-400 rounded-md;
     }
     .input {
         @apply block rounded-md shadow-md border-gray-300 dark:border-gray-500 bg-transparent;
@@ -80,5 +80,8 @@
     /** Pages **/
     .page-header {
         @apply pb-2 border-b border-gray-200 dark:border-gray-500 flex justify-between items-center;
+    }
+    .page-content {
+        @apply mt-2;
     }
 }

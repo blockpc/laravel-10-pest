@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\System\DashboardController;
 use App\Http\Controllers\System\ProfileController;
+use App\Http\Controllers\System\UsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])
@@ -17,4 +18,6 @@ Route::middleware(['auth'])
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
         Route::get('/perfil-usuario', ProfileController::class)->name('profile');
+
+        Route::resource('/users', UsersController::class);
 });

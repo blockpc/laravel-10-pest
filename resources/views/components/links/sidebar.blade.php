@@ -1,6 +1,12 @@
-@props(['name' => 'Link', 'route' => '#'])
+@props(['name' => 'Link', 'route' => '#', 'active'])
+
+@php
+    $active_class = ($active ?? false)
+        ? 'border-l-4 border-blue-400' : '';
+@endphp
+
 <div {{ $attributes->merge(['class' => 'relative group hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-200 text-sm']) }}>
-    <a class="flex items-center py-2" href="{{$route}}">
+    <a class="flex items-center py-2 {{$active_class}}" href="{{$route}}">
         <div class="w-16">
             {{ $icon }}
         </div>

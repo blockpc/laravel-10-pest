@@ -21,6 +21,12 @@ trait AuthenticationUser
         $this->afterApplicationCreated(function () {
             $this->role_user = $this->new_role('user', 'Usuario Normalito');
 
+            $permissions = $this->new_permissions_for(['user list']);
+
+            $this->role_user->givePermissionTo([
+                $permissions, 
+            ]);
+
             $this->user = User::factory()->create();
             $this->user->assignRole($this->role_user);
             Profile::factory()->forUser($this->user)->create();

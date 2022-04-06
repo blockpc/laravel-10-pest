@@ -25,7 +25,7 @@ switch ($width) {
 @endphp
 
 <div class="relative" x-data="{ open: false }" x-on:click.outside="open = false" @close.stop="open = false">
-    <div class="flex justify-between items-center" x-on:click="open = ! open">
+    <div class="flex justify-between items-center space-x-2" x-on:click="open = ! open">
         {{ $trigger }}
         <div :class="open ? 'transform rotate-180' : 'transform rotate-0'">
             <x-bx-chevron-up class="fill-current h-4 w-4" />

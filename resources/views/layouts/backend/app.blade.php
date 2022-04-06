@@ -29,7 +29,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-roboto text-dark bg-dark antialiased overflow-hidden" x-data="{mode: localStorage.theme == 'dark'}">
-        <div class="m-0 md:m-2 border border-gray-300 dark:border-gray-800 rounded-md flex overflow-hidden">
+        <div class="m-0 md:m-2 border-2 border-gray-300 dark:border-gray-800 rounded-md flex overflow-hidden">
             <div class="h-full nav-dark w-16 lg:w-64">
                 <div class="logo-details flex items-center space-x-2 h-12">
                     <span class="w-16">
