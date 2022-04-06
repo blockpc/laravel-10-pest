@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard';
+    public const HOME = 'sistema/dashboard';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -33,10 +33,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('api')
                 ->group(base_path('routes/api.php'));
 
-            Route::middleware('auth')
+            Route::middleware('web')
+                ->namespace($this->namespace)
                 ->group(base_path('routes/system.php'));
 
             Route::middleware('web')
+                ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
     }

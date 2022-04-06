@@ -50,9 +50,6 @@
                                 <div>
                                     <img class="rounded-full w-8 h-8 text-gray-600" src="{{ image_profile() }}" alt="{{ current_user()->name }}">
                                 </div>
-                                <div :class="open ? 'transform rotate-180' : 'transform rotate-0'">
-                                    <x-bx-chevron-up class="fill-current h-4 w-4" />
-                                </div>
                             </button>
                         </x-slot>
     

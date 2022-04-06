@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white'])
+@props(['align' => 'right', 'width' => '48'])
 
 @php
 switch ($align) {
@@ -18,12 +18,18 @@ switch ($width) {
     case '48':
         $width = 'w-48';
         break;
+    case '64':
+        $width = 'w-64';
+        break;
 }
 @endphp
 
-<div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
-    <div @click="open = ! open">
+<div class="relative" x-data="{ open: false }" x-on:click.outside="open = false" @close.stop="open = false">
+    <div class="flex justify-between items-center" x-on:click="open = ! open">
         {{ $trigger }}
+        <div :class="open ? 'transform rotate-180' : 'transform rotate-0'">
+            <x-bx-chevron-up class="fill-current h-4 w-4" />
+        </div>
     </div>
 
     <div x-show="open"
@@ -33,10 +39,10 @@ switch ($width) {
             x-transition:leave="transition ease-in duration-75"
             x-transition:leave-start="transform opacity-100 scale-100"
             x-transition:leave-end="transform opacity-0 scale-95"
-            class="absolute z-50 mt-2 {{ $width }} rounded-md shadow-lg {{ $alignmentClasses }}"
+            class="absolute z-20 mt-2 {{ $width }} rounded-md shadow-lg {{ $alignmentClasses }}"
             style="display: none;"
-            @click="open = false">
-        <div class="rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
+            x-on:click="open = false">
+        <div class="p-1 nav-dark">
             {{ $content }}
         </div>
     </div>

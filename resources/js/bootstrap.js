@@ -49,3 +49,19 @@ if (localStorage.theme === 'dark' || (!'theme' in localStorage && window.matchMe
 } else if (localStorage.theme === 'dark') {
     document.querySelector('html').classList.add('dark')
 }
+
+// Toastr Livewire Alerts
+window.addEventListener('alert', event => { 
+    toastr[event.detail.type](event.detail.message, event.detail.title ?? '');
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "preventDuplicates":true,
+        "autoDismiss": true
+    }
+});
+
+window.closeAlert = (id) => {
+    let element = document.getElementById(id);
+    element.remove();
+}

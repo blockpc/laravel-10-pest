@@ -13,12 +13,22 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                roboto: ['Roboto', ...defaultTheme.fontFamily.sans],
             },
             height: theme => ({
                 "sidebar": "calc(100vh - 64px)",
+                "sidebar-sm": "calc(100vh - 48px)",
+                "menu": "calc(100vh - 32px)",
             }),
         },
     },
+    
+    variants: {
+        scrollbar: ['dark']
+    },
 
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('tailwind-scrollbar')
+    ],
 };
