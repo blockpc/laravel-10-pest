@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -12,29 +13,35 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <style>
+            [x-cloak] { 
+                display: none !important;
+            }
+        </style>
 
         @livewireStyles
+        @stack('styles')
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    <body class="font-sans antialiased text-dark bg-dark" x-data="{ mode: localStorage.theme == 'dark' }">
+        <div class="min-h-screen">
+            @include('layouts.frontend.navigation')
 
             <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+            <header class="shadow">
+                <div class="content">
+                    @include('layouts.frontend.messages')
+                    @yield('header')
                 </div>
             </header>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
+            <main class="content">
+                @yield('content')
             </main>
         </div>
-
         @livewireScripts
+        @stack('scripts')
     </body>
 </html>
