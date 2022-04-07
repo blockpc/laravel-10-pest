@@ -41,6 +41,7 @@
             </div>
             <div class="relative flex flex-col w-full">
                 <div>@include('layouts.backend.menu')</div>
+                <div>@include('layouts.backend.messages')</div>
                 <div class="h-sidebar-sm lg:h-sidebar p-2 md:p-4 bg-dark overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400">
                     @yield('content')
                 </div>

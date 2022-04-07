@@ -6,7 +6,7 @@
 <div class="overflow-hidden shadow-sm sm:rounded-lg">
     <div class="page-header">
         <div class="flex space-x-2 items-center">
-            <x-bx-layout class="w-6 h-6" />
+            <x-heroicon-s-user-group class="w-6 h-6" />
             <span>{{__('pages.users.titles.list')}}</span>
         </div>
         <div class="flex space-x-2 items-center">
@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="page-content">
-        <p class="">Lista Usuarios.</p>
+        @livewire('system.users.table', [], key('system-users-table'))
     </div>
 </div>
 @endsection

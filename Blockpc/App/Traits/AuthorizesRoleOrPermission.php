@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Blockpc\App\Traits;
 
 use Illuminate\Support\Facades\Auth;
