@@ -7,6 +7,7 @@ namespace Blockpc\App\Providers;
 use Blockpc\App\Mixins\Search;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\ServiceProvider;
 
 final class BlockpcServiceProvider extends ServiceProvider
@@ -32,5 +33,12 @@ final class BlockpcServiceProvider extends ServiceProvider
     public function boot()
     {
         Carbon::setLocale(config('app.locale'));
+
+        Password::defaults(function () {
+            $rule = Password::min(8);
+            return $this->app->isProduction()
+                        ? $rule->mixedCase()->uncompromised()
+                        : $rule;
+        });
     }
 }
