@@ -76,7 +76,7 @@
                                 </div>
                                 @else
                                     @if ( current_user()->can('user update') )
-                                    <a class="btn-sm btn-success" href="#"><x-bx-edit-alt class="w-4 h-4" /></a>
+                                    <a class="btn-sm btn-success" href="{{ route('users.edit', $user->name) }}"><x-bx-edit-alt class="w-4 h-4" /></a>
                                     @endif
                                     @if ( current_user()->can('user delete') && current_user()->id != $user->id )
                                     <div class="" x-data="{ showModal : false }">

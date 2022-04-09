@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,15 +18,15 @@ class Profile extends Model
     ];
 
     /**
-     * The accessors to append to the model's array form.
+     * Get the user's full name.
      *
-     * @var array
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
-    protected $appends = ['fullname'];
-
-    public function getFullnameAttribute()
+    protected function fullname(): Attribute
     {
-        return ($this->attributes['firstname'] || $this->attributes['firstname']) ? trim("{$this->attributes['firstname']} {$this->attributes['lastname']}") : null;
+        return Attribute::make(
+            get: fn ($value, $attributes) => ($attributes['firstname'] || $attributes['firstname']) ? trim("{$attributes['firstname']} {$attributes['lastname']}") : null,
+        );
     }
 
     public function user() : BelongsTo

@@ -28,22 +28,24 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-roboto text-dark bg-dark antialiased overflow-hidden" x-data="{mode: localStorage.theme == 'dark'}">
-        <div class="m-0 md:m-2 border-2 border-gray-300 dark:border-gray-800 rounded-md flex overflow-hidden">
-            <div class="h-full nav-dark w-16 lg:w-64">
-                <div class="logo-details flex items-center space-x-2 h-12">
-                    <span class="w-16">
-                        <x-application-logo class="h-8 w-8 mx-auto" />
-                    </span>
-                    <span class="logo-name text-2xl font-bold w-48 hidden lg:block">{{ config('app.name') }}</span>
-                </div>
-                <div>@include('layouts.backend.sidebar')</div>
-            </div>
-            <div class="relative flex flex-col w-full">
-                <div>@include('layouts.backend.menu')</div>
-                <div>@include('layouts.backend.messages')</div>
-                <div class="h-sidebar-sm lg:h-sidebar p-2 md:p-4 bg-dark overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400">
-                    @yield('content')
+    <body class="font-roboto text-dark bg-dark antialiased">
+        <div class="relative min-h-screen md:flex flex-col" x-data="{sidebar:false, mode: localStorage.theme == 'dark'}">
+            {{-- menu --}}
+            @include('layouts.backend.navbar')
+            {{-- sidebar --}}
+            @include('layouts.backend.sidebar')
+            <div class="flex container max-w-7xl mx-auto">
+                <div class="flex flex-col justify-between px-2 sm:px-4 space-y-2 min-h-screen w-full">
+                    <main class="pt-20">
+                        @include('layouts.backend.messages')
+                        @yield('content')
+                    </main>
+                    <footer class="h-16 p-2 sm:p-4">
+                        <div class="flex justify-between items-center">
+                            <span>{{config('app.name', 'BlockPC') }}</span>
+                            <a href="//blockpc.cl" target="_blank" class="text-xs font-semibold hover:text-gray-200">Desarrollado por BlockPC @ {{ date('Y')}}</a>
+                        </div>
+                    </footer>
                 </div>
             </div>
         </div>

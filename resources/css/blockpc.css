@@ -3,7 +3,7 @@
         @apply text-gray-700 dark:text-gray-100;
     }
     .bg-dark {
-        @apply bg-white dark:bg-gray-700;
+        @apply bg-gray-100 dark:bg-gray-700;
     }
     .bg-dark-light {
         @apply bg-gray-100 dark:bg-gray-600;
@@ -52,10 +52,10 @@
         @apply block rounded-md shadow-md border-gray-300 dark:border-gray-500 bg-transparent;
     }
     .input-sm {
-        @apply text-sm h-8;
+        @apply text-xs h-8;
     }
     .input-md {
-        @apply text-base h-10;
+        @apply text-sm h-10;
     }
     .text-error {
         @apply text-sm text-red-600 dark:text-red-400;
@@ -79,9 +79,9 @@
 
     /** Pages **/
     .page-header {
-        @apply pb-2 border-b border-gray-200 dark:border-gray-500 flex justify-between items-center;
+        @apply pb-2 px-2 border-b border-gray-200 dark:border-gray-500 flex justify-between items-center;
     }
     .page-content {
-        @apply mt-2;
+        @apply mt-2 p-2;
     }
 }

@@ -10,7 +10,10 @@
             <span>{{__('pages.users.titles.list')}}</span>
         </div>
         <div class="flex space-x-2 items-center">
-            <a class="btn-sm btn-primary" href="{{ route('users.create') }}">{{__('pages.users.titles.add')}}</a>
+            <a class="btn-sm btn-primary space-x-2" href="{{ route('users.create') }}">
+                <x-bx-plus class="w-4 h-4" />
+                <span class="hidden sm:block">{{__('pages.users.titles.add')}}</span>
+            </a>
         </div>
     </div>
     <div class="page-content">
