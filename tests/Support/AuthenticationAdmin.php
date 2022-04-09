@@ -16,7 +16,7 @@ trait AuthenticationAdmin
     /**
      * @before
      */
-    public function setUpUser()
+    public function setUpAdmin()
     {
         $this->afterApplicationCreated(function () {
             $this->role_admin = $this->new_role('admin', 'Administrador');

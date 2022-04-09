@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Tests\Feature\Users;
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Support\AuthenticationUser;
 use Tests\TestBase;
 
 final class ListUsersTest extends TestBase
 {
-    use AuthenticationUser;
+    use RefreshDatabase, AuthenticationUser;
 
     protected function setUp(): void
     {

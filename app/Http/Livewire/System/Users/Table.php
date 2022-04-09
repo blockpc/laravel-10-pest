@@ -5,6 +5,7 @@ namespace App\Http\Livewire\System\Users;
 use App\Models\User;
 use Blockpc\App\Traits\WithSoftDeletes;
 use Blockpc\App\Traits\WithSorting;
+use Blockpc\Events\ReSendLinkToChangePasswordEvent;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -61,7 +62,7 @@ class Table extends Component
         $user = User::withTrashed()->where('id', $id)->first();
         $user->restore();
 
-        // ReSendLinkToChangePasswordEvent::dispatch($user);        
+        ReSendLinkToChangePasswordEvent::dispatch($user);
         session()->flash('info', __('pages.users.forms.messages.restore', ['user' => $user->name]));
     }
 

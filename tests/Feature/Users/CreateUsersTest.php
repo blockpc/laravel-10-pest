@@ -7,6 +7,7 @@ namespace Tests\Feature\Users;
 use App\Http\Livewire\System\Users\FormUser;
 use App\Models\User;
 use Blockpc\Events\SendEmailForNewUserEvent;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Livewire\Livewire;
 use Tests\Support\AuthenticationAdmin;
@@ -14,6 +15,7 @@ use Tests\TestBase;
 
 final class CreateUsersTest extends TestBase
 {
+    use RefreshDatabase;
     use AuthenticationAdmin;
 
     private $user;
@@ -101,7 +103,7 @@ final class CreateUsersTest extends TestBase
     public function admin_can_create_a_new_user()
     {
         $this->assertDatabaseHas('roles', [
-            'id' => 1,
+            'id' => $this->role_admin->id,
             'name' => 'admin'
         ]);
 
@@ -109,7 +111,7 @@ final class CreateUsersTest extends TestBase
             ->test(FormUser::class)
             ->set('user.name', 'jhon')
             ->set('user.email', 'jhon@mail.com')
-            ->set('role', 1)
+            ->set('role',  $this->role_admin->id)
             ->set('profile.firstname', 'Jhon')
             ->set('profile.lastname', 'Doe')
             ->set('profile.phone', '+56 961881674')
@@ -131,7 +133,7 @@ final class CreateUsersTest extends TestBase
             ->test(FormUser::class)
             ->set('user.name', 'jhon')
             ->set('user.email', 'jhon@mail.com')
-            ->set('role', 1)
+            ->set('role',  $this->role_admin->id)
             ->set('profile.firstname', 'Jhon')
             ->set('profile.lastname', 'Doe')
             ->set('profile.phone', '+56 961881674')

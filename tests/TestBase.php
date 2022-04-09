@@ -4,21 +4,15 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use App\Models\Profile;
-use App\Models\User;
-use Blockpc\App\Models\Permission;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Blockpc\App\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 use Tests\Support\CreatePermission;
 use Tests\Support\CreateRole;
 use Tests\Support\CreateUser;
+use Illuminate\Foundation\Testing\TestCase;
 
 abstract class TestBase extends TestCase
 {
-    use RefreshDatabase;
-
+    use CreatesApplication;
     use CreateRole, CreatePermission, CreateUser;
     
     protected function setUp():void
@@ -34,16 +28,19 @@ abstract class TestBase extends TestCase
     protected function setUpTraits()
     {
         $uses = parent::setUpTraits();
+
         if (isset($uses[AuthenticationSudo::class])) {
-            $this->setUpUser();
+            $this->setUpSudo();
         }
 
         if (isset($uses[AuthenticationAdmin::class])) {
-            $this->setUpUser();
+            $this->setUpAdmin();
         }
 
         if (isset($uses[AuthenticationUser::class])) {
             $this->setUpUser();
         }
+
+        return $uses;
     }
 }

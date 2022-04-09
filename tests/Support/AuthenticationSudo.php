@@ -16,7 +16,7 @@ trait AuthenticationSudo
     /**
      * @before
      */
-    public function setUpUser()
+    public function setUpSudo()
     {
         $this->afterApplicationCreated(function () {
             $this->role_sudo = $this->new_role('sudo', 'Super Administrador');

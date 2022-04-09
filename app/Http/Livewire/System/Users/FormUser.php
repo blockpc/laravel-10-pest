@@ -5,7 +5,9 @@ namespace App\Http\Livewire\System\Users;
 use App\Models\Profile;
 use App\Models\User;
 use Blockpc\App\Models\Role;
+use Blockpc\Events\ReSendLinkToChangePasswordEvent;
 use Blockpc\Events\SendEmailForNewUserEvent;
+use Blockpc\App\Traits\AlertBrowserEvent;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -13,6 +15,8 @@ use Illuminate\Support\Str;
 
 class FormUser extends Component
 {
+    use AlertBrowserEvent;
+
     public User $user;
     public Profile $profile;
     public $role;
@@ -22,10 +26,10 @@ class FormUser extends Component
     public function mount(User $user)
     {
         $this->user = $user;
-        $this->profile = $user->profile ?? new Profile;
+        $this->profile = $this->user->profile ?? new Profile;
 
-        if ( $user->exists ) {
-            $this->role = $user->role_id;
+        if ( $this->user->exists ) {
+            $this->role = $this->user->role_id;
             $this->type = 'edit';
             $this->title_loading = "Editando usuario...";
         }
@@ -44,6 +48,20 @@ class FormUser extends Component
         return view('livewire.system.users.form-user', [
             'roles' => $this->roles,
         ]);
+    }
+
+    public function resend()
+    {
+        if ( $this->user->exists && $name = $this->user->name ) {
+            $this->title_loading = "Enviando link...";
+
+            ReSendLinkToChangePasswordEvent::dispatch($this->user);
+
+            $this->alert(
+                "Se ha enviado un link al usuario {$name} para cambiar la contraseña", 
+                'Cambio de Contraseña'
+            );
+        }
     }
 
     public function save()

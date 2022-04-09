@@ -7,6 +7,7 @@ namespace Tests\Feature\Users;
 use App\Http\Livewire\Pages\ChangePassword;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Tests\TestBase;
 use Illuminate\Support\Str;
@@ -14,6 +15,8 @@ use Livewire\Livewire;
 
 final class ChangePasswordUserTest extends TestBase
 {
+    use RefreshDatabase;
+    
     private $token;
 
     protected function setUp(): void
