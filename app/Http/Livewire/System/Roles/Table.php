@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\System\Roles;
 
 use Blockpc\App\Models\Role;
+use Blockpc\App\Traits\WithSoftDeletes;
 use Blockpc\App\Traits\WithSorting;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -12,14 +13,12 @@ class Table extends Component
 {
     use WithPagination;
     use WithSorting;
+    use WithSoftDeletes;
 
     public $search = "";
     public $paginate = 10;
 
-    public function mount()
-    {
-        $this->sortField = 'name';
-    }
+    public $roles_base = Role::ROLES_NOT_DELETES;
 
     public function getRolesProperty()
     {
@@ -39,5 +38,28 @@ class Table extends Component
     public function render()
     {
         return view('livewire.system.roles.table');
+    }
+
+    public function delete(Role $role)
+    {
+        if ( in_array($role->name, $this->roles_base) ) {
+            $this->addError('error_role', __('roles.forms.messages.error-role-base'));
+            return;
+        }
+        if ( $count = $role->hasUsers() ) {
+            $this->addError('error_role', __('roles.forms.messages.error-role-users', [
+                'role' => $role->display_name,
+                'count' => $count,
+            ]));
+            return;
+        }
+        $this->alert(__('roles.forms.messages.error-role-delete', ['role' => $role->display_name]), __('roles.titles.delete'));
+        $role->delete();
+    }
+
+    public function restore(int $id)
+    {
+        $this->addError('error_role', __('roles.forms.messages.success-role-restore'));
+        return;
     }
 }

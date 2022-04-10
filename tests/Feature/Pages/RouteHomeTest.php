@@ -10,7 +10,8 @@ use Tests\TestBase;
 
 final class RouteHomeTest extends TestBase
 {
-    use RefreshDatabase, AuthenticationUser;
+    use RefreshDatabase;
+    use AuthenticationUser;
 
     /** @test */
     public function can_access_to_home_route()

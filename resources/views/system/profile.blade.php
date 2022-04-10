@@ -6,7 +6,7 @@
 <div class="overflow-hidden shadow-sm sm:rounded-lg">
     <div class="page-header">
         <div class="flex space-x-2 items-center">
-            <x-bx-layout class="w-6 h-6" />
+            <x-bx-user-pin class="w-6 h-6" />
             <span>{{__('users.titles.profile')}}</span>
         </div>
         <div class=""></div>

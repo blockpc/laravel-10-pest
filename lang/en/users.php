@@ -48,6 +48,8 @@ return [
             'send-message' => 'if the user forgot their password, you could be send a email with a link to page for change the password. This link is valid for one change.',
         ],
         'messages' => [
+            'loading-create' => 'Creating user...', 
+            'loading-edit' => 'Editing user...', 
             'delete' => 'The user :user was deleted', 
             'restore' => 'The user :user was restored', 
         ]

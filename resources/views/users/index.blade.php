@@ -6,7 +6,7 @@
 <div class="overflow-hidden shadow-sm sm:rounded-lg">
     <div class="page-header">
         <div class="flex space-x-2 items-center">
-            <x-heroicon-s-user-group class="w-6 h-6" />
+            <x-heroicon-s-users class="w-6 h-6" />
             <span>{{__('users.titles.list')}}</span>
         </div>
         <div class="flex space-x-2 items-center">

@@ -21,17 +21,18 @@ class FormUser extends Component
     public Profile $profile;
     public $role;
     public $type = 'new';
-    public $title_loading = "Creando usuario...";
+    public $title_loading;
 
     public function mount(User $user)
     {
         $this->user = $user;
         $this->profile = $this->user->profile ?? new Profile;
 
+        $this->title_loading = __('users.forms.messages.loading-create');
         if ( $this->user->exists ) {
             $this->role = $this->user->role_id;
             $this->type = 'edit';
-            $this->title_loading = "Editando usuario...";
+            $this->title_loading = __('users.forms.messages.loading-edit');
         }
     }
 

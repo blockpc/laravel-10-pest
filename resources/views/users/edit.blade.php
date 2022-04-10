@@ -6,12 +6,12 @@
 <div class="overflow-hidden shadow-sm sm:rounded-lg">
     <div class="page-header">
         <div class="flex space-x-2 items-center">
-            <x-bx-layout class="w-6 h-6" />
+            <x-heroicon-s-user class="w-6 h-6" />
             <span>{{__('users.titles.update')}}</span>
         </div>
         <div class="flex space-x-2 items-center">
-            <a class="btn-sm btn-primary" href="{{ route('users.index') }}" title="{{__('users.titles.list')}}">
-                <x-bx-layout class="w-6 h-6" />
+            <a class="btn-sm btn-primary space-x-2" href="{{ route('users.index') }}" title="{{__('users.titles.list')}}">
+                <x-heroicon-s-users class="w-4 h-4" />
                 <span class="hidden sm:block">{{__('users.titles.list')}}</span>
             </a>
         </div>

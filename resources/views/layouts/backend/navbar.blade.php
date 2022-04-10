@@ -44,7 +44,7 @@
                 </div>
                 <x-links.sidebar-link :href="route('profile')" :active="request()->routeIs('profile')">
                     <div class="flex justify-between items-center">
-                        <span>{{ __('Profile User') }}</span>
+                        <span>{{ __('common.profile-user') }}</span>
                         <x-bx-user-pin class="w-5 h-5" />
                     </div>
                 </x-links.sidebar-link>

@@ -22,7 +22,7 @@ trait AuthenticationAdmin
             $this->role_admin = $this->new_role('admin', 'Administrador');
 
             $permissions = $this->new_permissions_for([
-                'user list', 'user create',
+                'user list', 'user create', 'user update',
                 'role list', 'role create', 'role update'
             ]);
 

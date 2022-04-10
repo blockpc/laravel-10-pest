@@ -19,8 +19,24 @@
                     </select>
                 </div>
             </div>
+            @if ( isset($records_deleted) && current_user()->can('user delete') )
+                @if(!$records_deleted)
+                <button wire:click="eliminated" type="button" class="btn-sm btn-danger flex fles-row items-center m-0 space-x-2 h-8">
+                    <x-bx-trash class="w-4 h-4" />
+                </button>
+                @else
+                <button wire:click="eliminated" type="button" class="btn-sm btn-success flex fles-row items-center m-0 space-x-2 h-8">
+                    <x-bx-check class="w-4 h-4" />
+                </button>
+                @endif
+            @endif
         </div>
         <div class="w-full scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-400 overflow-x-scroll">
+            @error('error_role')
+            <div class="alert-danger my-2" id="alert-message-error-role">
+                <p class="text-sm">{!! $message !!}.</p>
+            </div>
+            @enderror
             <x-tables.table>
                 <x-slot name="thead">
                     <tr>
@@ -40,15 +56,43 @@
                         <x-tables.td>{{ $role->users_count }}</x-tables.td>
                         <x-tables.td>
                             <div class="flex justify-end space-x-2">
-                                <a class="btn-sm btn-success" href="{{ route('roles.edit', [$role]) }}" title="{{ __('roles.titles.update') }}">
-                                    <x-bx-edit-alt class="w-4 h-4" />
-                                </a>
-                                <a class="btn-sm btn-danger" href="#" title="{{ __('roles.titles.delete') }}">
-                                    <x-bx-x class="w-4 h-4" />
-                                </a>
-                                <a class="btn-sm btn-info" href="#" title="{{ __('roles.titles.restore') }}">
-                                    <x-bx-revision class="w-4 h-4" />
-                                </a>
+                                @if ( isset($records_deleted) && $records_deleted)
+                                    @if ( current_user()->can('role restore') )
+                                    <div class="" x-data="{ showModal : false }">
+                                        <button class="btn-sm btn-info" type="button" x-on:click="showModal = true" title="{{__('roles.titles.restore')}}"><x-bx-revision class="w-4 h-4" /></button>
+                                        <x-modals.mini class="border-2 border-blue-800">
+                                            <x-slot name="title">{{__('roles.titles.restore')}}</x-slot>
+                                            <x-slot name="action">
+                                                <button x-on:click="showModal = false" class="btn btn-warning">{{__('common.cancel')}}</button>
+                                                <button wire:click="restore({{$role->id}})" type="button" class="btn btn-primary" x-on:click="showModal = false">{{__('roles.titles.restore')}}</button>
+                                            </x-slot>
+                                            <p>{{__('roles.modals.restore')}}</p>
+                                            <p>{{__('roles.modals.restore-message')}}</p>
+                                            <p class="text-xl font-semibold">{{$role->display_name}}</p>
+                                        </x-modals.mini>
+                                    </div>
+                                    @endif
+                                @else
+                                    @if ( current_user()->can('role update') )
+                                    <a class="btn-sm btn-success" href="{{ route('roles.edit', [$role]) }}" title="{{ __('roles.titles.update') }}">
+                                        <x-bx-edit-alt class="w-4 h-4" />
+                                    </a>
+                                    @endif
+                                    @if ( !in_array($role->name, $roles_base) && current_user()->can('role delete') && !current_user()->hasRole($role->name) )
+                                    <div class="" x-data="{ showModal : false }">
+                                        <button class="btn-sm btn-danger" type="button" x-on:click="showModal = true" title="{{__('roles.titles.delete')}}"><x-bx-x class="w-4 h-4" /></button>
+                                        <x-modals.mini class="border-2 border-red-800">
+                                            <x-slot name="title">{{__('roles.titles.delete')}}</x-slot>
+                                            <x-slot name="action">
+                                                <button x-on:click="showModal = false" class="btn btn-warning">{{__('common.cancel')}}</button>
+                                                <button wire:click="delete('{{$role->id}}')" type="button" class="btn btn-danger" x-on:click="showModal = false">{{__('roles.titles.delete')}}</button>
+                                            </x-slot>
+                                            <p>{{__('roles.modals.delete')}}</p>
+                                            <p class="text-xl font-semibold">{{$role->display_name}}</p>
+                                        </x-modals.mini>
+                                    </div>
+                                    @endif
+                                @endif
                             </div>
                         </x-tables.td>
                     </x-tables.row>

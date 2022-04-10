@@ -16,5 +16,6 @@ return [
     'create' => 'Crear',
     'edit' => 'Editar',
     'delete' => 'Eliminar',
-    'profile' => 'Perfil'
+    'profile' => 'Perfil',
+    'profile-user' => 'Perfil de Usuario',
 ];

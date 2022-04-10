@@ -17,4 +17,5 @@ return [
     'edit' => 'Edit',
     'delete' => 'Delete',
     'profile' => 'Profile',
+    'profile-user' => 'Profile User',
 ];

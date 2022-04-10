@@ -20,8 +20,9 @@ return new class extends Migration
         });
 
         Schema::table('roles', function (Blueprint $table) {
-            $table->string('display_name')->nullable();
-            $table->string('description')->nullable();
+            $table->string('display_name')->nullable()->after('guard_name');
+            $table->string('description')->nullable()->after('guard_name');
+            $table->softDeletes();
         });
     }
 
@@ -41,6 +42,7 @@ return new class extends Migration
         Schema::table('roles', function (Blueprint $table) {
             $table->dropColumn('display_name');
             $table->dropColumn('description');
+            $table->dropColumn('deleted_at');
         });
     }
 };

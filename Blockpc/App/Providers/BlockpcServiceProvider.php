@@ -19,7 +19,7 @@ final class BlockpcServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app->register(BlockpcEventServiceProvider::class);
+        $this->app->register(BlockpcEventServiceProvider::class);
         $this->app->register(BlockpcAuthServiceProvider::class);
 
         Builder::mixin( new Search);

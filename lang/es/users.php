@@ -48,6 +48,8 @@ return [
             'send-message' => 'Si el usuario olvidó su contraseña, se le podría enviar un correo electrónico con un enlace a la página para cambiar la contraseña. Este enlace es válido para un cambio.',
         ],
         'messages' => [
+            'loading-create' => 'Creando usuario...', 
+            'loading-edit' => 'Actualizando usuario...', 
             'delete' => 'El usuario :user fue eliminado', 
             'restore' => 'El usuario :user fue restaurado', 
         ]

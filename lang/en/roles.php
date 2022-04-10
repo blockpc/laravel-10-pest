@@ -49,6 +49,10 @@ return [
             'loading-edit' => 'Editing role...', 
             'create' => 'The role :role was created succesfully', 
             'edit' => 'The role :role was edited succesfully', 
+            'error-role-base' => 'You cannot delete a role base',
+            'error-role-users' => 'You cannot delete role <b> :role </b>, its associted to <b> :count </b> users',
+            'success-role-delete' => 'The role <b> :role </b>, was deleted succesfully',
+            'success-role-restore' => 'Restore role its not configured in the system',
         ]
     ]
 ];

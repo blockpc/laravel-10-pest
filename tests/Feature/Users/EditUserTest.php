@@ -41,6 +41,17 @@ final class EditUserTest extends TestBase
     }
 
     /** @test */
+    public function user_can_access_to_see_list_users()
+    {
+        $user = User::factory()->create();
+        $user->assignRole('admin');
+        
+        $this->authenticated()
+            ->get( route('users.edit', $user) )
+            ->assertOk();
+    }
+
+    /** @test */
     public function can_resend_email_to_change_password()
     {
         Event::fake([ReSendLinkToChangePasswordEvent::class]);

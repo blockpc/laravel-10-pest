@@ -11,7 +11,8 @@ use Tests\TestBase;
 
 final class ListUsersTest extends TestBase
 {
-    use RefreshDatabase, AuthenticationUser;
+    use RefreshDatabase;
+    use AuthenticationUser;
 
     protected function setUp(): void
     {
