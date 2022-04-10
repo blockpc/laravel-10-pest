@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Blockpc\App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Models\Role as ModelsRole;
 
 final class Role extends ModelsRole
 {
+    use SoftDeletes;
+    
     const SUDO = 'sudo';
     const ADMIN = "admin";
     const USER = "user";

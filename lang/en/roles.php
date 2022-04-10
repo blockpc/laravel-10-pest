@@ -3,7 +3,6 @@
 return [
     'modals' => [
         'restore' => 'Are you sure you want to restore the associated role?',
-        'restore-message' => 'This role will receive a link for set new password.',
         'delete' => 'Are you sure you want to delete the associated role?',
     ],
     'titles' => [
@@ -52,7 +51,9 @@ return [
             'error-role-base' => 'You cannot delete a role base',
             'error-role-users' => 'You cannot delete role <b> :role </b>, its associted to <b> :count </b> users',
             'success-role-delete' => 'The role <b> :role </b>, was deleted succesfully',
-            'success-role-restore' => 'Restore role its not configured in the system',
+            'error-role-restore' => 'The role was not found',
+            'success-role-not-restore' => 'Restore role its not configured in the system',
+            'success-role-restore' => 'The role <b> :role </b> was restored succesfully.',
         ]
     ]
 ];

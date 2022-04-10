@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\System\Roles;
 
 use Blockpc\App\Models\Role;
+use Blockpc\App\Traits\AlertBrowserEvent;
 use Blockpc\App\Traits\WithSoftDeletes;
 use Blockpc\App\Traits\WithSorting;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,7 @@ use Livewire\WithPagination;
 
 class Table extends Component
 {
+    use AlertBrowserEvent;
     use WithPagination;
     use WithSorting;
     use WithSoftDeletes;
@@ -57,9 +59,26 @@ class Table extends Component
         $role->delete();
     }
 
+    public function force_delete(Role $role)
+    {
+        $users = $role->users();
+        $users->each(function($user) {
+            $user->assignRole(Role::USER);
+        });
+        
+        $this->alert(__('roles.forms.messages.error-role-delete', ['role' => $role->display_name]), __('roles.titles.delete'));
+        $role->delete();
+    }
+
     public function restore(int $id)
     {
-        $this->addError('error_role', __('roles.forms.messages.success-role-restore'));
-        return;
+        // $this->addError('error_role', __('roles.forms.messages.success-role-not-restore'));
+        // return;
+        if ( !$role = Role::withTrashed()->whereId($id)->first() ) {
+            $this->addError('error_role', __('roles.forms.messages.error-role-restore'));
+            return;
+        }
+        $role->restore();
+        $this->alert(__('roles.forms.messages.success-role-restore', ['role' => $role->display_name]), __('roles.titles.restore'));
     }
 }

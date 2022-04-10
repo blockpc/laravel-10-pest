@@ -52,7 +52,8 @@ return [
             'error-role-base' => 'No se puede borrar un cargo base',
             'error-role-users' => 'No se puede borrar el cargo <b> :role </b>, pues esta asociado a <b> :count </b> usuarios',
             'success-role-delete' => 'El cargo <b> :role </b>, fue eliminado correctamente',
-            'success-role-restore' => 'Restaurar Cargo no esta habilitado en la configración',
+            'success-role-not-restore' => 'Restaurar Cargo no esta habilitado en la configración',
+            'success-role-restore' => 'El Cargo <b> :role </b> fue restaurado correctamente.',
         ]
     ]
 ];
