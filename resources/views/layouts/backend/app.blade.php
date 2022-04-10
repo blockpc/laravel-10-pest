@@ -37,13 +37,13 @@
             <div class="flex container max-w-7xl mx-auto">
                 <div class="flex flex-col justify-between px-2 sm:px-4 space-y-2 min-h-screen w-full">
                     <main class="pt-20">
-                        @include('layouts.backend.messages')
+                        <x-alert-wire />
                         @yield('content')
                     </main>
                     <footer class="h-16 p-2 sm:p-4">
                         <div class="flex justify-between items-center">
                             <span>{{config('app.name', 'BlockPC') }}</span>
-                            <a href="//blockpc.cl" target="_blank" class="text-xs font-semibold hover:text-gray-200">Desarrollado por BlockPC @ {{ date('Y')}}</a>
+                            <a href="//blockpc.cl" target="_blank" class="text-xs font-semibold hover:text-gray-500 dark:hover:text-gray-400">Desarrollado por BlockPC @ {{ date('Y')}}</a>
                         </div>
                     </footer>
                 </div>

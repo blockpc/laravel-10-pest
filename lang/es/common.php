@@ -2,6 +2,7 @@
 
 return [
     'load-message' => 'Esto podria tardar un rato, por favor no cierres la página',
+    'no-records-founds' => 'Sin registros encontrados',
     'error' => 'Error',
     'info' => 'Información',
     'success' => 'Exito',

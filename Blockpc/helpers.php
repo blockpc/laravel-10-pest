@@ -8,6 +8,13 @@ if (! function_exists('current_user')) {
     }
 }
 
+if (! function_exists('title')) {
+    function title($value)
+    {
+        return \Illuminate\Support\Str::title($value);
+    }
+}
+
 if (! function_exists('image_profile')) {
     function image_profile($user = null) : string
     {

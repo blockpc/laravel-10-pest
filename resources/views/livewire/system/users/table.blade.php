@@ -1,12 +1,11 @@
 <div>
     <div class="flex-col space-y-4">
-        <x-alert-wire />
         <div class="flex flex-row">
             <div class="w-full mr-1 relative rounded-md shadow-sm">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <x-bx-search class="w-4 h-4 fill-current" />
                 </div>
-                <input wire:model.250ms="search" type="text" id="search" class="input-search" placeholder="Search" autocomplete="off">
+                <input wire:model.debounce.250ms="search" type="text" id="search" class="input-search" placeholder="Search" autocomplete="off">
                 @if ( $search )
                 <button type="button" wire:click="clean" class="absolute inset-y-0 right-16 flex items-center focus:ring-red-300 border-red-300 focus:border-red-300 text-red-500 hover:text-red-600">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4 fill-current"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>
@@ -36,11 +35,11 @@
             <x-tables.table>
                 <x-slot name="thead">
                     <tr>
-                        <x-tables.th sortable field="name" :sortField="$sortField" :sortDirection="$sortDirection" wire:click="sortBy('name')">{{__('pages.users.table.user')}}</x-tables.th>
-                        <x-tables.th sortable field="email" :sortField="$sortField" :sortDirection="$sortDirection" wire:click="sortBy('email')">{{__('pages.users.table.email')}}</x-tables.th>
-                        <x-tables.th sortable field="email_verified_at" :sortField="$sortField" :sortDirection="$sortDirection" wire:click="sortBy('email_verified_at')">{{__('pages.users.table.status')}}</x-tables.th>
-                        <x-tables.th>{{__('pages.users.table.role')}}</x-tables.th>
-                        <th class="px-3 py-2 text-right">{{__('pages.users.table.actions')}}</th>
+                        <x-tables.th sortable field="name" :sortField="$sortField" :sortDirection="$sortDirection" wire:click="sortBy('name')">{{__('users.table.user')}}</x-tables.th>
+                        <x-tables.th sortable field="email" :sortField="$sortField" :sortDirection="$sortDirection" wire:click="sortBy('email')">{{__('users.table.email')}}</x-tables.th>
+                        <x-tables.th sortable field="email_verified_at" :sortField="$sortField" :sortDirection="$sortDirection" wire:click="sortBy('email_verified_at')">{{__('users.table.status')}}</x-tables.th>
+                        <x-tables.th>{{__('users.table.role')}}</x-tables.th>
+                        <th class="px-3 py-2 text-right">{{__('users.table.actions')}}</th>
                     </tr>
                 </x-slot>
                 <x-slot name="tbody">
@@ -62,16 +61,16 @@
                             <div class="flex justify-end space-x-2">
                                 @if ( isset($records_deleted) && $records_deleted)
                                 <div class="" x-data="{ showModal : false }">
-                                    <button class="btn-sm btn-info" type="button" x-on:click="showModal = true" title="{{__('pages.users.titles.restore')}}"><x-bx-revision class="w-4 h-4" /></button>
+                                    <button class="btn-sm btn-info" type="button" x-on:click="showModal = true" title="{{__('users.titles.restore')}}"><x-bx-revision class="w-4 h-4" /></button>
                                     <x-modals.mini class="border-2 border-blue-800">
-                                        <x-slot name="title">{{__('pages.users.titles.restore')}}</x-slot>
+                                        <x-slot name="title">{{__('users.titles.restore')}}</x-slot>
                                         <x-slot name="action">
                                             <button x-on:click="showModal = false" class="btn btn-warning">{{__('common.cancel')}}</button>
-                                            <button wire:click="restore({{$user->id}})" type="button" class="btn btn-primary" x-on:click="showModal = false">{{__('pages.users.titles.restore')}}</button>
+                                            <button wire:click="restore({{$user->id}})" type="button" class="btn btn-primary" x-on:click="showModal = false">{{__('users.titles.restore')}}</button>
                                         </x-slot>
                                         <x-box-user :user=$user></x-box-user>
-                                        <p>{{__('pages.users.modals.restore')}}</p>
-                                        <p>{{__('pages.users.modals.restore-message')}}</p>
+                                        <p>{{__('users.modals.restore')}}</p>
+                                        <p>{{__('users.modals.restore-message')}}</p>
                                     </x-modals.mini>
                                 </div>
                                 @else
@@ -80,15 +79,15 @@
                                     @endif
                                     @if ( current_user()->can('user delete') && current_user()->id != $user->id )
                                     <div class="" x-data="{ showModal : false }">
-                                        <button class="btn-sm btn-danger" type="button" x-on:click="showModal = true" title="{{__('pages.users.titles.delete')}}"><x-bx-x class="w-4 h-4" /></button>
+                                        <button class="btn-sm btn-danger" type="button" x-on:click="showModal = true" title="{{__('users.titles.delete')}}"><x-bx-x class="w-4 h-4" /></button>
                                         <x-modals.mini class="border-2 border-red-800">
-                                            <x-slot name="title">{{__('pages.users.titles.delete')}}</x-slot>
+                                            <x-slot name="title">{{__('users.titles.delete')}}</x-slot>
                                             <x-slot name="action">
                                                 <button x-on:click="showModal = false" class="btn btn-warning">{{__('common.cancel')}}</button>
-                                                <button wire:click="delete('{{$user->name}}')" type="button" class="btn btn-danger" x-on:click="showModal = false">{{__('pages.users.titles.delete')}}</button>
+                                                <button wire:click="delete('{{$user->name}}')" type="button" class="btn btn-danger" x-on:click="showModal = false">{{__('users.titles.delete')}}</button>
                                             </x-slot>
                                             <x-box-user :user=$user></x-box-user>
-                                            <p>{{__('pages.users.modals.delete')}}</p>
+                                            <p>{{__('users.modals.delete')}}</p>
                                         </x-modals.mini>
                                     </div>
                                     @endif

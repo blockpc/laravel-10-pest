@@ -1,18 +1,18 @@
 @extends('layouts.backend.app')
 
-@section('title', __('pages.users.titles.list'))
+@section('title', __('users.titles.list'))
 
 @section('content')
 <div class="overflow-hidden shadow-sm sm:rounded-lg">
     <div class="page-header">
         <div class="flex space-x-2 items-center">
             <x-heroicon-s-user-group class="w-6 h-6" />
-            <span>{{__('pages.users.titles.list')}}</span>
+            <span>{{__('users.titles.list')}}</span>
         </div>
         <div class="flex space-x-2 items-center">
-            <a class="btn-sm btn-primary space-x-2" href="{{ route('users.create') }}">
+            <a class="btn-sm btn-primary space-x-2" href="{{ route('users.create') }}" title="{{__('users.titles.add')}}">
                 <x-bx-plus class="w-4 h-4" />
-                <span class="hidden sm:block">{{__('pages.users.titles.add')}}</span>
+                <span class="hidden sm:block">{{__('users.titles.add')}}</span>
             </a>
         </div>
     </div>

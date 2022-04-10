@@ -8,6 +8,18 @@ use Spatie\Permission\Models\Permission as ModelsPermission;
 
 final class Permission extends ModelsPermission
 {
+    const DEFAULTS = [
+        3 => "user list",
+        8 => "role list",
+        13 => "permission list"
+    ];
+
+    const NOT_ALLOWED = [
+        'super admin', 
+        'settings control', 
+        'jobs control'
+    ];
+
     protected $fillable = [
         'name',
         'guard_name',
@@ -15,4 +27,9 @@ final class Permission extends ModelsPermission
         'description',
         'key',
     ];
+
+    public function scopeNotAllowed($query)
+    {
+        return $query->whereNotIn('name', self::NOT_ALLOWED);
+    }
 }

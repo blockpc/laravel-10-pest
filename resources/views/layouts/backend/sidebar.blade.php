@@ -9,7 +9,7 @@ x-transition:leave-end="opacity-0">
     <x-links.sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
         <div class="flex space-x-2 items-center">
             <x-bx-layout class="w-5 h-5" />
-            <span>{{__('Dashboard')}}</span>
+            <span>{{__('pages.dashboard.titles.link')}}</span>
         </div>
     </x-links.sidebar-link>
     <x-links.hr />
@@ -37,21 +37,21 @@ x-transition:leave-end="opacity-0">
     <x-links.sidebar-link :href="route('users.index')" :active="request()->routeIs('users.*')" permission="user list">
         <div class="flex space-x-2 items-center">
             <x-heroicon-s-users class="w-5 h-5" />
-            <span>{{__('Users')}}</span>
+            <span>{{__('users.titles.link')}}</span>
         </div>
     </x-links.sidebar-link>
     {{-- Role List --}}
-    <x-links.sidebar-link href="#" :active="request()->routeIs('roles.*')" permission="super admin">
+    <x-links.sidebar-link :href="route('roles.index')" :active="request()->routeIs('roles.*')" permission="role list">
         <div class="flex space-x-2 items-center">
             <x-bx-shield class="w-5 h-5" />
-            <span>{{__('Roles')}}</span>
+            <span>{{__('roles.titles.link')}}</span>
         </div>
     </x-links.sidebar-link>
     {{-- Permission List --}}
-    <x-links.sidebar-link href="#" :active="request()->routeIs('permissions.*')" permission="super admin">
+    <x-links.sidebar-link href="#" :active="request()->routeIs('permissions.*')" permission="permission list">
         <div class="flex space-x-2 items-center">
             <x-bx-label class="w-5 h-5" />
-            <span>{{__('Permissions')}}</span>
+            <span>{{__('permissions.titles.link')}}</span>
         </div>
     </x-links.sidebar-link>
 </div>

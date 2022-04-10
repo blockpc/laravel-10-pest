@@ -6,7 +6,7 @@ namespace Blockpc\App\Traits;
 
 trait WithSorting
 {
-    public $sortField = '';
+    public $sortField = 'id';
     public $sortDirection = 'desc';
 
     public function sortBy($field)

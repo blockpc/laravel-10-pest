@@ -53,7 +53,7 @@ class Table extends Component
             $this->addError('delete', 'No puedes eliminar tu propio usuario');
             return;
         }
-        session()->flash('info', __('pages.users.forms.messages.delete', ['user' => $user->name]));
+        session()->flash('info', __('users.forms.messages.delete', ['user' => $user->name]));
         $user->delete();
     }
 
@@ -63,7 +63,7 @@ class Table extends Component
         $user->restore();
 
         ReSendLinkToChangePasswordEvent::dispatch($user);
-        session()->flash('info', __('pages.users.forms.messages.restore', ['user' => $user->name]));
+        session()->flash('info', __('users.forms.messages.restore', ['user' => $user->name]));
     }
 
     public function clean()

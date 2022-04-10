@@ -102,12 +102,12 @@ class FormUser extends Component
     protected function validationAttributes()
     {
         return [
-            'user.name' => __('pages.users.forms.attributes.user.name'),
-            'user.email' => __('pages.users.forms.attributes.user.email'),
-            'role' => __('pages.users.forms.attributes.role'),
-            'profile.firstname' => __('pages.users.forms.attributes.profile.firstname'),
-            'profile.lastname' => __('pages.users.forms.attributes.profile.lastname'),
-            'profile.phone' => __('pages.users.forms.attributes.profile.phone'),
+            'user.name' => __('users.forms.attributes.user.name'),
+            'user.email' => __('users.forms.attributes.user.email'),
+            'role' => __('users.forms.attributes.role'),
+            'profile.firstname' => __('users.forms.attributes.profile.firstname'),
+            'profile.lastname' => __('users.forms.attributes.profile.lastname'),
+            'profile.phone' => __('users.forms.attributes.profile.phone'),
         ];
     }
 }
