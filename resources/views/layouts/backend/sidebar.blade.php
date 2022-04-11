@@ -48,7 +48,7 @@ x-transition:leave-end="opacity-0">
         </div>
     </x-links.sidebar-link>
     {{-- Permission List --}}
-    <x-links.sidebar-link href="#" :active="request()->routeIs('permissions.*')" permission="permission list">
+    <x-links.sidebar-link :href="route('permissions.index')" :active="request()->routeIs('permissions.*')" permission="permission list">
         <div class="flex space-x-2 items-center">
             <x-bx-label class="w-5 h-5" />
             <span>{{__('permissions.titles.link')}}</span>

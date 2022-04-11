@@ -2,6 +2,7 @@
 
 return [
     'titles' => [
-        'link' => 'Permisos'
+        'link' => 'Permisos',
+        'list' => 'Lista de Permisos',
     ]
 ];

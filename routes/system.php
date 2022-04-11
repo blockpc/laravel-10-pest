@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\System\DashboardController;
+use App\Http\Controllers\System\PermissionsController;
 use App\Http\Controllers\System\ProfileController;
 use App\Http\Controllers\System\RolesController;
 use App\Http\Controllers\System\UsersController;
@@ -27,4 +28,7 @@ Route::middleware(['auth'])
         Route::resource('/roles', RolesController::class)->only([
             'index', 'create', 'edit'
         ]);
+
+        Route::get('/permisos', PermissionsController::class)
+            ->name('permissions.index');
 });
