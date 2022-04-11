@@ -26,9 +26,9 @@ class ProfileUser extends Component
     public $password_confirmation;
     public $photo;
 
-    public function mount(User $user)
+    public function mount()
     {
-        $this->user = $user;
+        $this->user = current_user();
         $this->profile = $this->user->profile;
     }
     

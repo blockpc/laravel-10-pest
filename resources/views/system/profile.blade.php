@@ -12,12 +12,12 @@
         <div class="">
             <a class="btn-sm btn-default space-x-2" href="{{ route('dashboard') }}" title="{{__('pages.dashboard.titles.link')}}">
                 <x-bx-layout class="w-4 h-4" />
-                <span>{{__('pages.dashboard.titles.link')}}</span>
+                <span class="hidden sm:block">{{__('pages.dashboard.titles.link')}}</span>
             </a>
         </div>
     </div>
     <div class="page-content">
-        @livewire('system.profile-user', ['user' => current_user()], key('system-profile-user'))
+        @livewire('system.profile-user', [], key('system-profile-user'))
     </div>
 </div>
 @endsection

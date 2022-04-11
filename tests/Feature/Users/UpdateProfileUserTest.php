@@ -57,7 +57,7 @@ final class UpdateProfileUserTest extends TestBase
         $image = UploadedFile::fake()->image('avatar.gif', 200, 400)->size(1050);
 
         $livewire = Livewire::actingAs($this->user)
-            ->test(ProfileUser::class, ['user' => $this->user])
+            ->test(ProfileUser::class)
             ->set('photo', $image)
             ->assertHasErrors(['photo']);
         
@@ -74,7 +74,7 @@ final class UpdateProfileUserTest extends TestBase
         $name = mb_strtolower($this->user->name);
     
         Livewire::actingAs($this->user)
-            ->test(ProfileUser::class, ['user' => $this->user])
+            ->test(ProfileUser::class)
             ->set('photo', $file)
             ->call('save_profile')
             ->assertHasNoErrors();
@@ -96,7 +96,7 @@ final class UpdateProfileUserTest extends TestBase
         $newPassword = 'newOne123';
 
         Livewire::actingAs($this->user)
-            ->test(ProfileUser::class, ['user' => $this->user])
+            ->test(ProfileUser::class)
             ->set('password', $newPassword)
             ->set('password_confirmation', $newPassword)
             ->call('change_password')
