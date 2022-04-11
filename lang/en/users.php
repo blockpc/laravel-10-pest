@@ -30,6 +30,10 @@ return [
             'user' => [
                 'name' => 'User Name',
                 'email' => 'User Email',
+                'password' => 'Password',
+                'photo' => 'image',
+                'new-password' => 'New Password',
+                'password-confirmation' => 'Confirmed Password',
             ],
             'role' => 'role',
             'profile' => [
@@ -52,6 +56,9 @@ return [
             'loading-edit' => 'Editing user...', 
             'delete' => 'The user :user was deleted', 
             'restore' => 'The user :user was restored', 
+            'success-profile' => 'Your profile has been updated',
+            'success-photo' => 'Your image has been updated',
+            'success-password' => 'Your password has been updated',
         ]
     ]
 ];

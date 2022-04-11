@@ -62,7 +62,7 @@
         </div>
         <div class="md:flex-1 mt-2 mb:mt-0 md:px-3 shadow-lg pb-4">
             <div class="grid gap-4">
-                <div class="flex justify-end">
+                <div class="flex justify-end space-x-2">
                     <p class="text-xs font-light text-red">{{__('users.forms.create.send-message')}}</p>
                     <button type="button" class="btn-sm btn-primary whitespace-pre" wire:click="resend">{{ __('users.forms.create.send-link') }}</button>
                 </div>

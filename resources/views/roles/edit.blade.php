@@ -10,7 +10,7 @@
             <span>{{__('roles.titles.edit')}}</span>
         </div>
         <div class="flex space-x-2 items-center">
-            <a class="btn-sm btn-primary space-x-2" href="{{ route('roles.index') }}" title="{{__('roles.titles.list')}}">
+            <a class="btn-sm btn-default space-x-2" href="{{ route('roles.index') }}" title="{{__('roles.titles.list')}}">
                 <x-bx-shield class="w-4 h-4" />
                 <span class="hidden sm:block">{{__('roles.titles.list')}}</span>
             </a>

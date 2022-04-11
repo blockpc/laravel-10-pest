@@ -17,5 +17,10 @@ return [
     'edit' => 'Edit',
     'delete' => 'Delete',
     'profile' => 'Profile',
+    'photo' => 'Photo',
+    'upload-photo' => 'Upload Photo',
     'profile-user' => 'Profile User',
+    'profile-save' => 'Save Profile',
+    'change-password' => 'Change Password',
+    'gen-password' => 'Generate Password',
 ];

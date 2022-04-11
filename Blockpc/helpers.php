@@ -20,7 +20,7 @@ if (! function_exists('image_profile')) {
     {
         $user = $user ?? current_user();
         if ( $image = $user->profile->image ) {
-            return $image->url;
+            return $image;
         } else {
             $name = str_replace(" ", "+", $user->profile->fullName);
             return "https://ui-avatars.com/api/?name={$name}";

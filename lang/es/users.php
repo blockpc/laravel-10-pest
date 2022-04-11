@@ -27,9 +27,15 @@ return [
         'attributes' => [
             'title' => 'Datos de Usuario',
             'legend' => 'Información relacionada al usuario',
+            'change-pass' => 'Cambiar Contraseña',
+            'change-pass-legend' => 'La contraseña sera cambiada solo si escribe una nueva clave',
             'user' => [
                 'name' => 'Alias',
                 'email' => 'Correo',
+                'password' => 'Contraseña',
+                'photo' => 'imagen',
+                'new-password' => 'Nueva Contraseña',
+                'password-confirmation' => 'Confirmar Contraseña',
             ],
             'role' => 'cargo',
             'profile' => [
@@ -52,6 +58,9 @@ return [
             'loading-edit' => 'Actualizando usuario...', 
             'delete' => 'El usuario :user fue eliminado', 
             'restore' => 'El usuario :user fue restaurado', 
+            'success-profile' => 'Tu perfil de usuario ha sido actualizado',
+            'success-photo' => 'Tu imagen de usuario ha sido actualizada',
+            'success-password' => 'Tu clave de usuario ha sido actualizada',
         ]
     ]
 ];

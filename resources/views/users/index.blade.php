@@ -10,7 +10,7 @@
             <span>{{__('users.titles.list')}}</span>
         </div>
         <div class="flex space-x-2 items-center">
-            <a class="btn-sm btn-primary space-x-2" href="{{ route('users.create') }}" title="{{__('users.titles.add')}}">
+            <a class="btn-sm btn-default space-x-2" href="{{ route('users.create') }}" title="{{__('users.titles.add')}}">
                 <x-bx-plus class="w-4 h-4" />
                 <span class="hidden sm:block">{{__('users.titles.add')}}</span>
             </a>
