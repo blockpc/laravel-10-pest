@@ -8,6 +8,12 @@
     .bg-dark-light {
         @apply bg-gray-100 dark:bg-gray-600;
     }
+    .text-light {
+        @apply text-gray-700 dark:text-gray-400;
+    }
+    .border-light {
+        @apply border border-gray-700 dark:border-gray-400;
+    }
     .nav-dark {
         @apply bg-white dark:bg-gray-800;
     }

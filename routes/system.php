@@ -9,7 +9,7 @@ use App\Http\Controllers\System\RolesController;
 use App\Http\Controllers\System\UsersController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth'])
+Route::middleware(['auth', 'online'])
     ->prefix('sistema')
     ->group(function () {
         

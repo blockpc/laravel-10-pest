@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -54,6 +55,11 @@ class User extends Authenticatable
     public function profile() : HasOne
     {
         return $this->hasOne(Profile::class);
+    }
+
+    public function isOnline()
+    {
+        return Cache::has('user-online-'.$this->id);
     }
 
     public function getRoleIdAttribute() : int

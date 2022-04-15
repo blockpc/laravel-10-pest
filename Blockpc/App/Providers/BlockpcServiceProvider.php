@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Blockpc\App\Providers;
 
+use Blockpc\App\Middlewares\LogUserActivity;
 use Blockpc\App\Mixins\Search;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Routing\Router;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\ServiceProvider;
 
@@ -40,5 +42,8 @@ final class BlockpcServiceProvider extends ServiceProvider
                         ? $rule->mixedCase()->uncompromised()
                         : $rule;
         });
+
+        $router = $this->app->make(Router::class);
+        $router->aliasMiddleware('online', LogUserActivity::class);
     }
 }

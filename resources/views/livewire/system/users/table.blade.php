@@ -39,7 +39,8 @@
                         <x-tables.th sortable field="email" :sortField="$sortField" :sortDirection="$sortDirection" wire:click="sortBy('email')">{{__('users.table.email')}}</x-tables.th>
                         <x-tables.th sortable field="email_verified_at" :sortField="$sortField" :sortDirection="$sortDirection" wire:click="sortBy('email_verified_at')">{{__('users.table.status')}}</x-tables.th>
                         <x-tables.th>{{__('users.table.role')}}</x-tables.th>
-                        <th class="px-3 py-2 text-right">{{__('users.table.actions')}}</th>
+                        <th class="px-3 py-2">{{__('common.online')}}</th>
+                        <th class="px-3 py-2 text-right">{{__('common.actions')}}</th>
                     </tr>
                 </x-slot>
                 <x-slot name="tbody">
@@ -55,8 +56,11 @@
                             @endif
                         </x-tables.td>
                         <x-tables.td>
-                            <p>{{ $user->roles->pluck('display_name')->implode(', ') }}</p>
+                            {{ $user->roles->pluck('display_name')->implode(', ') }}
                         </x-tables>
+                        <x-tables.td>
+                            <span class="text-sm">{{ $user->isOnline() ? 'Si' : 'No' }}</span>
+                        </x-tables.td>
                         <x-tables.td>
                             <div class="flex justify-end space-x-2">
                                 @if ( isset($records_deleted) && $records_deleted)
