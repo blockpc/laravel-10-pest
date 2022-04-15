@@ -7,7 +7,7 @@
         <div class="md:flex mb-8">
             <div class="md:w-1/3 flex-col md:space-y-2">
                 <legend class="uppercase tracking-wide text-sm">{{__('roles.forms.attributes.title')}}</legend>
-                <p class="text-xs font-light text-red">{{__('roles.forms.attributes.legend')}}</p>
+                <p class="text-xs font-light">{{__('roles.forms.attributes.legend')}}</p>
             </div>
             <div class="md:flex-1 mt-2 mb:mt-0 md:px-3 shadow-lg pb-4">
                 <div class="grid gap-4">
@@ -25,7 +25,7 @@
         <div class="md:flex mb-8">
             <div class="md:w-1/3">
                 <legend class="uppercase tracking-wide text-sm"></legend>
-                <p class="text-xs font-light text-red"></p>
+                <p class="text-xs font-light"></p>
             </div>
             <div class="md:flex-1 mt-2 mb:mt-0 md:px-3">
                 <div class="grid grid-cols-3">
@@ -47,7 +47,7 @@
         <div class="md:flex mb-8">
             <div class="md:w-1/3 flex-col md:space-y-2">
                 <legend class="uppercase tracking-wide text-sm">{{__('roles.forms.permissions.title')}}</legend>
-                <p class="text-xs font-light text-red">{{__('roles.forms.permissions.legend')}}</p>
+                <p class="text-xs font-light">{{__('roles.forms.permissions.legend')}}</p>
             </div>
             <div class="md:flex-1 mt-2 mb:mt-0 md:px-3 shadow-lg pb-4">
                 @foreach ($permissions as $group => $collection)

@@ -9,7 +9,7 @@
             <div class="md:flex mb-8">
                 <div class="md:w-1/3 flex-col md:space-y-2">
                     <legend class="uppercase tracking-wide text-sm">{{__('users.forms.attributes.title')}}</legend>
-                    <p class="text-xs font-light text-red">{{__('users.forms.attributes.legend')}}</p>
+                    <p class="text-xs font-light">{{__('users.forms.attributes.legend')}}</p>
                 </div>
                 <div class="md:flex-1 mt-2 mb:mt-0 md:px-3 shadow-lg pb-4">
                     <div class="grid gap-4">
@@ -55,7 +55,7 @@
                                                 @endif
                                             </div>
                                         </button>
-                                        <input class="cursor-pointer absolute block py-2 px-4 w-full opacity-0 top-0 h-8" type="file"  wire:model="photo" accept="image/*">
+                                        <input class="cursor-pointer absolute block py-2 px-4 w-full opacity-0 top-0 h-8" type="file" wire:model="photo" accept="image/*">
                                         <!-- Progress Bar -->
                                         <div class="px-2 pt-2" x-show="isUploading">
                                             <progress class="w-full" max="100" x-bind:value="progress"></progress>
@@ -83,23 +83,28 @@
         <div class="md:flex mb-8">
             <div class="md:w-1/3 flex-col md:space-y-2">
                 <legend class="uppercase tracking-wide text-sm">{{__('users.forms.attributes.change-pass')}}</legend>
-                <p class="text-xs font-light text-red">{{__('users.forms.attributes.change-pass-legend')}}</p>
+                <p class="text-xs font-light">{{__('users.forms.attributes.change-pass-legend')}}</p>
             </div>
             <div class="md:flex-1 mt-2 mb:mt-0 md:px-3 shadow-lg pb-4">
                 <div class="grid gap-4">
                     {{-- password --}}
-                    <x-forms.box-text type="password" name="profile_password" title="users.forms.attributes.user.new-password" wire:model.defer="password" />
+                    <x-forms.box-text type="{{$type}}" name="profile_password" title="common.new-password" wire:model.defer="password" />
 
                     {{-- confirm password --}}
-                    <x-forms.box-text type="password" name="profile_password_confirmation" title="users.forms.attributes.user.password-confirmation" wire:model.defer="password_confirmation" />
+                    <x-forms.box-text type="{{$type}}" name="profile_password_confirmation" title="common.repeat-password" wire:model.defer="password_confirmation" />
 
                     <div class="flex flex-col md:flex-row text-xs md:text-sm items-center">
                         <div class="w-full md:w-1/3"></div>
                         <div class="flex justify-between w-full md:w-2/3 mt-1 md:mt-0">
-                            <button wire:click="generate" type="button" class="btn-sm btn-default space-x-2" title="{{__('common.gen-password')}}">
-                                <x-heroicon-o-key class="h-4 w-4" />
-                                <span class="hidden sm:block">{{__('common.gen-password')}}</span>
-                            </button>
+                            <div class="flex space-x-2">
+                                <button wire:click="see" type="button" class="btn-sm btn-warning" title="{{__('common.see-password')}}">
+                                    <x-heroicon-o-eye class="h-4 w-4" />
+                                </button>
+                                <button wire:click="generate" type="button" class="btn-sm btn-default space-x-2" title="{{__('common.gen-password')}}">
+                                    <x-heroicon-o-key class="h-4 w-4" />
+                                    <span class="hidden sm:block">{{__('common.gen-password')}}</span>
+                                </button>
+                            </div>
                             <button type="button" class="btn-sm btn-primary" wire:click.prevent="change_password">{{__('common.change-password')}}</button>
                         </div>
                     </div>

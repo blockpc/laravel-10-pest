@@ -25,6 +25,7 @@ class ProfileUser extends Component
     public $password;
     public $password_confirmation;
     public $photo;
+    public $type = 'password';
 
     public function mount()
     {
@@ -97,6 +98,14 @@ class ProfileUser extends Component
             $this->reset('photo');
             $this->setErrorBag($validator->getMessageBag());
         }
+    }
+
+    public function see()
+    {
+        if ( !$this->password ) {
+            return;
+        }
+        $this->type = ($this->type == 'password') ? 'text' : 'password';
     }
 
     public function generate()

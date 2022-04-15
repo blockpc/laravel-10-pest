@@ -8,7 +8,7 @@
         <div class="md:flex mb-8">
             <div class="md:w-1/3 flex-col md:space-y-2">
                 <legend class="uppercase tracking-wide text-sm">{{__('users.forms.attributes.title')}}</legend>
-                <p class="text-xs font-light text-red">{{__('users.forms.attributes.legend')}}</p>
+                <p class="text-xs font-light">{{__('users.forms.attributes.legend')}}</p>
             </div>
             <div class="md:flex-1 mt-2 mb:mt-0 md:px-3 shadow-lg pb-4">
                 <div class="grid gap-4">
@@ -35,7 +35,7 @@
         <div class="md:flex mb-8">
             <div class="md:w-1/3">
                 <legend class="uppercase tracking-wide text-sm"></legend>
-                <p class="text-xs font-light text-red"></p>
+                <p class="text-xs font-light"></p>
             </div>
             <div class="md:flex-1 mt-2 mb:mt-0 md:px-3">
                 <div class="grid grid-cols-3">
@@ -63,7 +63,7 @@
         <div class="md:flex-1 mt-2 mb:mt-0 md:px-3 shadow-lg pb-4">
             <div class="grid gap-4">
                 <div class="flex justify-end space-x-2">
-                    <p class="text-xs font-light text-red">{{__('users.forms.create.send-message')}}</p>
+                    <p class="text-xs font-light">{{__('users.forms.create.send-message')}}</p>
                     <button type="button" class="btn-sm btn-primary whitespace-pre" wire:click="resend">{{ __('users.forms.create.send-link') }}</button>
                 </div>
             </div>
