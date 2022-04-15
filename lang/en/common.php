@@ -21,6 +21,7 @@ return [
     'online' => 'Online',
     'see' => 'See',
     'actions' => 'Actions',
+    'notifications' => 'Notifications',
     'user' => 'User',
     'users' => 'Users',
     'users-online' => 'Users Online',

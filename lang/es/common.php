@@ -21,6 +21,7 @@ return [
     'online' => 'En Linea',
     'see' => 'Ver',
     'actions' => 'Acciones',
+    'notifications' => 'Notificaciones',
     'user' => 'Usuario',
     'users' => 'Usuarios',
     'users-online' => 'Usuarios en Linea',
