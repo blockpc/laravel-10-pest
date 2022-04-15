@@ -28,15 +28,18 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-roboto text-dark bg-dark antialiased">
-        <div class="relative min-h-screen md:flex flex-col" x-data="{sidebar:false, mode: localStorage.theme == 'dark'}">
+    <body class="font-roboto text-dark bg-dark antialiased overflow-hidden">
+        <div class="relative min-h-screen md:flex flex-col" 
+            x-data="{sidebar:false, mode: localStorage.theme == 'dark'}">
             {{-- menu --}}
             @include('layouts.backend.navbar')
             {{-- sidebar --}}
             @include('layouts.backend.sidebar')
-            <div class="flex container max-w-7xl mx-auto">
-                <div class="flex flex-col justify-between px-2 sm:px-4 space-y-2 min-h-screen w-full">
-                    <main class="pt-20">
+        </div>
+        <div class="absolute top-0 pt-16 w-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 h-screen">
+            <div class="content px-2 sm:px-4 pt-4">
+                <div class="flex flex-col justify-between space-y-2 min-h-screen w-full">
+                    <main class="">
                         <x-alert-wire />
                         @yield('content')
                     </main>

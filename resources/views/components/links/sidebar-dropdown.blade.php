@@ -22,9 +22,9 @@ $classes = ($active ?? false)
         x-transition:leave="transition ease-in duration-75"
         x-transition:leave-start="transform opacity-100 scale-100"
         x-transition:leave-end="transform opacity-0 scale-95"
-        class="absolute z-20 w-64 rounded-md shadow-lg origin-top-left left-0"
+        class="absolute z-20 w-64 shadow-lg origin-top-left left-0"
         style="display: none;">
-        <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 nav-dark text-sm">
+        <div class="rounded-md rounded-t-none border-b-2 border-gray-600 border-l border-r py-1 nav-dark text-sm">
             <div class="flex flex-col">
             {{ $content }}
             </div>

@@ -17,11 +17,6 @@ module.exports = {
             },
             height: theme => ({
                 "sidebar": "calc(100vh - 64px)",
-                "sidebar-sm": "calc(100vh - 48px)",
-                "menu": "calc(100vh - 32px)",
-            }),
-            width: theme => ({
-                "sidebar": "calc(100vw - 48px)",
             })
         },
     },
