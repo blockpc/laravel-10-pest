@@ -21,6 +21,8 @@ return [
     'online' => 'En Linea',
     'see' => 'Ver',
     'actions' => 'Acciones',
+    'read' => 'Leer',
+    'mark-read' => 'Marcar como leido',
     'notifications' => 'Notificaciones',
     'user' => 'Usuario',
     'users' => 'Usuarios',

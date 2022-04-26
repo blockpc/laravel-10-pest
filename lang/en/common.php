@@ -21,6 +21,8 @@ return [
     'online' => 'Online',
     'see' => 'See',
     'actions' => 'Actions',
+    'read' => 'Read',
+    'mark-read' => 'Mark as Read',
     'notifications' => 'Notifications',
     'user' => 'User',
     'users' => 'Users',

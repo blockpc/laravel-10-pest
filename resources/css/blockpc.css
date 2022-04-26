@@ -48,6 +48,9 @@
     .btn-default {
         @apply bg-gray-800 hover:bg-gray-600 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest focus:outline-none focus:border-gray-900 disabled:opacity-25 transition ease-in-out duration-150;
     }
+    .btn-action {
+        @apply bg-transparent hover:bg-gray-200 dark:hover:bg-gray-600 border border-transparent rounded-md font-semibold tracking-widest focus:outline-none disabled:opacity-25 transition ease-in-out duration-150;
+    }
     .label {
         @apply block font-medium text-sm;
     }

@@ -13,6 +13,14 @@ x-transition:leave-end="opacity-0">
         </div>
     </x-links.sidebar-link>
     <x-links.hr />
+    {{-- Todo List --}}
+    <x-links.sidebar-link :href="route('todo')" :active="request()->routeIs('todo.*')">
+        <div class="flex space-x-2 items-center">
+            <x-heroicon-o-clipboard-list class="w-5 h-5" />
+            <span>{{__('todos.titles.link')}}</span>
+        </div>
+    </x-links.sidebar-link>
+    <x-links.hr />
     <x-links.sidebar-dropdown :active="request()->routeIs('menus.*')">
         <x-slot name="trigger">
             <div class="flex space-x-2 items-center">

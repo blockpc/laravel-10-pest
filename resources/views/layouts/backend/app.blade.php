@@ -37,9 +37,9 @@
             @include('layouts.backend.sidebar')
         </div>
         <div class="absolute top-0 pt-16 w-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 h-screen">
-            <div class="content px-2 sm:px-4 pt-4">
-                <div class="flex flex-col justify-between space-y-2 min-h-screen w-full">
-                    <main class="">
+            <div class="content">
+                <div class="flex flex-col space-y-2 h-sidebar w-full">
+                    <main class="flex-1 p-2 md:p-4">
                         <x-alert-wire />
                         @yield('content')
                     </main>
