@@ -103,6 +103,7 @@ final class FormTodoTest extends TestBase
     {
         Todo::create([
             'name' => 'lorem ipsum',
+            'user_id' => $this->admin->id
         ]);
         
         Livewire::actingAs($this->admin)
@@ -152,7 +153,8 @@ final class FormTodoTest extends TestBase
         Todo::create([
             'name' => 'lorem ipsum',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. At, quae. Natus, esse sapiente eveniet dolores maxime.',
-            'tasks' => [1 => 'task one', 2 => 'task two', 3 => 'task three']
+            'tasks' => [1 => 'task one', 2 => 'task two', 3 => 'task three'],
+            'user_id' => $this->admin->id
         ]);
 
         $this->assertDatabaseHas('todos', [

@@ -5,6 +5,7 @@ namespace App\Models;
 use Blockpc\App\Models\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -80,5 +81,10 @@ class User extends Authenticatable
         } else {
             return $query->role($all_roles_except_sudo);
         }
+    }
+
+    public function todos() : HasMany
+    {
+        return $this->hasMany(Todo::class);
     }
 }

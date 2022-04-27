@@ -22,6 +22,8 @@ return [
     'see' => 'See',
     'actions' => 'Actions',
     'read' => 'Read',
+    'answer' => 'Answer',
+    'written-by' => 'Written By',
     'mark-read' => 'Mark as Read',
     'notifications' => 'Notifications',
     'user' => 'User',

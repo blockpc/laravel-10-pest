@@ -48,6 +48,10 @@ class Table extends Component
             $this->todo->tasks = $this->tasks;
         }
 
+        if ( !$this->todo->exists ) {
+            $this->todo->user_id = current_user()->id;
+        }
+        
         $this->todo->save();
 
         $this->alert(__('todos.messages.created'), __('todos.messages.create-task'));

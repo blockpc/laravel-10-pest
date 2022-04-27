@@ -19,18 +19,22 @@
             </div>
         </div>
         <div class="page-content">
-            <div class="w-full sm:w-1/2 sm:mx-auto">
+            <div class="w-full md:w-1/2 md:mx-auto">
                 <div class="grid gap-4" x-show="!table">
                     @foreach ($this->todos as $key => $item)
                     <div class="border-light rounded-md p-2 h-fit" x-data="{list{{$key}}:false}">
-                        <div class="flex flex-col space-y-2">
+                        <div class="grid gap-2">
                             <button type="button" class="btn flex justify-between items-center" x-on:click="list{{$key}}=!list{{$key}}">
                                 <span class="">{{$item->name}}</span>
                                 <div :class="list{{$key}} ? 'transform rotate-180' : 'transform rotate-0'">
                                     <x-bx-chevron-up class="fill-current h-4 w-4" />
                                 </div>
                             </button>
-                            <div class="flex flex-col space-y-2 px-2" x-show="list{{$key}}" x-cloak x-transition>
+                            <div class="grid gap-2 px-2" x-show="list{{$key}}" x-cloak x-transition>
+                                <div class="flex justify-between text-xs italic">
+                                    <span>{{__('common.written-by')}}: {{$item->user->name}}</span>
+                                    <span>{{$item->created_at->format('Y-m-d H:i')}}</span>
+                                </div>
                                 <div class="text-xs">{{$item->description}}</div>
                                 <ul class="list-disc text-xs ml-4">
                                     @forelse ($item->tasks as $value)
@@ -39,19 +43,21 @@
                                         <li>Sin tareas programas</li>
                                     @endforelse
                                 </ul>
-                                <div class="flex justify-end items-center space-x-2">
-                                    <button type="button" class="btn-sm btn-action text-blue-600 dark:text-blue-300 flex space-x-2" title="{{__('common.mark-read')}}">
-                                        <x-bx-check class="w-4 h-4" />
-                                        <span class="hidden sm:block">{{__('common.mark-read')}}</span>
-                                    </button>
-                                    <button type="button" class="btn-sm btn-action text-green-600 dark:text-green-300 flex space-x-2" title="{{__('common.edit')}}" wire:click="edit({{$item->id}})">
-                                        <x-bx-pencil class="w-4 h-4" />
-                                        <span class="hidden sm:block">{{__('common.edit')}}</span>
-                                    </button>
-                                    <button type="button" class="btn-sm btn-action text-red-600 dark:text-red-300 flex space-x-2" title="{{__('common.delete')}}">
-                                        <x-bx-x class="w-4 h-4" />
-                                        <span class="hidden sm:block">{{__('common.delete')}}</span>
-                                    </button>
+                                <div class="flex justify-end items-center">
+                                    <div class="flex space-x-2">
+                                        <button type="button" class="btn-sm btn-action text-green-600 dark:text-green-300 flex space-x-2" title="{{__('common.answer')}}">
+                                            <x-bx-edit class="w-5 h-5" />
+                                        </button>
+                                        <button type="button" class="btn-sm btn-action text-blue-600 dark:text-blue-300 flex space-x-2" title="{{__('common.mark-read')}}">
+                                            <x-bx-check class="w-5 h-5" />
+                                        </button>
+                                        <button type="button" class="btn-sm btn-action text-green-600 dark:text-green-300 flex space-x-2" title="{{__('common.edit')}}" wire:click="edit({{$item->id}})">
+                                            <x-bx-pencil class="w-5 h-5" />
+                                        </button>
+                                        <button type="button" class="btn-sm btn-action text-red-600 dark:text-red-300 flex space-x-2" title="{{__('common.delete')}}">
+                                            <x-bx-x class="w-5 h-5" />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

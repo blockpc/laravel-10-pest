@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'width' => '48'])
+@props(['align' => 'right', 'width' => '48', 'bx' => true])
 
 @php
 switch ($align) {
@@ -27,9 +27,11 @@ switch ($width) {
 <div class="relative" x-data="{ open: false }" x-on:click.outside="open = false" @close.stop="open = false">
     <div class="flex justify-between items-center space-x-2" x-on:click="open = ! open">
         {{ $trigger }}
+        @if ( $bx )
         <div :class="open ? 'transform rotate-180' : 'transform rotate-0'">
             <x-bx-chevron-up class="fill-current h-4 w-4" />
         </div>
+        @endif
     </div>
 
     <div x-show="open"

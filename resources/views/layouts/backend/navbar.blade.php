@@ -10,7 +10,7 @@
     </div>
     <div class="flex-1">
         {{-- mobile menu button --}}
-        <button class="h-16 mobile-menu-button p-4" x-on:click="sidebar = !sidebar">
+        <button class="h-16 mobile-menu-button p-4 flex items-center" x-on:click="sidebar = !sidebar">
             <div :class="sidebar ? 'hidden' : 'inline-flex'">
                 <x-bx-menu class="h-6 w-6" />
             </div>
@@ -21,12 +21,21 @@
     </div>
     <div class="flex items-center space-x-2 shadow mx-4">
         {{-- Notifications --}}
-        <button class="relative p-2 focus:bg-gray-100 dark:focus:bg-gray-600 focus:text-gray-600 dark:focus:text-gray-200 rounded-full">
-            <span class="sr-only">{{__('common.notifications')}}</span>
-            <span class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full"></span>
-            <span class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping"></span>
-            <x-bx-bell class="h-6 w-6" />
-        </button>
+        <x-dropdown align="right" width="64" :bx="false">
+            <x-slot name="trigger">
+                <button class="relative p-2 focus:bg-gray-100 dark:focus:bg-gray-600 focus:text-gray-600 dark:focus:text-gray-200 rounded-full">
+                    <span class="sr-only">{{__('common.notifications')}}</span>
+                    <span class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full"></span>
+                    <span class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping"></span>
+                    <x-bx-bell class="h-6 w-6" />
+                </button>
+            </x-slot>
+            <x-slot name="content">
+                <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-200 dark:hover:bg-gray-600" role="menuitem" tabindex="-1" id="menu-item-0">Account settings</a>
+                <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-200 dark:hover:bg-gray-600" role="menuitem" tabindex="-1" id="menu-item-1">Support</a>
+                <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-200 dark:hover:bg-gray-600" role="menuitem" tabindex="-1" id="menu-item-2">License</a>
+            </x-slot>
+        </x-dropdown>
         {{-- dark mode button --}}
         <div class="h-16 flex">
             <button type="button" x-on:click="mode=false" x-show="mode" class="setMode" id="sun">
@@ -37,7 +46,7 @@
             </button>
         </div>
         {{-- Responsive User Options --}}
-        <x-dropdown align="right" width="64">
+        <x-dropdown align="right" width="64" :bx="false">
             <x-slot name="trigger">
                 <button class="flex items-center space-x-2 text-sm font-medium text-dark transition duration-150 ease-in-out mx-2">
                     <img class="rounded-full w-8 h-8 bg-inherit" src="{{ image_profile() }}" alt="{{ current_user()->profile->fullname }}">

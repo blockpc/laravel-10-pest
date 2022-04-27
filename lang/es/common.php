@@ -22,6 +22,8 @@ return [
     'see' => 'Ver',
     'actions' => 'Acciones',
     'read' => 'Leer',
+    'answer' => 'Responder',
+    'written-by' => 'Escrito Por',
     'mark-read' => 'Marcar como leido',
     'notifications' => 'Notificaciones',
     'user' => 'Usuario',
