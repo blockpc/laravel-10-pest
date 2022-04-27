@@ -5,6 +5,7 @@ namespace App\Http\Livewire\System\Todo;
 use App\Models\Todo;
 use Blockpc\App\Traits\AlertBrowserEvent;
 use Blockpc\App\Traits\WithSorting;
+use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -22,6 +23,9 @@ class Table extends Component
     public $tasks = [];
     public $task = '';
     public $task_id = 0;
+
+    public $open_modal_response = false;
+    public $message = '';
 
     public function mount(Todo $todo)
     {
@@ -130,6 +134,43 @@ class Table extends Component
             return;
         }
         $this->add();
+    }
+
+    public function mark_as_read(Todo $todo)
+    {
+        $todo->read_at = Carbon::now();
+        $todo->save();
+        $this->alert(__('todos.messages.read-at'), __('todos.messages.read-task'));
+    }
+
+    public function delete_todo(Todo $todo)
+    {
+        // $todo->messageable()->delete();
+        $todo->delete();
+        $this->alert(__('todos.messages.delete-at'), __('todos.messages.delete-task'));
+    }
+
+    public function message_todo(Todo $todo)
+    {
+        $this->resetValidation('message');
+        $this->validate([
+            'message' => 'required|string|max:128'
+        ]);
+
+        $todo->messageable()->create([
+            'message' => $this->message
+        ]);
+
+        $this->message = '';
+        $this->open_modal_response = false;
+        $this->alert(__('todos.messages.answer-task'), __('todos.messages.answer'));
+    }
+
+    public function cancel_message()
+    {
+        $this->resetValidation('message');
+        $this->message = '';
+        $this->open_modal_response = false;
     }
 
     /** 

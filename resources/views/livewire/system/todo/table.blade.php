@@ -21,6 +21,7 @@
         <div class="page-content">
             <div class="w-full md:w-1/2 md:mx-auto">
                 <div class="grid gap-4" x-show="!table">
+                    {{-- List Tasks --}}
                     @foreach ($this->todos as $key => $item)
                     <div class="border-light rounded-md p-2 h-fit" x-data="{list{{$key}}:false}">
                         <div class="grid gap-2">
@@ -37,24 +38,49 @@
                                 </div>
                                 <div class="text-xs">{{$item->description}}</div>
                                 <ul class="list-disc text-xs ml-4">
-                                    @forelse ($item->tasks as $value)
+                                    @foreach($item->tasks as $value)
                                         <li>{{$value}}</li>
-                                    @empty
-                                        <li>Sin tareas programas</li>
-                                    @endforelse
+                                    @endforeach
                                 </ul>
+                                <div class="p-2 space-y-2">
+                                    @foreach ($item->messageable as $message)
+                                    <div class="flex flex-col space-y-1 p-2 border border-green-500 rounded-md">
+                                        <div class="flex justify-between items-center text-xs">
+                                            <div class="flex items-center space-x-2">
+                                                {{-- <span class="flex items-center px-2 py-1 bg-green-200 dark:bg-green-600 rounded-full">{{ $loop->iteration }}</span> --}}
+                                                <span class="italic">{{ $message->user->name }}</span>
+                                            </div>
+                                            <span class="italic">{{ $message->created_at->format('Y-m-d H:i') }}</span>
+                                        </div>
+                                        <div class="text-sm px-2">{{$message->message}}</div>
+                                    </div>
+                                    @endforeach
+                                </div>
                                 <div class="flex justify-end items-center">
                                     <div class="flex space-x-2">
-                                        <button type="button" class="btn-sm btn-action text-green-600 dark:text-green-300 flex space-x-2" title="{{__('common.answer')}}">
-                                            <x-bx-edit class="w-5 h-5" />
-                                        </button>
-                                        <button type="button" class="btn-sm btn-action text-blue-600 dark:text-blue-300 flex space-x-2" title="{{__('common.mark-read')}}">
+                                        <div class="" x-data="{ showModal : @entangle('open_modal_response') }">
+                                            <button type="button" class="btn-sm btn-action text-green-600 dark:text-green-300 flex space-x-2" title="{{__('common.answer')}}" x-on:click="showModal = true">
+                                                <x-bx-edit class="w-5 h-5" />
+                                            </button>
+                                            <x-modals.small class="border-2 border-green-800">
+                                                <x-slot name="title">{{__('todos.modal.title')}}</x-slot>
+                                                <x-slot name="action">
+                                                    <button type="button" wire:click="cancel_message" class="btn btn-warning">{{__('common.cancel')}}</button>
+                                                    <button wire:click="message_todo({{$item->id}})" type="button" class="btn btn-primary" id="message_todo_{{$item->id}}">{{__('common.answer')}}</button>
+                                                </x-slot>
+                                                {{-- description --}}
+                                                <x-forms.box-textarea class="flex justify-start items-start text-xs" name="message" title="todos.modal.message" wire:model.lazy="message" id="message_{{$item->id}}" />
+                                            </x-modals.small>
+                                        </div>
+                                        @if ( !$item->read_at )
+                                        <button type="button" class="btn-sm btn-action text-blue-600 dark:text-blue-300 flex space-x-2" title="{{__('common.mark-read')}}" wire:click="mark_as_read({{$item->id}})" id="mark_as_read_{{$item->id}}">
                                             <x-bx-check class="w-5 h-5" />
                                         </button>
-                                        <button type="button" class="btn-sm btn-action text-green-600 dark:text-green-300 flex space-x-2" title="{{__('common.edit')}}" wire:click="edit({{$item->id}})">
+                                        @endif
+                                        <button type="button" class="btn-sm btn-action text-green-600 dark:text-green-300 flex space-x-2" title="{{__('common.edit')}}" wire:click="edit({{$item->id}})" id="edit_{{$item->id}}">
                                             <x-bx-pencil class="w-5 h-5" />
                                         </button>
-                                        <button type="button" class="btn-sm btn-action text-red-600 dark:text-red-300 flex space-x-2" title="{{__('common.delete')}}">
+                                        <button type="button" class="btn-sm btn-action text-red-600 dark:text-red-400 flex space-x-2" title="{{__('common.delete')}}" wire:click="delete_todo({{$item->id}})" id="delete_todo_{{$item->id}}">
                                             <x-bx-x class="w-5 h-5" />
                                         </button>
                                     </div>
@@ -65,6 +91,7 @@
                     @endforeach
                 </div>
                 <div x-show="table" x-cloak>
+                    {{-- Form task --}}
                     <form wire:submit.prevent="save">
                         <div class="grid gap-4">
                             <div class="grid gap-4">

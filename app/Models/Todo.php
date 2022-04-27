@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Todo extends Model
 {
@@ -25,8 +26,22 @@ class Todo extends Model
         'tasks' => '{}',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function($model) {
+            $model->messageable()->delete();
+        });
+    }
+
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function messageable() : MorphMany
+    {
+        return $this->morphMany(Message::class, 'messageable');
     }
 }

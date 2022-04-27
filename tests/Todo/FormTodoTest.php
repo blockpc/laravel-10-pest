@@ -6,6 +6,7 @@ namespace Tests\Todo;
 
 use App\Http\Livewire\System\Todo\Table;
 use App\Models\Todo;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Tests\Support\AuthenticationAdmin;
@@ -16,10 +17,40 @@ final class FormTodoTest extends TestBase
     use RefreshDatabase;
     use AuthenticationAdmin;
 
+    private Todo $todo;
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->withoutExceptionHandling();
+
+        $this->todo = Todo::create([
+            'name' => 'lorem ipsum',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. At, quae. Natus, esse sapiente eveniet dolores maxime.',
+            'tasks' => [1 => 'task one', 2 => 'task two', 3 => 'task three'],
+            'user_id' => $this->admin->id
+        ]);
+    }
+
+    /** @test */
+    public function can_see_todo_default()
+    {
+        Livewire::actingAs($this->admin);
+
+        $this->todo->messageable()->create([
+            'message' => 'Maxime odio voluptatem illo consequatur dolorum'
+        ]);
+
+        $this->assertDatabaseHas('todos', [
+            'name' => 'lorem ipsum',
+        ]);
+
+        $this->assertDatabaseHas('messages', [
+            'message' => 'Maxime odio voluptatem illo consequatur dolorum',
+            'user_id' => $this->admin->id,
+            'messageable_type' => Todo::class,
+            'messageable_id' => $this->todo->id
+        ]);
     }
 
     /** @test */
@@ -101,11 +132,6 @@ final class FormTodoTest extends TestBase
      */
     public function can_not_create_a_new_todo($field, $value, $rule)
     {
-        Todo::create([
-            'name' => 'lorem ipsum',
-            'user_id' => $this->admin->id
-        ]);
-        
         Livewire::actingAs($this->admin)
             ->test(Table::class)
             ->set($field, $value)
@@ -137,12 +163,12 @@ final class FormTodoTest extends TestBase
             ->assertSet('tasks', [
                 1 => 'task one', 2 => 'task two', 3 => 'task three'
             ])
-            ->set('todo.name', 'lorem ipsum')
+            ->set('todo.name', 'lorem ipsum sum')
             ->call('save')
             ->assertHasNoErrors();
 
         $this->assertDatabaseHas('todos', [
-            'name' => 'lorem ipsum',
+            'name' => 'lorem ipsum sum',
             'tasks' => "{\"1\":\"task one\",\"2\":\"task two\",\"3\":\"task three\"}"
         ]);
     }
@@ -150,13 +176,6 @@ final class FormTodoTest extends TestBase
     /** @test */
     public function can_edit_task()
     {
-        Todo::create([
-            'name' => 'lorem ipsum',
-            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. At, quae. Natus, esse sapiente eveniet dolores maxime.',
-            'tasks' => [1 => 'task one', 2 => 'task two', 3 => 'task three'],
-            'user_id' => $this->admin->id
-        ]);
-
         $this->assertDatabaseHas('todos', [
             'id' => 1,
             'name' => 'lorem ipsum',
@@ -169,5 +188,80 @@ final class FormTodoTest extends TestBase
             ->assertSet('todo.description', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. At, quae. Natus, esse sapiente eveniet dolores maxime.')
             ->assertSet('tasks', [1 => 'task one', 2 => 'task two', 3 => 'task three'])
             ->assertHasNoErrors();
+    }
+
+    /** @test */
+    public function can_mark_as_read_a_todo()
+    {
+        $this->assertDatabaseHas('todos', [
+            'id' => 1,
+            'name' => 'lorem ipsum',
+            'read_at' => null
+        ]);
+
+        $knownDate = Carbon::create(2022, 5, 21, 12);
+        Carbon::setTestNow($knownDate);
+
+        Livewire::actingAs($this->admin)
+            ->test(Table::class)
+            ->call('mark_as_read', 1)
+            ->assertHasNoErrors();
+        
+        $this->assertDatabaseHas('todos', [
+            'id' => 1,
+            'name' => 'lorem ipsum',
+            'read_at' => $knownDate
+        ]);
+    }
+
+    /** @test */
+    public function can_delete_a_todo()
+    {
+        Livewire::actingAs($this->admin)
+            ->test(Table::class)
+            ->call('delete_todo', 1)
+            ->assertHasNoErrors();
+
+        $this->assertDatabaseMissing('todos', [
+            'name' => 'lorem ipsum'
+        ]);
+    }
+
+    /** @test */
+    public function can_message_a_todo()
+    {
+        Livewire::actingAs($this->admin)
+            ->test(Table::class)
+            ->set('message', 'rerum minima modi maiores eius provident')
+            ->call('message_todo', 1)
+            ->assertSet('message', '')
+            ->assertHasNoErrors();
+
+        $this->assertDatabaseHas('messages', [
+            'message' => 'rerum minima modi maiores eius provident',
+            'user_id' => $this->admin->id,
+            'messageable_type' => Todo::class,
+            'messageable_id' => $this->todo->id
+        ]);
+    }
+
+    /** @test */
+    public function can_delete_a_todo_with_messages()
+    {
+        Livewire::actingAs($this->admin)
+            ->test(Table::class)
+            ->set('message', 'Maxime odio voluptatem illo consequatur dolorum')
+            ->call('message_todo', 1)
+            ->assertSet('message', '')
+            ->call('delete_todo', 1)
+            ->assertHasNoErrors();
+
+        $this->assertDatabaseMissing('todos', [
+            'name' => 'lorem ipsum'
+        ]);
+
+        $this->assertDatabaseMissing('messages', [
+            'name' => 'Maxime odio voluptatem illo consequatur dolorum'
+        ]);
     }
 }
