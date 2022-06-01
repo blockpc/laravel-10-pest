@@ -1,0 +1,33 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Packages\$PACKAGE$\App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+final class $PACKAGE$ServiceProvider extends ServiceProvider
+{
+    public $config;
+    
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->mergeConfigFrom(__DIR__.'../../config/config.php', '$NAME$');
+        $this->config = $this->app->config->get('$NAME$.menus');
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+    }
+}
