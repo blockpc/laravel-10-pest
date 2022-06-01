@@ -34,7 +34,8 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Blockpc\\": "Blockpc/"
+            "Blockpc\\": "Blockpc/",
+            "Packages\\": "packages/"
         },
         "files": [
             "Blockpc/helpers.php"
