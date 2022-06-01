@@ -13,7 +13,7 @@ Packages for laravel:
 - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar) (for only dev)
 - [christophrumpel/missing-livewire-assertions](https://github.com/christophrumpel/missing-livewire-assertions)
 - [spatie/laravel-permission](https://spatie.be/index.php/docs/laravel-permission)
-- [yoeunes/toastr](https://github.com/yoeunes/toastr)
+- [yoeunes/toastr](https://github.com/yoeunes/toastr) 
 - [intervention/image](http://image.intervention.io/)
 
 Icons [blade-ui-kit/blade-icons](https://github.com/blade-ui-kit/blade-icons) with 
@@ -30,6 +30,13 @@ This packages includes a model `Profile` (one-to-one for user) and model `Image`
 
 And change some components from the original laravel install.
 
+### Create Packega
+
+with command `php artisan blockpc:package` you can create your own packages folder with own service provider
+
+This command create a service provider an config file.
+_more information soon_
+
 ### Install Clone
 
 - git clone https://github.com/blockpc/blockpcito your-proyect
@@ -44,7 +51,8 @@ And change some components from the original laravel install.
 - php artisan icons:cache
 - php artisan test
 
-### Change remote
+### Change remote (important)
+
 You must before start your proyect remove or change the git remote url
 
 - git remote set-url origin `url-at-your-proyect-git`
