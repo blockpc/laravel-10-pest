@@ -30,7 +30,7 @@ This packages includes a model `Profile` (one-to-one for user) and model `Image`
 
 And change some components from the original laravel install.
 
-### Create Packega
+### Create Package
 
 with command `php artisan blockpc:package` you can create your own packages folder with own service provider.
 This command create a folder structure like this:
@@ -52,7 +52,7 @@ packages/
                 - 2022_06_02_140645_create_packages_table.php
         - resources/
             - lang/
-                -es/
+                - es/
                     - package.php
             - views/
                 - index.blade.php
