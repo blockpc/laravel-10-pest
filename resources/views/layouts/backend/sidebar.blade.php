@@ -12,6 +12,10 @@ x-transition:leave-end="opacity-0">
             <span>{{__('pages.dashboard.titles.link')}}</span>
         </div>
     </x-links.sidebar-link>
+    @if ( app('menus') )
+    <x-links.hr />
+    <x-menus.backend></x-menus.backend>
+    @endif
     <x-links.hr />
     {{-- Todo List --}}
     <x-links.sidebar-link :href="route('todo')" :active="request()->routeIs('todo.*')">
@@ -20,27 +24,6 @@ x-transition:leave-end="opacity-0">
             <span>{{__('todos.titles.link')}}</span>
         </div>
     </x-links.sidebar-link>
-    <x-links.hr />
-    <x-links.sidebar-dropdown :active="request()->routeIs('menus.*')">
-        <x-slot name="trigger">
-            <div class="flex space-x-2 items-center">
-                <x-bx-code class="w-5 h-5" />
-                <span>{{__('Mas Menus')}}</span>
-            </div>
-        </x-slot>
-        <x-slot name="content">
-            <x-links.sidebar-submenu href="#">
-                {{__('Menu Uno')}}
-            </x-links.sidebar-submenu>
-            <x-links.sidebar-submenu href="#">
-                {{__('Menu Dos')}}
-            </x-links.sidebar-submenu>
-            <x-links.sidebar-submenu href="#">
-                {{__('Menu Tres')}}
-            </x-links.sidebar-submenu>
-        </x-slot>
-    </x-links.sidebar-dropdown>
-    <x-links.hr />
     {{-- User List --}}
     <x-links.sidebar-link :href="route('users.index')" :active="request()->routeIs('users.*')" permission="user list">
         <div class="flex space-x-2 items-center">

@@ -69,7 +69,7 @@ final class BlockpcServiceProvider extends ServiceProvider
     {
         /** @var \Illuminate\Filesystem\Filesystem $files */
         $files = $this->app->make('files');
-        $this->menus = \Config::get('blockpc.menus');
+        $this->menus = [];
 
         foreach ($files->directories(base_path('Packages')) as $directory) {
             
