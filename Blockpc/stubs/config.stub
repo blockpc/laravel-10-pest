@@ -2,5 +2,13 @@
 
 return [
     'name' => '$PACKAGE$',
-    'menus' => []
+    'menus' => [
+        '$NAME$' => [
+            'icon' => '',
+            'name' => '$PACKAGE$',
+            'route' => '$NAME$',
+            'active' => '$NAME$',
+            'submenus' => []
+        ]
+    ]
 ];

@@ -1,0 +1,11 @@
+@extends('layouts.backend.app')
+
+@section('title', __('$NAME$'))
+
+@section('content')
+
+<div class="overflow-hidden shadow-sm sm:rounded-lg">
+    <p>$PACKAGE$</p>
+</div>
+
+@endsection

@@ -32,11 +32,6 @@
                 </div>
             </div>
         </div>
-        <div class="">
-            @foreach (app('menus') as $menus)
-                <p>{{$menus}}</p>
-            @endforeach
-        </div>
     </div>
 </div>
 @endsection

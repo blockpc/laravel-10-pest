@@ -32,7 +32,25 @@ And change some components from the original laravel install.
 
 ### Create Packega
 
-with command `php artisan blockpc:package` you can create your own packages folder with own service provider
+with command `php artisan blockpc:package` you can create your own packages folder with own service provider.
+This command create a folder structure like this:
+```
+packages/
+    - Package/
+        - App/
+            - config/
+                - config.php
+            - Http/
+                - Controllers/
+                    - PackageController.php
+            - Providers/
+                - PackageServiceProvider.php
+        - resources/
+            - views/
+                - index.blade.php
+        - routes/
+            - web.php
+```
 
 This command create a service provider an config file.
 _more information soon_
@@ -50,6 +68,8 @@ _more information soon_
 - php artisan storage:link
 - php artisan icons:cache
 - php artisan test
+
+_delete line `packages/` from `.gitignore`_
 
 ### Change remote (important)
 
