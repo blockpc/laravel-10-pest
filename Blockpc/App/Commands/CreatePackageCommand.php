@@ -7,6 +7,7 @@ namespace Blockpc\App\Commands;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -76,20 +77,26 @@ final class CreatePackageCommand extends Command
                 $contents = $this->getSourceFile($key);
 
                 if (!$this->files->exists($path)) {
+                    $file = Str::padRight(Str::ucfirst($key), 18);
                     $this->files->put($path, $contents);
-                    $this->info("File : {$paths[$key]} created");
+                    $this->info("{$file} : {$paths[$key]} created");
                 } else {
-                    $this->info("File : {$paths[$key]} already exits");
+                    $this->info("{$file} : {$paths[$key]} already exits");
                 }
             }
+
+            Artisan::call('optimize', ['--quiet' => true]);
 
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
             $this->error('Something went wrong!');
 
             if ( $this->files->isDirectory(base_path('packages/'.$this->package)) ) {
-                $this->info("Delete: packages/{$this->package}");
-                $this->files->delete(base_path('packages/'.$this->package));
+                if ( $this->files->deleteDirectory(base_path('packages/'.$this->package)) ) {
+                    $this->info("Delete: packages/{$this->package}");
+                } else {
+                    $this->info("Something went wrong at delete: packages/{$this->package}");
+                }
             }
         }
     }
@@ -109,6 +116,7 @@ final class CreatePackageCommand extends Command
             'route' => base_path('Blockpc/stubs/route.stub'),
             'migration' => base_path('Blockpc/stubs/migration.stub'),
             'lang' => base_path('Blockpc/stubs/lang.stub'),
+            'model' => base_path('Blockpc/stubs/model.stub'),
         ];
         return $stubs[$key];
     }
@@ -181,13 +189,14 @@ final class CreatePackageCommand extends Command
     {
         $base = "Packages\\{$this->package}";
         return [
-            'config' => "{$base}\\App\\config\\config.php",
+            'config' => "{$base}\\config\\config.php",
             'serviceprovider' => "{$base}\\App\\Providers\\{$this->package}ServiceProvider.php",
             'controller' => "{$base}\\App\\Http\\Controllers\\{$this->package}Controller.php",
             'view' => "{$base}\\resources\\views\\index.blade.php",
             'route' => "{$base}\\routes\\web.php",
             'migration' => "{$base}\\database\\migrations\\{$this->date}_create_{$this->snake_name}_table.php",
             'lang' => "{$base}\\resources\\lang\\es\\{$this->name}.php",
+            'model' => "{$base}\\App\\Models\\{$this->package}.php",
         ];
     }
 }

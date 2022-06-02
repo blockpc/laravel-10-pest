@@ -8,7 +8,7 @@
                 @else
                 @svg('bx-link', 'w-5 h-5')
                 @endif
-                <span>{{$menu['name']}}</span>
+                <span>{{__($menu['name'])}}</span>
             </div>
         </x-slot>
         <x-slot name="content">
@@ -27,7 +27,7 @@
             @else
             @svg('bx-link', 'w-5 h-5')
             @endif
-            <span>{{$menu['name']}}</span>
+            <span>{{__($menu['name'])}}</span>
         </div>
     </x-links.sidebar-link>
     @endif

@@ -5,7 +5,7 @@ return [
     'menus' => [
         '$NAME$' => [
             'icon' => '',
-            'name' => '$PACKAGE$',
+            'name' => __('$NAME$::$NAME$.name'),
             'route' => '$NAME$',
             'active' => '$NAME$',
             'submenus' => []

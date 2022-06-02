@@ -1,11 +1,11 @@
 @extends('layouts.backend.app')
 
-@section('title', __('$NAME$'))
+@section('title', __('$NAME$::$NAME$.name'))
 
 @section('content')
 
 <div class="overflow-hidden shadow-sm sm:rounded-lg">
-    <p>$PACKAGE$</p>
+    <p>{{__('$NAME$::$NAME$.name')}}</p>
 </div>
 
 @endsection

@@ -12,8 +12,10 @@ x-transition:leave-end="opacity-0">
             <span>{{__('pages.dashboard.titles.link')}}</span>
         </div>
     </x-links.sidebar-link>
+    @if ( app('menus') )
     <x-links.hr />
     <x-menus.backend></x-menus.backend>
+    @endif
     <x-links.hr />
     {{-- Todo List --}}
     <x-links.sidebar-link :href="route('todo')" :active="request()->routeIs('todo.*')">
