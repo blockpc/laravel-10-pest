@@ -145,7 +145,6 @@ class Table extends Component
 
     public function delete_todo(Todo $todo)
     {
-        // $todo->messageable()->delete();
         $todo->delete();
         $this->alert(__('todos.messages.delete-at'), __('todos.messages.delete-task'));
     }

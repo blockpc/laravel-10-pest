@@ -177,13 +177,12 @@ final class FormTodoTest extends TestBase
     public function can_edit_task()
     {
         $this->assertDatabaseHas('todos', [
-            'id' => 1,
             'name' => 'lorem ipsum',
         ]);
 
         Livewire::actingAs($this->admin)
             ->test(Table::class)
-            ->call('edit', 1)
+            ->call('edit', $this->todo->id)
             ->assertSet('todo.name', 'lorem ipsum')
             ->assertSet('todo.description', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. At, quae. Natus, esse sapiente eveniet dolores maxime.')
             ->assertSet('tasks', [1 => 'task one', 2 => 'task two', 3 => 'task three'])
@@ -194,7 +193,6 @@ final class FormTodoTest extends TestBase
     public function can_mark_as_read_a_todo()
     {
         $this->assertDatabaseHas('todos', [
-            'id' => 1,
             'name' => 'lorem ipsum',
             'read_at' => null
         ]);
@@ -204,11 +202,10 @@ final class FormTodoTest extends TestBase
 
         Livewire::actingAs($this->admin)
             ->test(Table::class)
-            ->call('mark_as_read', 1)
+            ->call('mark_as_read', $this->todo->id)
             ->assertHasNoErrors();
         
         $this->assertDatabaseHas('todos', [
-            'id' => 1,
             'name' => 'lorem ipsum',
             'read_at' => $knownDate
         ]);
@@ -219,7 +216,7 @@ final class FormTodoTest extends TestBase
     {
         Livewire::actingAs($this->admin)
             ->test(Table::class)
-            ->call('delete_todo', 1)
+            ->call('delete_todo', $this->todo->id)
             ->assertHasNoErrors();
 
         $this->assertDatabaseMissing('todos', [
@@ -233,7 +230,7 @@ final class FormTodoTest extends TestBase
         Livewire::actingAs($this->admin)
             ->test(Table::class)
             ->set('message', 'rerum minima modi maiores eius provident')
-            ->call('message_todo', 1)
+            ->call('message_todo', $this->todo->id)
             ->assertSet('message', '')
             ->assertHasNoErrors();
 
@@ -251,9 +248,9 @@ final class FormTodoTest extends TestBase
         Livewire::actingAs($this->admin)
             ->test(Table::class)
             ->set('message', 'Maxime odio voluptatem illo consequatur dolorum')
-            ->call('message_todo', 1)
+            ->call('message_todo', $this->todo->id)
             ->assertSet('message', '')
-            ->call('delete_todo', 1)
+            ->call('delete_todo', $this->todo->id)
             ->assertHasNoErrors();
 
         $this->assertDatabaseMissing('todos', [
@@ -261,7 +258,7 @@ final class FormTodoTest extends TestBase
         ]);
 
         $this->assertDatabaseMissing('messages', [
-            'name' => 'Maxime odio voluptatem illo consequatur dolorum'
+            'message' => 'Maxime odio voluptatem illo consequatur dolorum'
         ]);
     }
 }
