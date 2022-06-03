@@ -4,15 +4,21 @@ declare(strict_types=1);
 
 namespace Blockpc\App\Commands;
 
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 final class CreatePackageCommand extends Command
 {
-    protected $packege;
+    protected $package;
     protected $name;
+    protected $camel_name;
+    protected $plural_name;
+    protected $snake_name;
+    protected $date;
 
     /**
      * Filesystem instance
@@ -54,49 +60,65 @@ final class CreatePackageCommand extends Command
     {
         try {
             $packageName = $this->ask('Package name');
-            $this->package = Str::ucfirst(Str::camel($packageName));
+            $this->camel_name = Str::camel($packageName);
+            $this->plural_name = Str::plural($this->camel_name);
+            $this->snake_name = Str::snake($this->plural_name);
+            $this->package = Str::ucfirst($this->camel_name);
             $this->name = strtolower($this->package);
+            $this->date = Carbon::now()->format('Y_m_d_Hmi');
 
             $this->info('Creating Package: ' . $this->package);
 
             $paths = $this->getSourceFilePath();
 
             foreach ($paths as $key => $path) {
-                $this->makeDirectory(dirname($path));
+                $this->makeDirectory(dirname(base_path($path)));
 
                 $contents = $this->getSourceFile($key);
-                $fullname = $this->getFullynamePackage($key);
 
                 if (!$this->files->exists($path)) {
+                    $file = Str::padRight(Str::ucfirst($key), 18);
                     $this->files->put($path, $contents);
-                    $this->info("File : {$fullname} created");
+                    $this->info("{$file} : {$paths[$key]} created");
                 } else {
-                    $this->info("File : {$fullname} already exits");
+                    $this->info("{$file} : {$paths[$key]} already exits");
                 }
             }
+
+            Artisan::call('optimize', ['--quiet' => true]);
 
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
             $this->error('Something went wrong!');
 
-            if ( $path && $this->files->isDirectory(base_path('packages/'.$this->package)) ) {
-                $this->info("Delete: packages/{$this->package}");
-                $this->files->delete(base_path('packages/'.$this->package));
+            if ( $this->files->isDirectory(base_path('packages/'.$this->package)) ) {
+                if ( $this->files->deleteDirectory(base_path('packages/'.$this->package)) ) {
+                    $this->info("Delete: packages/{$this->package}");
+                } else {
+                    $this->info("Something went wrong at delete: packages/{$this->package}");
+                }
             }
         }
     }
 
     /**
      * Return the stub file path
-     * @return array
-     *
+     * 
+     * @return string
      */
-    public function getStubPath() : array
+    public function getStubPath($key) : string
     {
-        return [
+        $stubs = [
             'config' => base_path('Blockpc/stubs/config.stub'),
-            'serviceprovider' => base_path('Blockpc/stubs/serviceprovider.stub')
+            'serviceprovider' => base_path('Blockpc/stubs/serviceprovider.stub'),
+            'controller' => base_path('Blockpc/stubs/controller.stub'),
+            'view' => base_path('Blockpc/stubs/view.stub'),
+            'route' => base_path('Blockpc/stubs/route.stub'),
+            'migration' => base_path('Blockpc/stubs/migration.stub'),
+            'lang' => base_path('Blockpc/stubs/lang.stub'),
+            'model' => base_path('Blockpc/stubs/model.stub'),
         ];
+        return $stubs[$key];
     }
 
     /**
@@ -104,13 +126,13 @@ final class CreatePackageCommand extends Command
      * Map the stub variables present in stub to its value
      *
      * @return array
-     *
      */
-    public function getStubVariables()
+    public function getStubVariables() : array
     {
         return [
             'PACKAGE'   => $this->package,
             'NAME'      => $this->name,
+            'TABLE'     => $this->snake_name,
         ];
     }
 
@@ -118,12 +140,10 @@ final class CreatePackageCommand extends Command
      * Get the stub path and the stub variables
      *
      * @return bool|mixed|string
-     *
      */
     public function getSourceFile($key)
     {
-        $stubs = $this->getStubPath();
-        return $this->getStubContents($stubs[$key], $this->getStubVariables());
+        return $this->getStubContents($this->getStubPath($key), $this->getStubVariables());
     }
 
     /**
@@ -149,15 +169,15 @@ final class CreatePackageCommand extends Command
      * Build the directory for the class if necessary.
      *
      * @param  string  $path
-     * @return string
+     * 
+     * @return bool
      */
-    protected function makeDirectory($path)
+    protected function makeDirectory($path) : bool
     {
-        if (! $this->files->isDirectory($path)) {
-            $this->files->makeDirectory($path, 0777, true, true);
+        if (!$this->files->isDirectory($path)) {
+            return $this->files->makeDirectory($path, 0777, true, true);
         }
-
-        return $path;
+        return false;
     }
 
     /**
@@ -167,25 +187,16 @@ final class CreatePackageCommand extends Command
      */
     public function getSourceFilePath() : array
     {
-        $base = "Packages\\{$this->package}\\App\\";
+        $base = "Packages\\{$this->package}";
         return [
-            'config' => base_path($base.'config\\config.php'),
-            'serviceprovider' => base_path($base.'Providers\\'.$this->package.'ServiceProvider.php')
+            'config' => "{$base}\\config\\config.php",
+            'serviceprovider' => "{$base}\\App\\Providers\\{$this->package}ServiceProvider.php",
+            'controller' => "{$base}\\App\\Http\\Controllers\\{$this->package}Controller.php",
+            'view' => "{$base}\\resources\\views\\index.blade.php",
+            'route' => "{$base}\\routes\\web.php",
+            'migration' => "{$base}\\database\\migrations\\{$this->date}_create_{$this->snake_name}_table.php",
+            'lang' => "{$base}\\resources\\lang\\es\\{$this->name}.php",
+            'model' => "{$base}\\App\\Models\\{$this->package}.php",
         ];
-    }
-
-    /**
-     * Get the FQDN of package
-     *
-     * @return array
-     */
-    protected function getFullynamePackage($key)
-    {
-        $base = "Packages\\{$this->package}\\App\\";
-        $names =  [
-            'config' => $base.'config\\config.php',
-            'serviceprovider' => $base.'Providers\\'.$this->package.'ServiceProvider.php'
-        ];
-        return $names[$key];
     }
 }

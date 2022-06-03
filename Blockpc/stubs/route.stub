@@ -1,0 +1,11 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Packages\$PACKAGE$\App\Http\Controllers\$PACKAGE$Controller;
+
+Route::middleware([
+    'web',
+])->group(function () {
+
+    Route::get('$NAME$', [$PACKAGE$Controller::class, 'index'])->name('$NAME$');
+});

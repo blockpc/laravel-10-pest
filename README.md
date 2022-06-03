@@ -30,17 +30,40 @@ This packages includes a model `Profile` (one-to-one for user) and model `Image`
 
 And change some components from the original laravel install.
 
-### Create Packega
+### Create Package
 
-with command `php artisan blockpc:package` you can create your own packages folder with own service provider
-
-This command create a service provider an config file.
-_more information soon_
+with command `php artisan blockpc:package` you can create your own packages folder with own service provider.
+This command create a folder structure like this:
+```
+packages/
+    - Package/
+        - App/
+            - Http/
+                - Controllers/
+                    - PackageController.php
+            - Models/
+                - Package.php
+            - Providers/
+                - PackageServiceProvider.php
+        - config/
+            - config.php
+        - database/
+            - migrations/
+                - 2022_06_02_140645_create_packages_table.php
+        - resources/
+            - lang/
+                - es/
+                    - package.php
+            - views/
+                - index.blade.php
+        - routes/
+            - web.php
+```
 
 ### Install Clone
 
-- git clone https://github.com/blockpc/blockpcito your-proyect
-- cd your-proyect
+- git clone https://github.com/blockpc/blockpcito _your-proyect_
+- cd _your-proyect_
 - cp .env.example .env (Configure your app name, app url, database, email, etc)
 - composer install
 - php artisan key:generate

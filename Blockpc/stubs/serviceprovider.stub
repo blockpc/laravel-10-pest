@@ -17,7 +17,7 @@ final class $PACKAGE$ServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'../../config/config.php', '$NAME$');
+        $this->mergeConfigFrom(__DIR__.'../../../config/config.php', '$NAME$');
         $this->config = $this->app->config->get('$NAME$.menus');
     }
 
@@ -28,6 +28,16 @@ final class $PACKAGE$ServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Routes
+        $this->loadRoutesFrom(__DIR__.'../../../routes/web.php');
+        
+        // Views
+        $this->loadViewsFrom(__DIR__.'../../../resources/views', '$NAME$');
+
+        // Migrations
+        $this->loadMigrationsFrom(__DIR__.'../../../database/migrations');
+
+        // Translations
+        $this->loadTranslationsFrom(__DIR__.'../../../resources/lang', '$NAME$');
     }
 }

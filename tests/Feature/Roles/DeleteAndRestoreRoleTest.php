@@ -22,6 +22,8 @@ final class DeleteAndRestoreRoleTest extends TestBase
     private Role $role_helper;
     private Role $role_boss;
 
+    private User $user;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -31,10 +33,8 @@ final class DeleteAndRestoreRoleTest extends TestBase
         $this->role_helper = $this->new_role('helper', 'Helper');
         $this->role_boss = $this->new_role('boss', 'Boss');
 
-        $users = User::factory(3)->create();
-        $users->each(function($user) {
-            $user->assignRole('helper');
-        });
+        $this->user = User::factory()->create();
+        $this->user->assignRole('helper');
     }
 
     /** @test */
@@ -46,7 +46,7 @@ final class DeleteAndRestoreRoleTest extends TestBase
 
         $this->assertDatabaseHas('model_has_roles', [
             'role_id' => $this->role_helper->id,
-            'model_id' => 2
+            'model_id' => $this->user->id
         ]);
     }
 
@@ -92,7 +92,7 @@ final class DeleteAndRestoreRoleTest extends TestBase
     {
         $this->assertDatabaseHas('model_has_roles', [
             'role_id' => $this->role_helper->id,
-            'model_id' => 2
+            'model_id' => $this->user->id
         ]);
 
         $this->assertDatabaseHas('roles', [
@@ -112,7 +112,7 @@ final class DeleteAndRestoreRoleTest extends TestBase
 
         $this->assertDatabaseHas('model_has_roles', [
             'role_id' => $this->role_user->id,
-            'model_id' => 2
+            'model_id' => $this->user->id
         ]);
     }
 
