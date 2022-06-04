@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\System\Todo;
+declare(strict_types=1);
 
-use App\Models\Todo;
+namespace Blockpc\App\Http\Livewire\Todo;
+
+use Blockpc\App\Models\Todo;
 use Blockpc\App\Traits\AlertBrowserEvent;
 use Blockpc\App\Traits\WithSorting;
 use Carbon\Carbon;
@@ -41,7 +43,7 @@ class Table extends Component
 
     public function render()
     {
-        return view('livewire.system.todo.table');
+        return view('blockpc::livewire.todo.table');
     }
 
     public function save()

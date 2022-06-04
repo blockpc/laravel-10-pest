@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Blockpc\App\Providers;
 
 use Blockpc\App\Commands\CreatePackageCommand;
+use Blockpc\App\Http\Livewire\Todo\Table;
 use Blockpc\App\Middlewares\LogUserActivity;
 use Blockpc\App\Mixins\Search;
 use Carbon\Carbon;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Routing\Router;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 final class BlockpcServiceProvider extends ServiceProvider
 {
@@ -51,9 +53,18 @@ final class BlockpcServiceProvider extends ServiceProvider
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('online', LogUserActivity::class);
 
+        // Load Service Providers...
         $this->loadServiceProviders();
 
-        // Register the command if we are using the application via the CLI
+        // Load Livewire Components
+        $this->loadWireComponents();
+
+        // Load routes
+        $this->loadRoutesFrom(__DIR__ . '../../../routes/web.php');
+
+        // Load Views
+        $this->loadViewsFrom(__DIR__ . '../../../resources/views', 'blockpc');
+
 		if ($this->app->runningInConsole()) {
 			$this->commands([
 				CreatePackageCommand::class
@@ -82,5 +93,10 @@ final class BlockpcServiceProvider extends ServiceProvider
                 $this->menus = array_merge($app->config, $this->menus);
             }
         }
+    }
+
+    protected function loadWireComponents()
+    {
+        Livewire::component('blockpc::todo-table', Table::class);
     }
 }

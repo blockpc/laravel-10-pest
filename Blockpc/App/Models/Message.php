@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Models;
+declare(strict_types=1);
 
+namespace Blockpc\App\Models;
+
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 

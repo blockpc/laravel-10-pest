@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\System;
+declare(strict_types=1);
+
+namespace Blockpc\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,6 +14,6 @@ class TodoController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('todo.index');
+        return view('blockpc::todo.index');
     }
 }

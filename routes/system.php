@@ -6,7 +6,6 @@ use App\Http\Controllers\System\DashboardController;
 use App\Http\Controllers\System\PermissionsController;
 use App\Http\Controllers\System\ProfileController;
 use App\Http\Controllers\System\RolesController;
-use App\Http\Controllers\System\TodoController;
 use App\Http\Controllers\System\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,8 +16,6 @@ Route::middleware(['auth', 'online'])
         Route::get('/', function () {
             return redirect(route('dashboard'));
         });
-
-        Route::get('lista-de-tareas', TodoController::class)->name('todo');
 
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
