@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Todo;
 
-use App\Http\Livewire\System\Todo\Table;
-use App\Models\Todo;
+use Blockpc\App\Http\Livewire\Todo\Table;
+use Blockpc\App\Models\Todo;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
