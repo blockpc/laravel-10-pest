@@ -12,3 +12,26 @@ return [
         ]
     ]
 ];
+
+/**
+ Example menu with submenus
+
+'menus' => [
+    '$NAME$' => [
+        'icon' => '',
+        'name' => __('$NAME$::$NAME$.menu'), // if you use a translation file
+        'route' => '$NAME$',
+        'active' => '$NAME$',
+        'submenus' => [
+            [
+                'href' => route('name.route'),
+                'name' => 'sub menu one'
+            ],
+            [
+                'href' => '#,
+                'name' => 'sub menu two'
+            ]
+        ]
+    ]
+]
+**/
