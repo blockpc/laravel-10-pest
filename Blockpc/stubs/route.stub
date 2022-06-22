@@ -5,7 +5,7 @@ use Packages\$PACKAGE$\App\Http\Controllers\$PACKAGE$Controller;
 
 Route::middleware([
     'web',
-])->group(function () {
+])->prefix('$NAME$')->group(function () {
 
-    Route::get('$NAME$', [$PACKAGE$Controller::class, 'index'])->name('$NAME$');
+    Route::get('/', [$PACKAGE$Controller::class, 'index'])->name('$NAME$.index');
 });

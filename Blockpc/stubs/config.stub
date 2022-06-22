@@ -4,34 +4,38 @@ return [
     'name' => '$PACKAGE$',
     'menus' => [
         '$NAME$' => [
-            'icon' => '',
-            'name' => __('$NAME$::$NAME$.name'),
-            'route' => '$NAME$',
-            'active' => '$NAME$',
+            'icon' => '', // add icon key here. see https://blade-ui-kit.com/blade-icons
+            'name' => __('$NAME$::$NAME$.name'), // if you use a translation file
+            'route' => '$NAME$.index',
+            'active' => '$NAME$.*',
+            'permission' => '',
             'submenus' => []
         ]
     ]
 ];
 
-/**
- Example menu with submenus
-
-'menus' => [
-    '$NAME$' => [
-        'icon' => '',
-        'name' => __('$NAME$::$NAME$.menu'), // if you use a translation file
-        'route' => '$NAME$',
-        'active' => '$NAME$',
-        'submenus' => [
-            [
-                'href' => route('name.route'),
-                'name' => 'sub menu one'
-            ],
-            [
-                'href' => '#,
-                'name' => 'sub menu two'
-            ]
-        ]
-    ]
-]
-**/
+// Example menu with submenus
+// 
+// 'menus' => [
+//     '$NAME$' => [
+//         'icon' => '', // add icon key here. see https://blade-ui-kit.com/blade-icons
+//         'name' => __('$NAME$::$NAME$.menu'), // if you use a translation file
+//         'route' => '$NAME$.index',
+//         'active' => '$NAME$.*',
+//         'permission' => '', // add permission key here
+//         'submenus' => [
+//             [
+//                 'href' => '$NAME$.route', // dont forget create route before in web.php
+//                 'name' => 'sub menu $NAME$ one',
+//                 'permission' => '' // add permission key here
+//             ],
+//             [
+//                 'href' => '#',
+//                 'name' => 'sub menu $NAME$ two',
+//                 'permission' => '' // add permission key here
+//             ]
+//         ]
+//     ]
+// ]
+//
+// Optional: run 'php artisan optimize' after add new menu or submenu

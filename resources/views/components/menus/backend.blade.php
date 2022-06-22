@@ -1,4 +1,5 @@
 @foreach (app('menus') as $route => $menu)
+    @can($menu['permission'])
     @if ( isset($menu['submenus']) && $menu['submenus'] )
     <x-links.sidebar-dropdown :active="request()->routeIs($menu['active'])">
         <x-slot name="trigger">
@@ -13,14 +14,16 @@
         </x-slot>
         <x-slot name="content">
             @foreach ($menu['submenus'] as $item)
-                <x-links.sidebar-submenu href="{{$item['href']}}">
+                @can($item['permission'])
+                <x-links.sidebar-submenu href="{{ route($item['href']) }}">
                     {{$item['name']}}
                 </x-links.sidebar-submenu>
+                @endcan
             @endforeach
         </x-slot>
     </x-links.sidebar-dropdown>
     @else
-    <x-links.sidebar-link :href="route($menu['route'])" :active="request()->routeIs($menu['active'])">
+    <x-links.sidebar-link href="{{ route($menu['route']) }}" :active="request()->routeIs($menu['active'])">
         <div class="flex space-x-2 items-center">
             @if ( isset($menu['icon']) && $menu['icon'] )
             @svg($menu['icon'], 'w-5 h-5')
@@ -31,4 +34,5 @@
         </div>
     </x-links.sidebar-link>
     @endif
+    @endcan
 @endforeach

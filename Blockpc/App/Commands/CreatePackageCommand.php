@@ -109,14 +109,14 @@ final class CreatePackageCommand extends Command
     public function getStubPath($key) : string
     {
         $stubs = [
-            'config' => base_path('Blockpc/stubs/config.stub'),
+            'controller'      => base_path('Blockpc/stubs/controller.stub'),
+            'view'            => base_path('Blockpc/stubs/view.stub'),
+            'route'           => base_path('Blockpc/stubs/route.stub'),
+            'migration'       => base_path('Blockpc/stubs/migration.stub'),
+            'lang'            => base_path('Blockpc/stubs/lang.stub'),
+            'model'           => base_path('Blockpc/stubs/model.stub'),
             'serviceprovider' => base_path('Blockpc/stubs/serviceprovider.stub'),
-            'controller' => base_path('Blockpc/stubs/controller.stub'),
-            'view' => base_path('Blockpc/stubs/view.stub'),
-            'route' => base_path('Blockpc/stubs/route.stub'),
-            'migration' => base_path('Blockpc/stubs/migration.stub'),
-            'lang' => base_path('Blockpc/stubs/lang.stub'),
-            'model' => base_path('Blockpc/stubs/model.stub'),
+            'config'          => base_path('Blockpc/stubs/config.stub'),
         ];
         return $stubs[$key];
     }
@@ -189,14 +189,14 @@ final class CreatePackageCommand extends Command
     {
         $base = "Packages\\{$this->package}";
         return [
-            'config' => "{$base}\\config\\config.php",
+            'controller'      => "{$base}\\App\\Http\\Controllers\\{$this->package}Controller.php",
+            'view'            => "{$base}\\resources\\views\\index.blade.php",
+            'route'           => "{$base}\\routes\\web.php",
+            'migration'       => "{$base}\\database\\migrations\\{$this->date}_create_{$this->snake_name}_table.php",
+            'lang'            => "{$base}\\resources\\lang\\es\\{$this->name}.php",
+            'model'           => "{$base}\\App\\Models\\{$this->package}.php",
             'serviceprovider' => "{$base}\\App\\Providers\\{$this->package}ServiceProvider.php",
-            'controller' => "{$base}\\App\\Http\\Controllers\\{$this->package}Controller.php",
-            'view' => "{$base}\\resources\\views\\index.blade.php",
-            'route' => "{$base}\\routes\\web.php",
-            'migration' => "{$base}\\database\\migrations\\{$this->date}_create_{$this->snake_name}_table.php",
-            'lang' => "{$base}\\resources\\lang\\es\\{$this->name}.php",
-            'model' => "{$base}\\App\\Models\\{$this->package}.php",
+            'config'          => "{$base}\\config\\config.php",
         ];
     }
 }
