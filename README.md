@@ -60,6 +60,8 @@ packages/
             - web.php
 ```
 
+You must delete files `.gitignore` in packages folder  
+
 ### Install Clone
 
 - git clone https://github.com/blockpc/blockpcito _your-proyect_
