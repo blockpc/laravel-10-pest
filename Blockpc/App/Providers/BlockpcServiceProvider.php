@@ -41,6 +41,8 @@ final class BlockpcServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $blockpc_dir = __DIR__ .'../../../';
+
         Carbon::setLocale(config('app.locale'));
 
         Password::defaults(function () {
@@ -60,10 +62,13 @@ final class BlockpcServiceProvider extends ServiceProvider
         $this->loadWireComponents();
 
         // Load routes
-        $this->loadRoutesFrom(__DIR__ . '../../../routes/web.php');
+        $this->loadRoutesFrom($blockpc_dir . 'routes/web.php');
+
+        // load languages files
+        $this->loadTranslationsFrom($blockpc_dir.'lang', 'blockpc');
 
         // Load Views
-        $this->loadViewsFrom(__DIR__ . '../../../resources/views', 'blockpc');
+        $this->loadViewsFrom($blockpc_dir . 'resources/views', 'blockpc');
 
 		if ($this->app->runningInConsole()) {
 			$this->commands([

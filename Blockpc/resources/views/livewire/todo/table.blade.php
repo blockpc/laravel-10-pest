@@ -100,7 +100,7 @@
                                 {{-- description --}}
                                 <x-forms.box-textarea class="flex justify-start items-start text-xs" name="todo_description" title="todos.fields.description" wire:model.defer="todo.description" />
                                 {{-- create task --}}
-                                <x-forms.box-appends name="todo_task_lists" title="todos.fields.tasks-list" wire:model="task">
+                                <x-forms.box-appends name="todo_add_task" title="todos.tasks.add" wire:model="task">
                                     <x-slot name="buttons">
                                         <div class="" x-data="{task_id: @entangle('task_id')}">
                                             <button type="button" class="btn-sm btn-info" wire:click="add_task" x-show="!task_id" title="{{__('todos.tasks.add')}}">
@@ -114,6 +114,9 @@
                                 </x-forms.box-appends>
                                 {{-- Task list --}}
                                 <div class="flex flex-col space-y-1">
+                                    @error('tasks')
+                                        <div class="text-error">{{$message}}</div>
+                                    @enderror
                                     @foreach ($tasks as $task_id => $task)
                                     <div class="flex w-full p-2 dark:bg-gray-800 bg-gray-200 rounded-md">
                                         <div class="flex-1 flex space-x-2 items-center w-full text-sm">

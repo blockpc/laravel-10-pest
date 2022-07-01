@@ -28,16 +28,18 @@ final class $PACKAGE$ServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $package_dir = __DIR__.'../../../';
+
         // Routes
-        $this->loadRoutesFrom(__DIR__.'../../../routes/web.php');
+        $this->loadRoutesFrom($package_dir.'routes/web.php');
         
         // Views
-        $this->loadViewsFrom(__DIR__.'../../../resources/views', '$NAME$');
+        $this->loadViewsFrom($package_dir.'resources/views', '$NAME$');
 
         // Migrations
-        $this->loadMigrationsFrom(__DIR__.'../../../database/migrations');
+        $this->loadMigrationsFrom($package_dir.'database/migrations');
 
         // Translations
-        $this->loadTranslationsFrom(__DIR__.'../../../resources/lang', '$NAME$');
+        $this->loadTranslationsFrom($package_dir.'lang', '$NAME$');
     }
 }

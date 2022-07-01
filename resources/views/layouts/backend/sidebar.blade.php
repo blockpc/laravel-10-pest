@@ -6,21 +6,19 @@ x-transition:leave="translate-x-0 ease-in duration-200"
 x-transition:leave-start="opacity-100"
 x-transition:leave-end="opacity-0">
     {{-- menu sidebar --}}
-    @can('')
     <x-links.sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
         <div class="flex space-x-2 items-center">
             <x-bx-layout class="w-5 h-5" />
             <span>{{__('pages.dashboard.titles.link')}}</span>
         </div>
     </x-links.sidebar-link>
-    @endcan
     @if ( app('menus') )
     <x-links.hr />
     <x-menus.backend></x-menus.backend>
     @endif
     <x-links.hr />
     {{-- Todo List --}}
-    <x-links.sidebar-link :href="route('todo')" :active="request()->routeIs('todo.*')">
+    <x-links.sidebar-link :href="route('todo')" :active="request()->routeIs('todo')">
         <div class="flex space-x-2 items-center">
             <x-heroicon-o-clipboard-list class="w-5 h-5" />
             <span>{{__('todos.titles.link')}}</span>

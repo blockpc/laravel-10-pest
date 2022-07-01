@@ -79,18 +79,18 @@ class Table extends Component
             : Rule::unique('todos', 'name');
         return [
             'todo.name' => ['required', 'string', 'max:64', $rule_name],
-            'todo.description' => ['nullable', 'string', 'max:255'],
-            'tasks' => ['nullable', 'array', 'min:1']
+            'todo.description' => ['required', 'string', 'max:255'],
+            'tasks' => ['required', 'array', 'min:1']
         ];
     }
 
     public function validationAttributes()
     {
         return [
-            'todo.name' => __('todos.fields.name'),
-            'todo.description' => __('todos.fields.description'),
-            'tasks' => __('todos.fields.tasks-list'),
-            'task' => __('todos.fields.task'),
+            'todo.name' => __('blockpc::todos.fields.name'),
+            'todo.description' => __('blockpc::todos.fields.description'),
+            'tasks' => __('blockpc::todos.fields.tasks-list'),
+            'task' => __('blockpc::todos.fields.task'),
         ];
     }
 

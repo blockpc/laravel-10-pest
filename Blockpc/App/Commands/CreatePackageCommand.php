@@ -193,7 +193,7 @@ final class CreatePackageCommand extends Command
             'view'            => "{$base}\\resources\\views\\index.blade.php",
             'route'           => "{$base}\\routes\\web.php",
             'migration'       => "{$base}\\database\\migrations\\{$this->date}_create_{$this->snake_name}_table.php",
-            'lang'            => "{$base}\\resources\\lang\\es\\{$this->name}.php",
+            'lang'            => "{$base}\\lang\\en\\{$this->name}.php",
             'model'           => "{$base}\\App\\Models\\{$this->package}.php",
             'serviceprovider' => "{$base}\\App\\Providers\\{$this->package}ServiceProvider.php",
             'config'          => "{$base}\\config\\config.php",

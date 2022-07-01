@@ -50,17 +50,17 @@ packages/
         - database/
             - migrations/
                 - 2022_06_02_140645_create_packages_table.php
+        - lang/
+            - en/
+                - package.php
         - resources/
-            - lang/
-                - es/
-                    - package.php
             - views/
                 - index.blade.php
         - routes/
             - web.php
 ```
 
-You must delete files `.gitignore` in packages folder  
+You must delete file `.gitignore` in packages folder  
 
 ### Install Clone
 
