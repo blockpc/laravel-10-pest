@@ -4,11 +4,11 @@ return [
     'name' => '$PACKAGE$',
     'menus' => [
         '$NAME$' => [
-            'icon' => '', // add icon key here. see https://blade-ui-kit.com/blade-icons
-            'name' => __('$NAME$::$NAME$.name'), // if you use a translation file
+            'icon' => '',
+            'name' => '$NAME$::$NAME$.name',
             'route' => '$NAME$.index',
             'active' => '$NAME$.*',
-            'permission' => '',
+            'permission' => null,
             'submenus' => []
         ]
     ]
@@ -19,19 +19,19 @@ return [
 // 'menus' => [
 //     '$NAME$' => [
 //         'icon' => '', // add icon key here. see https://blade-ui-kit.com/blade-icons
-//         'name' => __('$NAME$::$NAME$.menu'), // if you use a translation file
+//         'name' => '$NAME$::$NAME$.menu', // if you use a translation file
 //         'route' => '$NAME$.index',
 //         'active' => '$NAME$.*',
-//         'permission' => '', // add permission key here
+//         'permission' => null, // add permission key here, remember this is a string
 //         'submenus' => [
 //             [
 //                 'href' => '$NAME$.route', // dont forget create route before in web.php
-//                 'name' => 'sub menu $NAME$ one',
+//                 'name' => 'sub menu $NAME$ one', // if you use a translation file use '$NAME$::$NAME$.sub-menu' or something
 //                 'permission' => '' // add permission key here
 //             ],
 //             [
 //                 'href' => '#',
-//                 'name' => 'sub menu $NAME$ two',
+//                 'name' => 'sub menu $NAME$ two', // if you use a translation file use '$NAME$::$NAME$.sub-menu' or something
 //                 'permission' => '' // add permission key here
 //             ]
 //         ]

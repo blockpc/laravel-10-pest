@@ -34,10 +34,10 @@ class BlockpcPackageTest extends TestBase
     /** @test */
     public function can_run_comand_test()
     {
-        $this->filesystem->cleanDirectory('packages/' . $this->package);
+        $this->filesystem->deleteDirectory('packages/' . $this->package);
 
         $this->artisan('blockpc:package')
-            ->expectsQuestion('Package name', 'something')
+            ->expectsQuestion('Package name', $this->name)
             ->expectsOutput('Creating Package: ' . $this->package)
             ->assertExitCode(0);
 
@@ -46,6 +46,8 @@ class BlockpcPackageTest extends TestBase
         foreach ($files as $key => $file) {
             $this->assertTrue($this->filesystem->exists(base_path($file)));
         }
+
+        $this->filesystem->deleteDirectory('packages/' . $this->package);
     }
 
     /**

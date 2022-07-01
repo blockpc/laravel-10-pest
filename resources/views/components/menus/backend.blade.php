@@ -16,7 +16,7 @@
                 @foreach ($menu['submenus'] as $item)
                     @can($item['permission'])
                     <x-links.sidebar-submenu href="{{ route($item['href']) }}">
-                        {{$item['name']}}
+                        {{__($item['name'])}}
                     </x-links.sidebar-submenu>
                     @endcan
                 @endforeach
