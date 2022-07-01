@@ -164,11 +164,13 @@ final class FormTodoTest extends TestBase
                 1 => 'task one', 2 => 'task two', 3 => 'task three'
             ])
             ->set('todo.name', 'lorem ipsum sum')
+            ->set('todo.description', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. At, quae. Natus, esse sapiente eveniet dolores maxime.')
             ->call('save')
             ->assertHasNoErrors();
 
         $this->assertDatabaseHas('todos', [
             'name' => 'lorem ipsum sum',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. At, quae. Natus, esse sapiente eveniet dolores maxime.',
             'tasks' => "{\"1\":\"task one\",\"2\":\"task two\",\"3\":\"task three\"}"
         ]);
     }
