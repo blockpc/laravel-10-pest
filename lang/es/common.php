@@ -26,6 +26,7 @@ return [
     'written-by' => 'Escrito Por',
     'mark-read' => 'Marcar como leido',
     'notifications' => 'Notificaciones',
+    'no-notifications' => 'Sin Notificaciones',
     'user' => 'Usuario',
     'users' => 'Usuarios',
     'users-online' => 'Usuarios en Linea',
