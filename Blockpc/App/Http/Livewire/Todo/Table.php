@@ -7,6 +7,7 @@ namespace Blockpc\App\Http\Livewire\Todo;
 use Blockpc\App\Models\Todo;
 use Blockpc\App\Traits\AlertBrowserEvent;
 use Blockpc\App\Traits\WithSorting;
+use Blockpc\Services\Facades\Sender;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -61,6 +62,12 @@ class Table extends Component
         $this->todo->save();
 
         $this->alert(__('todos.messages.created'), __('todos.messages.create-task'));
+
+        // Notification::send($sudos, new NewTodoNotification($this->todo, __('todos.messages.created')));
+
+        if ( Sender::new_todo($this->todo, __('todos.messages.created')) ) {
+            $this->emitTo('blockpc::push-notifications', 'refresh');
+        }
 
         $this->cancel();
     }

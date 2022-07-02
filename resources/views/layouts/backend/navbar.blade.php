@@ -21,21 +21,7 @@
     </div>
     <div class="flex items-center space-x-2 shadow mx-4">
         {{-- Notifications --}}
-        <x-dropdown align="right" width="64" :bx="false">
-            <x-slot name="trigger">
-                <button class="relative p-2 focus:bg-gray-100 dark:focus:bg-gray-600 focus:text-gray-600 dark:focus:text-gray-200 rounded-full">
-                    <span class="sr-only">{{__('common.notifications')}}</span>
-                    <span class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full"></span>
-                    <span class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping"></span>
-                    <x-bx-bell class="h-6 w-6" />
-                </button>
-            </x-slot>
-            <x-slot name="content">
-                <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-200 dark:hover:bg-gray-600" role="menuitem" tabindex="-1" id="menu-item-0">Account settings</a>
-                <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-200 dark:hover:bg-gray-600" role="menuitem" tabindex="-1" id="menu-item-1">Support</a>
-                <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-200 dark:hover:bg-gray-600" role="menuitem" tabindex="-1" id="menu-item-2">License</a>
-            </x-slot>
-        </x-dropdown>
+        @livewire('blockpc::push-notifications', [], key('blockpc-push-notifications'))
         {{-- dark mode button --}}
         <div class="h-16 flex">
             <button type="button" x-on:click="mode=false" x-show="mode" class="setMode" id="sun">

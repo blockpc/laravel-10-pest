@@ -23,6 +23,7 @@ return [
         'answer' => 'Responder Tarea',
         'answer-task' => 'La tarea fue respondida',
         'no-tasks' => 'Sin tareas programadas',
+        'created-by' => 'Creado por: :user',
     ],
     'modal' => [
         'title' => 'Agregar Respuesta',

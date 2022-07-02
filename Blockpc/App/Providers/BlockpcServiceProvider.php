@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Blockpc\App\Providers;
 
 use Blockpc\App\Commands\CreatePackageCommand;
+use Blockpc\App\Http\Livewire\Notification\Pusher;
 use Blockpc\App\Http\Livewire\Todo\Table;
+use Blockpc\App\Middlewares\DevelopmentAccess;
 use Blockpc\App\Middlewares\LogUserActivity;
 use Blockpc\App\Mixins\Search;
+use Blockpc\Services\Sender;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Routing\Router;
@@ -32,6 +35,10 @@ final class BlockpcServiceProvider extends ServiceProvider
         $this->app->register(BlockpcAuthServiceProvider::class);
 
         Builder::mixin(new Search);
+
+        $this->app->bind('sender', function() {
+            return new Sender;
+        });
     }
 
     /**
@@ -54,6 +61,7 @@ final class BlockpcServiceProvider extends ServiceProvider
 
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('online', LogUserActivity::class);
+        $router->aliasMiddleware('dev', DevelopmentAccess::class);
 
         // Load Service Providers...
         $this->loadServiceProviders();
@@ -103,5 +111,6 @@ final class BlockpcServiceProvider extends ServiceProvider
     protected function loadWireComponents()
     {
         Livewire::component('blockpc::todo-table', Table::class);
+        Livewire::component('blockpc::push-notifications', Pusher::class);
     }
 }
