@@ -37,7 +37,6 @@ final class LinkToChangePassword extends Mailable
     {
         return $this->markdown('emails.send_link_to_change_password')
                     ->subject('Link para cambio de contraseña | No Responder')
-                    ->from(env('MAIL_FROM_ADDRESS', 'soporte@blockpc.cl'))
                     ->to($this->user->email)
                     ->with('url' , url(route('password.reset', ['token' => $this->token])));
     }

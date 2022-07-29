@@ -19,10 +19,10 @@ if (! function_exists('image_profile')) {
     function image_profile($user = null) : string
     {
         $user = $user ?? current_user();
-        if ( $image = $user->profile->image ) {
+        if ( $image = $user->exists ? $user->profile->image : false ) {
             return $image;
         } else {
-            $name = str_replace(" ", "+", $user->profile->fullName);
+            $name = str_replace(" ", "+", $user->exists ? $user->profile->fullName : 'n n');
             return "https://ui-avatars.com/api/?name={$name}";
         }
     }

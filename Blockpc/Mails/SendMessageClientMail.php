@@ -39,7 +39,6 @@ final class SendMessageClientMail extends Mailable
             'content' => $this->content,
             'company' => $this->company,
         ])
-            ->subject('Nuevo mensaje Administrador | No Responder')
-            ->from(env('MAIL_FROM_ADDRESS', 'soporte@blockpc.cl'));
+            ->subject('Nuevo mensaje Administrador | No Responder');
     }
 }

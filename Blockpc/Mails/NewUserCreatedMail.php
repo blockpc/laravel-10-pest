@@ -40,7 +40,6 @@ final class NewUserCreatedMail extends Mailable
     {
         return $this->markdown('emails.new_user_created')
                     ->subject('Nuevo Usuario Registrado | No Responder')
-                    ->from(env('MAIL_FROM_ADDRESS', 'soporte@blockpc.cl'))
                     ->to($this->user->email)
                     ->with('company' , $this->company )
                     ->with('role' , $this->user->roles->pluck('display_name')->implode(', '))

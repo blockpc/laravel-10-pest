@@ -20,6 +20,7 @@
         </style>
 
         @livewireStyles
+        @toastr_css
         @stack('styles')
 
         <!-- Scripts -->
@@ -42,6 +43,9 @@
             </main>
         </div>
         @livewireScripts
+        @jquery
+        @toastr_js
+        @toastr_render
         @stack('scripts')
     </body>
 </html>
