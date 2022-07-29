@@ -48,7 +48,7 @@ final class BlockpcServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $blockpc_dir = __DIR__ .'../../../';
+        $blockpc_dir = base_path('Blockpc/'); //__DIR__ .'../../../'
 
         Carbon::setLocale(config('app.locale'));
 

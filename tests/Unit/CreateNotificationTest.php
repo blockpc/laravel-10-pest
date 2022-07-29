@@ -34,7 +34,7 @@ final class CreateNotificationTest extends TestBase
             ->assertOk();
 
         $this->assertDatabaseHas('notifications', [
-            'data' => "{\"message\":\"A new todo created. 1\",\"user\":\"{$this->user->name}\"}"
+            'data' => "{\"message\":\"A new todo created. 1\",\"user\":\"{$this->admin->name}\"}"
         ]);
     }
 

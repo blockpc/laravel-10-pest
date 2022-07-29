@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use Carbon\Carbon;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Artisan;
 use Tests\TestBase;
 
 class BlockpcPackageTest extends TestBase
@@ -34,7 +35,7 @@ class BlockpcPackageTest extends TestBase
     /** @test */
     public function can_run_comand_test()
     {
-        $this->filesystem->deleteDirectory('packages/' . $this->package);
+        $this->filesystem->deleteDirectory('Packages/' . $this->package);
 
         $this->artisan('blockpc:package')
             ->expectsQuestion('Package name', $this->name)
@@ -42,12 +43,15 @@ class BlockpcPackageTest extends TestBase
             ->assertExitCode(0);
 
         $files = $this->getSourceFilePath();
-
+        
         foreach ($files as $key => $file) {
             $this->assertTrue($this->filesystem->exists(base_path($file)));
         }
+        
+        $this->filesystem->deleteDirectory('Packages/' . $this->package);
+        $this->assertTrue(!$this->filesystem->isDirectory(base_path('Packages/'. $this->package)));
 
-        $this->filesystem->deleteDirectory('packages/' . $this->package);
+        Artisan::call('optimize');
     }
 
     /**
@@ -57,7 +61,7 @@ class BlockpcPackageTest extends TestBase
      */
     private function getSourceFilePath() : array
     {
-        $base = "packages\\{$this->package}";
+        $base = "Packages\\{$this->package}";
         return [
             'controller'      => "{$base}\\App\\Http\\Controllers\\{$this->package}Controller.php",
             'view'            => "{$base}\\resources\\views\\index.blade.php",

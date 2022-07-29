@@ -86,8 +86,9 @@ final class UpdateProfileUserTest extends TestBase
             'image' => "/storage/photo_profiles/{$name}.jpg",
             'user_id' => $this->user->id
         ]);
-    
-        Storage::disk('public')->assertExists("photo_profiles/{$this->user->name}.jpg");
+
+        $this->assertTrue($name === mb_strtolower($this->user->name));
+		Storage::disk('public')->assertExists("photo_profiles/{$name}.jpg");
     }
 
     /** @test */
