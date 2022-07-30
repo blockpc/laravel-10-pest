@@ -84,6 +84,8 @@ You must before start your proyect remove or change the git remote url
 
 ### Install PhpMyAdmin on Sail (optional)
 
+`php artisan sail:install`  
+
 if you wants install `phpmyadmin` for mysql/mariadb add at your `docker-compose.yml`  
 and replace mariadb or mysql  
 
