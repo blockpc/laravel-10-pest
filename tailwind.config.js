@@ -8,6 +8,9 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
+    safelist: [
+        'bg-blue-500',
+    ],
 
     theme: {
         extend: {

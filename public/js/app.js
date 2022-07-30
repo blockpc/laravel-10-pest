@@ -5129,20 +5129,7 @@ if (localStorage.theme === 'dark' || !'theme' in localStorage && window.matchMed
   document.querySelector('html').classList.add('dark');
 } else if (localStorage.theme === 'dark') {
   document.querySelector('html').classList.add('dark');
-} // Toastr Livewire Alerts
-
-
-window.addEventListener('alert', function (event) {
-  var _event$detail$title;
-
-  toastr[event.detail.type](event.detail.message, (_event$detail$title = event.detail.title) !== null && _event$detail$title !== void 0 ? _event$detail$title : '');
-  toastr.options = {
-    "closeButton": true,
-    "progressBar": true,
-    "preventDuplicates": true,
-    "autoDismiss": true
-  };
-});
+}
 
 window.closeAlert = function (id) {
   var element = document.getElementById(id);

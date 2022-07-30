@@ -22,7 +22,6 @@
         </style>
 
         @livewireStyles
-        @toastr_css
         @stack('styles')
 
         <!-- Scripts -->
@@ -40,7 +39,6 @@
             <div class="content">
                 <div class="flex flex-col space-y-2 h-sidebar w-full">
                     <main class="flex-1 p-2 md:p-4">
-                        <x-alert-wire />
                         @yield('content')
                     </main>
                     <footer class="h-16 p-2 sm:p-4">
@@ -54,9 +52,6 @@
         </div>
         
         @livewireScripts
-        @jquery
-        @toastr_js
-        @toastr_render
         @stack('scripts')
     </body>
 </html>

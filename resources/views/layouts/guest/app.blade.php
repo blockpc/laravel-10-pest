@@ -33,7 +33,6 @@
             <header class="shadow">
                 <div class="content">
                     @include('layouts.frontend.messages')
-                    @yield('header')
                 </div>
             </header>
 

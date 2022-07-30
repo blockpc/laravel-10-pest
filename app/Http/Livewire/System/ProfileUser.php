@@ -63,12 +63,12 @@ class ProfileUser extends Component
             Storage::disk('public')->put($path, $img);
             
             $this->profile->image = "/storage/{$path}";
-            $this->alert(__('users.forms.messages.success-photo'), __('common.upload-photo'));
+            $this->alert(__('users.forms.messages.success-photo'));
         }
 
         $this->profile->save();
 
-        $this->alert(__('users.forms.messages.success-profile'), __('users.titles.profile'));
+        $this->alert(__('users.forms.messages.success-profile'));
     }
 
     public function change_password()
@@ -79,7 +79,7 @@ class ProfileUser extends Component
         $this->user->password = Hash::make($this->password);
         $this->user->save();
 
-        $this->alert(__('users.forms.messages.success-password'), __('users.forms.attributes.change-pass'));
+        $this->alert(__('users.forms.messages.success-password'));
     }
 
     /**

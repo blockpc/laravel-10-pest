@@ -55,7 +55,7 @@ class Table extends Component
             ]));
             return;
         }
-        $this->alert(__('roles.forms.messages.error-role-delete', ['role' => $role->display_name]), __('roles.titles.delete'));
+        $this->alert(__('roles.forms.messages.error-role-delete', ['role' => $role->display_name]));
         $role->delete();
     }
 
@@ -66,7 +66,7 @@ class Table extends Component
             $user->assignRole(Role::USER);
         });
         
-        $this->alert(__('roles.forms.messages.error-role-delete', ['role' => $role->display_name]), __('roles.titles.delete'));
+        $this->alert(__('roles.forms.messages.error-role-delete', ['role' => $role->display_name]));
         $role->delete();
     }
 
@@ -79,6 +79,6 @@ class Table extends Component
             return;
         }
         $role->restore();
-        $this->alert(__('roles.forms.messages.success-role-restore', ['role' => $role->display_name]), __('roles.titles.restore'));
+        $this->alert(__('roles.forms.messages.success-role-restore', ['role' => $role->display_name]));
     }
 }

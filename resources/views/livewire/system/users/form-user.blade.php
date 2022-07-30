@@ -4,6 +4,8 @@
         {{__('common.load-message')}}
     </x-loading>
 
+    <div class=""><x-alert-wire /></div>
+
     <form wire:submit.prevent="save">
         <div class="md:flex mb-8">
             <div class="md:w-1/3 flex-col md:space-y-2">

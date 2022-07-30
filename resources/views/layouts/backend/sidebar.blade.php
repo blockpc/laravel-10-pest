@@ -17,13 +17,6 @@ x-transition:leave-end="opacity-0">
     <x-menus.backend></x-menus.backend>
     @endif
     <x-links.hr />
-    {{-- Todo List --}}
-    <x-links.sidebar-link :href="route('todo')" :active="request()->routeIs('todo')">
-        <div class="flex space-x-2 items-center">
-            <x-heroicon-o-clipboard-list class="w-5 h-5" />
-            <span>{{__('todos.titles.link')}}</span>
-        </div>
-    </x-links.sidebar-link>
     {{-- User List --}}
     <x-links.sidebar-link :href="route('users.index')" :active="request()->routeIs('users.*')" permission="user list">
         <div class="flex space-x-2 items-center">

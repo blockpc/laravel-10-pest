@@ -1,4 +1,5 @@
 <div>
+    <div class=""><x-alert-wire /></div>
     <div class="flex-col space-y-4">
         <div class="flex flex-row">
             <div class="w-full mr-1 relative rounded-md shadow-sm">

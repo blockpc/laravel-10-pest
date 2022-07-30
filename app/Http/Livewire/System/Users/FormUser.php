@@ -58,10 +58,7 @@ class FormUser extends Component
 
             ReSendLinkToChangePasswordEvent::dispatch($this->user);
 
-            $this->alert(
-                "Se ha enviado un link al usuario {$name} para cambiar la contraseña", 
-                'Cambio de Contraseña'
-            );
+            $this->alert("Se ha enviado un link al usuario {$name} para cambiar la contraseña");
         }
     }
 
