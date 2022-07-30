@@ -63,9 +63,11 @@ You must delete file `.gitignore` in packages folder
 
 ### Install Clone
 
-- git clone https://github.com/blockpc/blockpcito _your-name-proyect_  
+```
+git clone https://github.com/blockpc/blockpcito _your-name-proyect_  
 or  
-- git clone https://<token>@github.com/blockpc/blockpcito.git _your-name-proyect_  
+git clone https://<token>@github.com/blockpc/blockpcito.git _your-name-proyect_  
+```
 
 - cd _your-proyect_
 - cp .env.example .env (Configure your app name, app url, database, email, etc)
