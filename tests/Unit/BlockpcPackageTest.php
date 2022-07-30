@@ -61,16 +61,16 @@ class BlockpcPackageTest extends TestBase
      */
     private function getSourceFilePath() : array
     {
-        $base = "Packages\\{$this->package}";
+        $base = "Packages/{$this->package}";
         return [
-            'controller'      => "{$base}\\App\\Http\\Controllers\\{$this->package}Controller.php",
-            'view'            => "{$base}\\resources\\views\\index.blade.php",
-            'route'           => "{$base}\\routes\\web.php",
-            'migration'       => "{$base}\\database\\migrations\\{$this->date}_create_{$this->snake_name}_table.php",
-            'lang'            => "{$base}\\lang\\en\\{$this->name}.php",
-            'model'           => "{$base}\\App\\Models\\{$this->package}.php",
-            'serviceprovider' => "{$base}\\App\\Providers\\{$this->package}ServiceProvider.php",
-            'config'          => "{$base}\\config\\config.php",
+            'controller'      => "{$base}/App/Http/Controllers/{$this->package}Controller.php",
+            'view'            => "{$base}/resources/views/index.blade.php",
+            'route'           => "{$base}/routes/web.php",
+            'migration'       => "{$base}/database/migrations/{$this->date}_create_{$this->snake_name}_table.php",
+            'lang'            => "{$base}/lang/en/{$this->name}.php",
+            'model'           => "{$base}/App/Models/{$this->package}.php",
+            'serviceprovider' => "{$base}/App/Providers/{$this->package}ServiceProvider.php",
+            'config'          => "{$base}/config/config.php",
         ];
     }
 }
