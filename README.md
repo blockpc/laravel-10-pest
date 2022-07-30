@@ -13,7 +13,6 @@ Packages for laravel:
 - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar) (for only dev)
 - [christophrumpel/missing-livewire-assertions](https://github.com/christophrumpel/missing-livewire-assertions)
 - [spatie/laravel-permission](https://spatie.be/index.php/docs/laravel-permission)
-- [yoeunes/toastr](https://github.com/yoeunes/toastr) 
 - [intervention/image](http://image.intervention.io/)
 
 Icons [blade-ui-kit/blade-icons](https://github.com/blade-ui-kit/blade-icons) with 
@@ -64,7 +63,10 @@ You must delete file `.gitignore` in packages folder
 
 ### Install Clone
 
-- git clone https://github.com/blockpc/blockpcito _your-proyect_
+- git clone https://github.com/blockpc/blockpcito _your-name-proyect_  
+or  
+- git clone https://<token>@github.com/blockpc/blockpcito.git _your-name-proyect_  
+
 - cd _your-proyect_
 - cp .env.example .env (Configure your app name, app url, database, email, etc)
 - composer install
