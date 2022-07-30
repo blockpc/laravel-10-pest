@@ -63,12 +63,7 @@ You must delete file `.gitignore` in packages folder
 
 ### Install Clone
 
-```
-git clone https://github.com/blockpc/blockpcito _your-name-proyect_  
-or  
-git clone https://<token>@github.com/blockpc/blockpcito.git _your-name-proyect_  
-```
-
+- git clone https://github.com/blockpc/blockpcito _your-name-proyect_
 - cd _your-proyect_
 - cp .env.example .env (Configure your app name, app url, database, email, etc)
 - composer install
@@ -86,5 +81,28 @@ You must before start your proyect remove or change the git remote url
 
 - git remote set-url origin `url-at-your-proyect-git`
 - git remote -v
+
+### Install PhpMyAdmin on Sail (optional)
+
+if you wants install `phpmyadmin` for mysql/mariadb add at your `docker-compose.yml`  
+and replace mariadb or mysql  
+
+```
+phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    links:
+        - mariadb:mariadb
+    ports:
+        - 8080:80
+    environment:
+        MYSQL_USERNAME: "${DB_USERNAME}"
+        MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+        PMA_HOST: mariadb
+    networks:
+        - sail
+    depends_on:
+        - mariadb
+```
 
 Enjoy!
