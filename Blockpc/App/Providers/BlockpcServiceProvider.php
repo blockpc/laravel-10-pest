@@ -96,9 +96,9 @@ final class BlockpcServiceProvider extends ServiceProvider
 
         foreach ($files->directories(base_path('Packages')) as $directory) {
             
-            $directoryName = last(explode('\\', $directory));
+            $directoryName = last(explode(DIRECTORY_SEPARATOR, $directory));
             $customServiceProvider = "Packages\\{$directoryName}\\App\\Providers\\{$directoryName}ServiceProvider";
-            $pathServiceProvider = base_path("{$customServiceProvider}.php");
+            $pathServiceProvider = base_path("Packages/{$directoryName}/App/Providers/{$directoryName}ServiceProvider.php");
 
             if ( $files->exists($pathServiceProvider) ) {
                 $app = $this->app->register($customServiceProvider);
