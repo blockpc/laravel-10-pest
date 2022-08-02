@@ -1,7 +1,7 @@
 @props(['name', 'title', 'photo' => null])
 
 <div class="flex flex-col md:flex-row text-xs md:text-sm items-center">
-    <label class="w-full md:w-1/3" for="{{$name}}">{{__($title)}}</label>
+    <label class="w-full md:w-1/3 label" for="{{$name}}">{{__($title)}}</label>
     <div class="flex flex-col space-y-2 w-full md:w-2/3 mt-1 md:mt-0">
         <div class="flex flex-1 space-x-2">
             <div class="flex items-center h-20 w-20 rounded-full overflow-hidden">
