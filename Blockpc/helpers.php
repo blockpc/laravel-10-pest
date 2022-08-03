@@ -27,9 +27,21 @@ if (! function_exists('image_profile')) {
         }
     }
 }
+if (! function_exists('avatar')) {
+    function avatar($name){
+        $name = str_replace(" ", "+", $name ?: 'n n');
+        return "https://ui-avatars.com/api/?name={$name}";
+    }
+}
 
 if (! function_exists('format_date')) {
     function format_date($date, $format_out, $fomat_in = 'Y-m-d'){
-        return \Carbon\Carbon::createFromFormat($fomat_in, $date)->format($format_out);    
+        return \Carbon\Carbon::createFromFormat($fomat_in, $date)->format($format_out);
+    }
+}
+
+if (! function_exists('format_price')) {
+    function format_price($price, $symbol = '$', $decimals = 0, ?string $decimal_separator = ',', ?string $thousands_separator = '.'){
+        return $symbol . ' ' . number_format($price, $decimals, $decimal_separator, $thousands_separator);
     }
 }

@@ -2,7 +2,7 @@
     <thead {{ $attributes->merge(['class' => 'text-left']) }}>
         {{ $thead }}
     </thead>
-    <tbody {{ $attributes->merge(['class' => 'bg-gray-200 text-gray-900 dark:bg-gray-600 dark:text-gray-200 divide-y divide-gray-400 dark:divide-gray-500']) }}>
+    <tbody {{ $attributes->merge(['class' => 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-gray-200 divide-y divide-gray-400 dark:divide-gray-500']) }}>
         {{ $tbody }}
     </tbody>
     <tfoot {{ $attributes->merge(['class' => 'text-left']) }}>

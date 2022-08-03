@@ -1,8 +1,8 @@
-@props(['name', 'title', 'photo' => null])
+@props(['name', 'title', 'photo' => null, 'model' => null])
 
-<div class="flex flex-col md:flex-row text-xs md:text-sm items-center">
-    <label class="w-full md:w-1/3 label" for="{{$name}}">{{__($title)}}</label>
-    <div class="flex flex-col space-y-2 w-full md:w-2/3 mt-1 md:mt-0">
+<div class="flex flex-col lg:flex-row text-xs lg:text-sm items-center">
+    <label class="w-full lg:w-1/3 label hidden lg:block" for="{{$name}}">{{__($title)}}</label>
+    <div class="flex flex-col space-y-2 w-full lg:w-2/3 mt-1 lg:mt-0">
         <div class="flex flex-1 space-x-2">
             <div class="flex items-center h-20 w-20 rounded-full overflow-hidden">
                 @if ($photo)
@@ -11,7 +11,7 @@
                     <img class="h-16 w-16 rounded-full" src="{{ image_profile() }}">
                 @endif
             </div>
-            <div class="overflow-hidden relative w-64 md:w-full my-auto" 
+            <div class="overflow-hidden relative w-64 lg:w-full my-auto" 
                 x-data="{ isUploading: false, progress: 0 }"
                 x-on:livewire-upload-start="isUploading = true"
                 x-on:livewire-upload-finish="isUploading = false"

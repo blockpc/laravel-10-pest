@@ -11,31 +11,31 @@ return new class extends Migration
         // 0 => [
         //     'name' => '$NAME$ list', 
         //     'display_name' => 'List $NAME$',
-        //     'description' => 'Description list $NAME$',
+        //     'description' => 'Show list $NAME$',
         //     'key' => '$TABLE$',
         // ],
         // 1 => [
         //     'name' => '$NAME$ create', 
         //     'display_name' => 'Create $NAME$',
-        //     'description' => 'Description create $NAME$',
+        //     'description' => 'Can create $NAME$',
         //     'key' => '$TABLE$',
         // ],
         // 2 => [
         //     'name' => '$NAME$ update', 
         //     'display_name' => 'Update $NAME$',
-        //     'description' => 'Description update $NAME$',
+        //     'description' => 'Can update $NAME$',
         //     'key' => '$TABLE$',
         // ],
         // 3 => [
         //     'name' => '$NAME$ delete', 
         //     'display_name' => 'Delete $NAME$',
-        //     'description' => 'Description delete $NAME$',
+        //     'description' => 'Can delete $NAME$',
         //     'key' => '$TABLE$',
         // ],
         // 4 => [
         //     'name' => '$NAME$ restore', 
         //     'display_name' => 'Restore $NAME$',
-        //     'description' => 'Description restore $NAME$',
+        //     'description' => 'Can restore $NAME$',
         //     'key' => '$TABLE$',
         // ]
     ];
@@ -66,7 +66,7 @@ return new class extends Migration
     public function down()
     {
         foreach ($this->permissions as $permission) {
-            Permission::where('name', $permission->name)->where('key', '$TABLE$')->delete();
+            Permission::where('name', $permission['name'])->where('key', '$TABLE$')->delete();
         }
 
         Schema::dropIfExists('$TABLE$');

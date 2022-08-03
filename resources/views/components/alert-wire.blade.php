@@ -3,7 +3,7 @@
     <div class="flex">
         <div class="flex-1">
             <p class="font-bold">{{__('common.error')}}!</p>
-            <p class="text-sm font-sans">{!! session('error') !!}.</p>
+            <p class="text-sm font-roboto font-medium">{!! session('error') !!}</p>
         </div>
         <button type="button" class="btn-sm" onclick="closeAlert('alert-message-error')">
             <x-bx-x class="w-4 h-4" />
@@ -16,7 +16,7 @@
     <div class="flex">
         <div class="flex-1">
             <p class="font-bold">{{__('common.success')}}!</p>
-            <p class="text-sm font-sans">{!! session('success') !!}.</p>
+            <p class="text-sm font-roboto font-medium">{!! session('success') !!}</p>
         </div>
         <button type="button" class="btn-sm" onclick="closeAlert('alert-message-success')">
             <x-bx-x class="w-4 h-4" />
@@ -29,7 +29,7 @@
     <div class="flex">
         <div class="flex-1">
             <p class="font-bold">{{__('common.info')}}!</p>
-            <p class="text-sm font-sans">{!! session('info') !!}.</p>
+            <p class="text-sm font-roboto font-medium">{!! session('info') !!}</p>
         </div>
         <button type="button" class="btn-sm" onclick="closeAlert('alert-message-info')">
             <x-bx-x class="w-4 h-4" />
@@ -42,7 +42,7 @@
     <div class="flex">
         <div class="flex-1">
             <p class="font-bold">{{__('common.warning')}}!</p>
-            <p class="text-sm font-sans">{!! session('warning') !!}.</p>
+            <p class="text-sm font-roboto font-medium">{!! session('warning') !!}</p>
         </div>
         <button type="button" class="btn-sm" onclick="closeAlert('alert-message-warning')">
             <x-bx-x class="w-4 h-4" />
