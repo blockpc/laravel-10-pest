@@ -7,6 +7,7 @@ module.exports = {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './Blockpc/resources/views/*.blade.php',
         './Packages/**/resources/views/*.blade.php'
     ],
     safelist: [

@@ -6,6 +6,7 @@ namespace Blockpc\App\Providers;
 
 use Blockpc\App\Commands\CreatePackageCommand;
 use Blockpc\App\Http\Livewire\Notification\Pusher;
+use Blockpc\App\Http\Livewire\Toast;
 use Blockpc\App\Middlewares\DevelopmentAccess;
 use Blockpc\App\Middlewares\LogUserActivity;
 use Blockpc\App\Mixins\Search;
@@ -110,5 +111,6 @@ final class BlockpcServiceProvider extends ServiceProvider
     protected function loadWireComponents()
     {
         Livewire::component('blockpc::push-notifications', Pusher::class);
+        Livewire::component('blockpc::toast', Toast::class);
     }
 }

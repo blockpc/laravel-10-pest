@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-        
+        @livewire('blockpc::toast', [], key('blockpc-toast'))
         @livewireScripts
         @stack('scripts')
     </body>
