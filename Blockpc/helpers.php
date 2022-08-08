@@ -45,3 +45,9 @@ if (! function_exists('format_price')) {
         return $symbol . ' ' . number_format($price, $decimals, $decimal_separator, $thousands_separator);
     }
 }
+
+if (! function_exists('format_unit')) {
+    function format_unit($price, $symbol = '$', $unit = ''){
+        return $symbol . ' ' . number_format($price, 0, ',', '.') . $unit ? " $/{$unit}" : '';
+    }
+}

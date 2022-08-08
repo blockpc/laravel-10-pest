@@ -22,7 +22,19 @@ module.exports = {
             },
             height: theme => ({
                 "sidebar": "calc(100vh - 64px)",
-            })
+            }),
+            padding: {
+                '1/3': '33.33333%',
+                '2/3': '66.66666%'
+            },
+            colors: {
+                'primary': '#FD3D57',
+                'secondary': '#0f172a'
+            },
+            flex: {
+                'center-2': '0 0 calc(50% - 20px)',
+                'center-4': '0 0 calc(25% - 20px)',
+            }
         },
     },
     
@@ -32,6 +44,7 @@ module.exports = {
 
     plugins: [
         require('@tailwindcss/forms'),
-        require('tailwind-scrollbar')
+        require('tailwind-scrollbar'),
+        require('@tailwindcss/aspect-ratio')
     ],
 };
