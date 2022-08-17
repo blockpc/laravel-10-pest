@@ -1,6 +1,6 @@
 <div>
     @if ( session()->has('error') && $flash = session('error') )
-    <div class="alert-danger">
+    <div class="alert alert-danger">
         <p class="font-bold">Error!</p>
         <p class="text-sm">{!! $flash !!}.</p>
     </div>

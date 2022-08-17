@@ -28,7 +28,7 @@ final class Toast extends Component
     public function show(string $message, string $type, string $title)
     {
         $this->message = $message;
-        $this->type = 'alert-'.$type ?? 'alert-info';
+        $this->type = 'alert alert-'.$type ?? 'alert alert-info';
         $this->title = $title;
         $this->open = true;
     }
