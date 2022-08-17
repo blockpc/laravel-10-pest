@@ -34,7 +34,7 @@
         </div>
         <div class="w-full scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-400 overflow-x-scroll">
             @error('error_role')
-            <div class="alert-danger my-2" id="alert-message-error-role">
+            <div class="alert alert-danger my-2" id="alert-message-error-role">
                 <p class="text-sm">{!! $message !!}.</p>
             </div>
             @enderror

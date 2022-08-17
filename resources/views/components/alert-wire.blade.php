@@ -1,5 +1,5 @@
 @if ( session()->has('error') )
-<div class="alert-danger mb-4 p-2" id="alert-message-error">
+<div class="alert alert-danger mb-4 p-2" id="alert-message-error">
     <div class="flex">
         <div class="flex-1">
             <p class="font-bold">{{__('common.error')}}!</p>
@@ -12,7 +12,7 @@
 </div>
 @endif
 @if ( session()->has('success') )
-<div class="alert-success mb-4 p-2" id="alert-message-success">
+<div class="alert alert-success mb-4 p-2" id="alert-message-success">
     <div class="flex">
         <div class="flex-1">
             <p class="font-bold">{{__('common.success')}}!</p>
@@ -25,7 +25,7 @@
 </div>
 @endif
 @if ( session()->has('info') )
-<div class="alert-info mb-4 p-2" id="alert-message-info">
+<div class="alert alert-info mb-4 p-2" id="alert-message-info">
     <div class="flex">
         <div class="flex-1">
             <p class="font-bold">{{__('common.info')}}!</p>
@@ -38,7 +38,7 @@
 </div>
 @endif
 @if ( session()->has('warning') )
-<div class="alert-warninng mb-4 p-2" id="alert-message-warninng">
+<div class="alert alert-warninng mb-4 p-2" id="alert-message-warninng">
     <div class="flex">
         <div class="flex-1">
             <p class="font-bold">{{__('common.warning')}}!</p>
