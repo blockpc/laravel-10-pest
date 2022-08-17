@@ -4,7 +4,7 @@
 
 This repo contains a frontend and bakend layouts for a laravel breeze  
 Contains:
-- Laravel 9
+- Laravel 9 (With vite)
 - Tailwind
 - Livewire
 - Alpine JS
@@ -15,11 +15,11 @@ Packages for laravel:
 - [spatie/laravel-permission](https://spatie.be/index.php/docs/laravel-permission)
 - [intervention/image](http://image.intervention.io/)
 
-Icons [blade-ui-kit/blade-icons](https://github.com/blade-ui-kit/blade-icons) with 
+Icons [blade-ui-kit/blade-icons](https://github.com/blade-ui-kit/blade-icons) with  
 - [Boxicons](https://github.com/mallardduck/blade-boxicons)
 - [Heroicos](https://github.com/blade-ui-kit/blade-heroicons)
 
-_Dont forget clear cache icons_
+_Dont forget clear cache icons if don't see them correctly_
 
 Helpers: file autoload helper on `Blockpc\helpers.php`
 
@@ -106,5 +106,9 @@ phpmyadmin:
     depends_on:
         - mariadb
 ```
+
+_remember run `npm run dev` in development_
+
+_this repository will always be up to date_
 
 Enjoy!
