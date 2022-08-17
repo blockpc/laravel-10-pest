@@ -23,7 +23,10 @@ _Dont forget clear cache icons if don't see them correctly_
 
 Helpers: file autoload helper on `Blockpc\helpers.php`
 
-Packages NPM: only one, [tailwind-scrollbar](https://github.com/adoxography/tailwind-scrollbar)
+Packages NPM:  
+
+- [tailwind-scrollbar](https://github.com/adoxography/tailwind-scrollbar)
+- [aspect-ratio](https://github.com/tailwindlabs/tailwindcss-aspect-ratio)
 
 This packages includes a model `Profile` (one-to-one for user) and model `Image` (polimorphic model)
 
@@ -58,6 +61,9 @@ packages/
         - routes/
             - web.php
 ```
+
+Notes:  
+- After add a new route in the web.php, you should run the command `php artisan route:clear`
 
 You must delete file `.gitignore` in packages folder  
 
