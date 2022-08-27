@@ -34,13 +34,15 @@ And change some components from the original laravel install.
 
 ### Install Clone
 
-- git clone https://github.com/blockpc/blockpcito <your-name-proyect>
-- cd <your-name-proyect>
-- cp .env.example .env (Configure your app name, app url, database, email, etc)
-- composer install
-- php artisan key:generate
-- php artisan storage:link
-- php artisan icons:cache
+first clone
+
+    git clone https://github.com/blockpc/blockpcito _your-name-proyect_
+    cd _your-name-proyect_
+    cp .env.example .env (Configure your app name, app url, database, email, etc)
+    composer install
+    php artisan key:generate
+    php artisan storage:link
+    php artisan icons:cache
 
 if not use SAIL
 
