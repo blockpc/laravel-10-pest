@@ -14,7 +14,7 @@ final class DevelopmentAccess
      * 
      * @var array
      */
-    protected $ipWhitelist = ['127.0.0.1', '::1'];
+    protected $ipWhitelist = ['127.0.0.1', '::1', '172.21.0.1']; // 172.21.0.1 = docker port
 
     /**
      * Environment not allowed to access the app.

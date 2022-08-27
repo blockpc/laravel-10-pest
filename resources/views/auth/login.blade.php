@@ -1,7 +1,7 @@
 @extends('layouts.guest.app')
 
 @section('content')
-    <div class="h-sidebar flex flex-col justify-center w-full lg:max-w-sm items-center mx-auto">
+    <div class="h-sidebar flex flex-col justify-center w-full md:max-w-sm items-center mx-auto">
         <a href="/">
             <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
         </a>
