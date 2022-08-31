@@ -12,10 +12,9 @@
         </x-slot>
         <x-slot name="content">
             @forelse ($this->unreadNotifications as $key => $unreadNotification)
-                <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-200 dark:hover:bg-gray-600" role="menuitem" tabindex="-1" id="menu-item-{{$key}}">
-                    <div class="">{{$unreadNotification->data['message']}}</div>
-                    <div class="">{{__('blockpc::todos.messages.created-by', ['user' => $unreadNotification->data['user']])}}</div>
-                </a>
+                <button type="button" class="block px-4 py-2 text-xs hover:bg-gray-200 dark:hover:bg-gray-600" id="menu-item-{{$key}}" wire:click="mark_as_read('{{$unreadNotification->id}}')">
+                    <div class="text-left">{{$unreadNotification->data['message']}}</div>
+                </button>
             @empty
                 <div class="block px-4 py-2 text-xs hover:bg-gray-200 dark:hover:bg-gray-600">
                     <span>{{__('common.no-notifications')}}</span>

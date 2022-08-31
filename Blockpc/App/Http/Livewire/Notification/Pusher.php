@@ -21,4 +21,14 @@ final class Pusher extends Component
     {
         return view('blockpc::livewire.notification.pusher');
     }
+
+    public function mark_as_read(string $uuid)
+    {
+        current_user()
+            ->unreadNotifications
+            ->where('id', $uuid)
+            ->markAsRead();
+
+        $this->emitSelf('refresh');
+    }
 }

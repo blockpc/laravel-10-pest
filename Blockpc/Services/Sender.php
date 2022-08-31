@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Blockpc\Services;
 
 use App\Models\User;
-use Blockpc\Notifications\NewTodoNotification;
+use Blockpc\Notifications\NewUserNotification;
 use Illuminate\Support\Facades\Notification;
 
 class Sender
@@ -21,7 +21,7 @@ class Sender
             $query->where('id', 1);
         })->get();
         
-        Notification::send($sudos, new NewTodoNotification($todo, $message));
+        Notification::send($sudos, new NewUserNotification($todo, $message));
         return true;
     }
 }

@@ -32,54 +32,40 @@ This packages includes a model `Profile` (one-to-one for user) and model `Image`
 
 And change some components from the original laravel install.
 
-### Create Package
-
-with command `php artisan blockpc:package` you can create your own packages folder with own service provider.
-This command create a folder structure like this:
-```
-packages/
-    - Package/
-        - App/
-            - Http/
-                - Controllers/
-                    - PackageController.php
-            - Models/
-                - Package.php
-            - Providers/
-                - PackageServiceProvider.php
-        - config/
-            - config.php
-        - database/
-            - migrations/
-                - 2022_06_02_140645_create_packages_table.php
-        - lang/
-            - en/
-                - package.php
-        - resources/
-            - views/
-                - index.blade.php
-        - routes/
-            - web.php
-```
-
-Notes:  
-- After add a new route in the web.php, you should run the command `php artisan route:clear`
-
-You must delete file `.gitignore` in packages folder  
-
 ### Install Clone
 
-- git clone https://github.com/blockpc/blockpcito _your-name-proyect_
-- cd _your-proyect_
-- cp .env.example .env (Configure your app name, app url, database, email, etc)
-- composer install
-- php artisan key:generate
-- npm install
-- npm run dev
-- php artisan migrate --seed
-- php artisan storage:link
-- php artisan icons:cache
-- php artisan test
+first clone
+
+    git clone https://github.com/blockpc/blockpcito _your-name-proyect_
+    cd _your-name-proyect_
+    cp .env.example .env (Configure your app name, app url, database, email, etc)
+    composer install
+    php artisan key:generate
+    php artisan storage:link
+    php artisan icons:cache
+
+if not use SAIL
+
+	php artisan migrate --seed
+	npm install
+	npm run dev
+	open a new console
+	php artisan test
+
+else, with sail
+
+	check if not docker-compose.yml exists
+		php artisan sail:install (select your prefers apps, comma separator)
+		you must change DB_HOST in your .env
+
+	check VITE_PORT in docker-compose.yml `${VITE_PORT:-5173}:${VITE_PORT:-5173}`
+	./vendor/bin/sail up -d
+	./vendor/bin/sail php artisan migrate --seed
+	check in phpunit.xml or add `<env name="DB_CONNECTION" value="sqlite"/>`
+	./vendor/bin/sail npm install
+	./vendor/bin/sail npm run dev
+	open a new console
+	./vendor/bin/sail php artisan test --stop-on-failure
 
 ### Change remote (important)
 
@@ -118,3 +104,38 @@ _remember run `npm run dev` in development_
 _this repository will always be up to date_
 
 Enjoy!
+
+### Create Package
+
+with command `php artisan blockpc:package` you can create your own packages folder with own service provider.
+This command create a folder structure like this:
+```
+packages/
+    - Package/
+        - App/
+            - Http/
+                - Controllers/
+                    - PackageController.php
+            - Models/
+                - Package.php
+            - Providers/
+                - PackageServiceProvider.php
+        - config/
+            - config.php
+        - database/
+            - migrations/
+                - 2022_06_02_140645_create_packages_table.php
+        - lang/
+            - en/
+                - package.php
+        - resources/
+            - views/
+                - index.blade.php
+        - routes/
+            - web.php
+```
+
+Notes:  
+- After add a new route in the web.php, you should run the command `php artisan route:clear`
+
+You must delete file `.gitignore` in packages folder  
