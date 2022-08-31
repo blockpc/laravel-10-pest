@@ -29,13 +29,6 @@ trait AuthorizesRoleOrPermission
             return true;
         }
 
-        $allPermissions = $auth->getAllPermissions();
-        $allRoles = $auth->roles;
-        
-        if ( ! $auth->hasAnyPermission($allPermissions) ) {
-            throw UnauthorizedException::forRolesOrPermissions($rolesOrPermissions);
-        }
-
         if( ! $auth->hasAnyRole($rolesOrPermissions) && ! $auth->hasAnyPermission($rolesOrPermissions)) {
             throw UnauthorizedException::forRolesOrPermissions($rolesOrPermissions);
         }

@@ -82,9 +82,4 @@ class User extends Authenticatable
             return $query->role($all_roles_except_sudo);
         }
     }
-
-    public function todos() : HasMany
-    {
-        return $this->hasMany(Todo::class);
-    }
 }

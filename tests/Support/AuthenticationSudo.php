@@ -21,7 +21,7 @@ trait AuthenticationSudo
         $this->afterApplicationCreated(function () {
             $this->role_sudo = $this->new_role('sudo', 'Super Administrador');
 
-            $permission = $this->new_permission('super admin');
+            $permissions = $this->new_permission('super admin');
 
             $this->role_sudo->givePermissionTo([
                 $permissions, 
