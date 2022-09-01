@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Blockpc\$PACKAGE$\database\factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Packages\$PACKAGE$\App\Models\$PACKAGE$;
+
+final class $PACKAGE$Factory extends Factory
+{
+    protected $model = $PACKAGE$::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        //
+    }
+}

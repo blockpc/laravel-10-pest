@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Packages\$PACKAGE$\App\Models;
 
+use Blockpc\App\Traits\HasPackageFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 final class $PACKAGE$ extends Model
 {
     use SoftDeletes;
+    use HasPackageFactory;
     
     protected $guarded = ['id'];
 }

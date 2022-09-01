@@ -71,6 +71,8 @@ class BlockpcPackageTest extends TestBase
             'model'           => "{$base}/App/Models/{$this->package}.php",
             'serviceprovider' => "{$base}/App/Providers/{$this->package}ServiceProvider.php",
             'config'          => "{$base}/config/config.php",
+            'factory'         => "{$base}/database/factories/{$this->package}Factory.php",
+            'test'            => "{$base}/tests/Route{$this->package}Test.php",
         ];
     }
 }

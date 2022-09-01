@@ -47,22 +47,22 @@ final class RouteDevelopmentTest extends TestBase
             ->get( route('dev.index') )
             ->assertOk();
 
-        $this->assertTrue(config('app.env') == 'testing');
+        $this->assertTrue(app()->environment() == 'testing');
     }
 
     /** @test */
     public function can_send_notification_to_user()
     {
-        // $this->authenticated()
-        //     ->get( route('dev.notification') )
-        //     ->assertOk();
+        $this->authenticated()
+            ->get( route('dev.notification') )
+            ->assertOk();
 
-        // $this->assertDatabaseHas('users', [
-        //     'name' => 'user',
-        //     'email' => 'user@mail.com'
-        // ]);
+        $this->assertDatabaseHas('users', [
+            'name' => 'user',
+            'email' => 'user@mail.com'
+        ]);
 
-        // $this->assertDatabaseCount('notifications', 1);
+        $this->assertDatabaseCount('notifications', 1);
 
         $admins = User::whereHas('roles', function($query) {
             $query->where('name', 'admin');

@@ -59,6 +59,7 @@ final class CreatePackageCommand extends Command
     public function handle()
     {
         try {
+            $this->info('Recommended: The package name must be singular');
             $packageName = $this->ask('Package name');
             $this->camel_name = Str::camel($packageName);
             $this->plural_name = Str::plural($this->camel_name);
@@ -117,6 +118,8 @@ final class CreatePackageCommand extends Command
             'model'           => base_path('Blockpc/stubs/model.stub'),
             'serviceprovider' => base_path('Blockpc/stubs/serviceprovider.stub'),
             'config'          => base_path('Blockpc/stubs/config.stub'),
+            'factory'         => base_path('Blockpc/stubs/factory.stub'),
+            'test'            => base_path('Blockpc/stubs/test.stub'),
         ];
         return $stubs[$key];
     }
@@ -197,6 +200,8 @@ final class CreatePackageCommand extends Command
             'model'           => "{$base}/App/Models/{$this->package}.php",
             'serviceprovider' => "{$base}/App/Providers/{$this->package}ServiceProvider.php",
             'config'          => "{$base}/config/config.php",
+            'factory'         => "{$base}/database/factories/{$this->package}Factory.php",
+            'test'            => "{$base}/tests/Route{$this->package}Test.php",
         ];
     }
 }
