@@ -25,10 +25,10 @@ class FormRole extends Component
             $this->role_permissions = $this->role->getAllPermissions()->pluck('name', 'id')->toArray();
         } else {
             $this->title_loading =  __('roles.forms.messages.loading-create');
-            $this->role_permissions = Permission::DEFAULTS;
+            $this->role_permissions = [];
         }
     }
-    
+
     public function render()
     {
         $permissions = $this->permissions();
@@ -69,7 +69,7 @@ class FormRole extends Component
 
     protected function rules()
     {
-        $unique_name = !$this->role->exists 
+        $unique_name = !$this->role->exists
             ? Rule::unique('roles', 'name') : Rule::unique('roles', 'name')->ignore($this->role);
         return [
             'role.name' => ['required', 'alpha_num', 'max:32', $unique_name],

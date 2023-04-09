@@ -9,14 +9,14 @@ use Spatie\Permission\Models\Permission as ModelsPermission;
 final class Permission extends ModelsPermission
 {
     const DEFAULTS = [
-        3 => "user list",
-        8 => "role list",
-        13 => "permission list"
+        4 => "user list",
+        9 => "role list",
+        14 => "permission list"
     ];
 
     const NOT_ALLOWED = [
-        'super admin', 
-        'settings control', 
+        'super admin',
+        'settings control',
         'jobs control'
     ];
 

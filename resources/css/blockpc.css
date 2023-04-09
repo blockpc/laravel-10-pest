@@ -51,6 +51,9 @@
     .btn-action {
         @apply bg-transparent hover:bg-gray-200 dark:hover:bg-gray-600 border border-transparent rounded-md font-semibold tracking-widest focus:outline-none disabled:opacity-25 transition ease-in-out duration-150;
     }
+    .btn-cancel {
+        @apply bg-transparent hover:bg-yellow-200 dark:hover:bg-yellow-600 border border-transparent rounded-md font-semibold tracking-widest focus:outline-none disabled:opacity-25 transition ease-in-out duration-150 dark:hover:text-yellow-100 dark:text-yellow-500 text-yellow-700;
+    }
     .label {
         @apply block font-medium text-sm;
     }

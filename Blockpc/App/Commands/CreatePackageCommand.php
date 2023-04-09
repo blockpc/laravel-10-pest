@@ -77,8 +77,8 @@ final class CreatePackageCommand extends Command
 
                 $contents = $this->getSourceFile($key);
 
+                $file = Str::padRight(Str::ucfirst($key), 18);
                 if (!$this->files->exists($path)) {
-                    $file = Str::padRight(Str::ucfirst($key), 18);
                     $this->files->put($path, $contents);
                     $this->info("{$file} : {$paths[$key]} created");
                 } else {
@@ -92,11 +92,11 @@ final class CreatePackageCommand extends Command
             Log::error($th->getMessage());
             $this->error('Something went wrong!');
 
-            if ( $this->files->isDirectory(base_path('packages/'.$this->package)) ) {
-                if ( $this->files->deleteDirectory(base_path('packages/'.$this->package)) ) {
-                    $this->info("Delete: packages/{$this->package}");
+            if ( $this->files->isDirectory(base_path('Packages/'.$this->package)) ) {
+                if ( $this->files->deleteDirectory(base_path('Packages/'.$this->package)) ) {
+                    $this->info("Delete: Packages/{$this->package}");
                 } else {
-                    $this->info("Something went wrong at delete: packages/{$this->package}");
+                    $this->info("Something went wrong at delete: Packages/{$this->package}");
                 }
             }
         }
@@ -104,7 +104,7 @@ final class CreatePackageCommand extends Command
 
     /**
      * Return the stub file path
-     * 
+     *
      * @return string
      */
     public function getStubPath($key) : string
@@ -172,7 +172,7 @@ final class CreatePackageCommand extends Command
      * Build the directory for the class if necessary.
      *
      * @param  string  $path
-     * 
+     *
      * @return bool
      */
     protected function makeDirectory($path) : bool
