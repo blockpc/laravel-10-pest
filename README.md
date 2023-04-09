@@ -104,7 +104,7 @@ phpmyadmin:
 with command `php artisan blockpc:package` you can create your own packages folder with own service provider.
 This command create a folder structure like this:
 ```
-packages/
+Packages/
     - Package/
         - App/
             - Http/
@@ -128,11 +128,11 @@ packages/
         - routes/
             - web.php
 ```
+This command run `php artisan optimize --quiet`
 
 Notes:  
 - After add a new route in the web.php, you should run the command `php artisan route:clear`
-
-You must delete file `.gitignore` in packages folder  
+- You must delete file `.gitignore` in packages folder  
 
 _remember run `npm run dev` in development_
 

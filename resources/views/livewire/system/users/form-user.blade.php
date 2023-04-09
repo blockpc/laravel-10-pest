@@ -34,27 +34,13 @@
                 </div>
             </div>
         </div>
-        <div class="md:flex mb-8">
-            <div class="md:w-1/3">
-                <legend class="uppercase tracking-wide text-sm"></legend>
-                <p class="text-xs font-light"></p>
-            </div>
-            <div class="md:flex-1 mt-2 mb:mt-0 md:px-3">
-                <div class="grid grid-cols-3">
-                    <div class="hidden md:block col-span-1"></div>
-                    <div class="col-span-3 md:col-span-2">
-                        {{-- buttons --}}
-                        <div class="flex items-center justify-between">
-                            <a href="{{ route('users.index') }}" class="btn-sm btn-warning cursor-pointer">{{__('common.cancel')}}</a>
-                            @if ($user->exists)
-                            <button class="btn-sm btn-success">{{ __('users.forms.create.edit-user') }}</button>
-                            @else
-                            <button class="btn-sm btn-primary">{{ __('users.forms.create.create-user') }}</button>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="flex items-center justify-end space-x-2">
+            <a href="{{ route('users.index') }}" class="btn-sm btn-cancel cursor-pointer">{{__('common.cancel')}}</a>
+            @if ($user->exists)
+            <button class="btn-sm btn-success">{{ __('users.forms.create.edit-user') }}</button>
+            @else
+            <button class="btn-sm btn-primary">{{ __('users.forms.create.create-user') }}</button>
+            @endif
         </div>
     </form>
     @if ( $user->exists )

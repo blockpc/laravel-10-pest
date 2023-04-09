@@ -25,28 +25,6 @@
             </div>
         </div>
         <div class="md:flex mb-8">
-            <div class="md:w-1/3">
-                <legend class="uppercase tracking-wide text-sm"></legend>
-                <p class="text-xs font-light"></p>
-            </div>
-            <div class="md:flex-1 mt-2 mb:mt-0 md:px-3">
-                <div class="grid grid-cols-3">
-                    <div class="hidden md:block col-span-1"></div>
-                    <div class="col-span-3 md:col-span-2">
-                        {{-- buttons --}}
-                        <div class="flex items-center justify-between">
-                            <a href="{{ route('roles.index') }}" class="btn-sm btn-warning cursor-pointer">{{__('common.cancel')}}</a>
-                            @if ($role->exists)
-                            <button class="btn-sm btn-success">{{ __('roles.forms.create.edit-role') }}</button>
-                            @else
-                            <button class="btn-sm btn-primary">{{ __('roles.forms.create.create-role') }}</button>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="md:flex mb-8">
             <div class="md:w-1/3 flex-col md:space-y-2">
                 <legend class="uppercase tracking-wide text-sm">{{__('roles.forms.permissions.title')}}</legend>
                 <p class="text-xs font-light">{{__('roles.forms.permissions.legend')}}</p>
@@ -71,6 +49,14 @@
                 </div>
                 @endforeach
             </div>
+        </div>
+        <div class="flex justify-end items-center space-x-2">
+            <a href="{{ route('roles.index') }}" class="btn-sm btn-cancel cursor-pointer">{{__('common.cancel')}}</a>
+            @if ($role->exists)
+            <button class="btn-sm btn-success">{{ __('roles.forms.create.edit-role') }}</button>
+            @else
+            <button class="btn-sm btn-primary">{{ __('roles.forms.create.create-role') }}</button>
+            @endif
         </div>
     </form>
 </div>
