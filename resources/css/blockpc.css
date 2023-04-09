@@ -72,6 +72,9 @@
     .border-error {
         @apply border border-red-600 dark:border-red-400;
     }
+    .checkbox {
+        @apply w-4 h-4 rounded-full p-1;
+    }
 
     .alert {
         @apply border-t border-b rounded-md px-4 py-3 text-sm;
