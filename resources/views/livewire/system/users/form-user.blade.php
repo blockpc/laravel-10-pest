@@ -16,19 +16,19 @@
                 <div class="grid gap-4">
                     {{-- User Name --}}
                     <x-forms.box-text name="user_name" title="users.forms.attributes.user.name" wire:model.defer="user.name" required />
-        
+
                     {{-- User email --}}
                     <x-forms.box-text name="user_email" title="users.forms.attributes.user.email" wire:model.defer="user.email" required />
 
                     {{-- Profile Firstname --}}
                     <x-forms.box-text name="profile_firstname" title="users.forms.attributes.profile.firstname" wire:model.defer="profile.firstname" />
-        
+
                     {{-- Profile Lastname --}}
                     <x-forms.box-text name="profile_lastname" title="users.forms.attributes.profile.lastname" wire:model.defer="profile.lastname" />
-        
+
                     {{-- Profile Phone --}}
                     <x-forms.box-text name="profile_phone" title="users.forms.attributes.profile.phone" wire:model.defer="profile.phone" />
-        
+
                     {{-- Select Role --}}
                     <x-forms.box-select name="select_role" title="users.forms.create.select-role" :options="$roles" wire:model.defer="role" />
                 </div>
@@ -45,12 +45,12 @@
                     <div class="col-span-3 md:col-span-2">
                         {{-- buttons --}}
                         <div class="flex items-center justify-between">
+                            <a href="{{ route('users.index') }}" class="btn-sm btn-warning cursor-pointer">{{__('common.cancel')}}</a>
                             @if ($user->exists)
                             <button class="btn-sm btn-success">{{ __('users.forms.create.edit-user') }}</button>
                             @else
                             <button class="btn-sm btn-primary">{{ __('users.forms.create.create-user') }}</button>
                             @endif
-                            <a href="{{ route('users.index') }}" class="btn-sm btn-warning cursor-pointer">{{__('common.cancel')}}</a>
                         </div>
                     </div>
                 </div>

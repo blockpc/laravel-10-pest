@@ -99,12 +99,6 @@ phpmyadmin:
         - mariadb
 ```
 
-_remember run `npm run dev` in development_
-
-_this repository will always be up to date_
-
-Enjoy!
-
 ### Create Package
 
 with command `php artisan blockpc:package` you can create your own packages folder with own service provider.
@@ -139,3 +133,9 @@ Notes:
 - After add a new route in the web.php, you should run the command `php artisan route:clear`
 
 You must delete file `.gitignore` in packages folder  
+
+_remember run `npm run dev` in development_
+
+_this repository will always be up to date_
+
+Enjoy!

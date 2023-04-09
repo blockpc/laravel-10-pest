@@ -35,12 +35,12 @@
                     <div class="col-span-3 md:col-span-2">
                         {{-- buttons --}}
                         <div class="flex items-center justify-between">
+                            <a href="{{ route('roles.index') }}" class="btn-sm btn-warning cursor-pointer">{{__('common.cancel')}}</a>
                             @if ($role->exists)
                             <button class="btn-sm btn-success">{{ __('roles.forms.create.edit-role') }}</button>
                             @else
                             <button class="btn-sm btn-primary">{{ __('roles.forms.create.create-role') }}</button>
                             @endif
-                            <a href="{{ route('roles.index') }}" class="btn-sm btn-warning cursor-pointer">{{__('common.cancel')}}</a>
                         </div>
                     </div>
                 </div>
@@ -51,18 +51,20 @@
                 <legend class="uppercase tracking-wide text-sm">{{__('roles.forms.permissions.title')}}</legend>
                 <p class="text-xs font-light">{{__('roles.forms.permissions.legend')}}</p>
             </div>
-            <div class="md:flex-1 mt-2 mb:mt-0 md:px-3 shadow-lg pb-4">
+            <div class="md:flex-1 grid grid-cols-3 gap-4">
                 @foreach ($permissions as $group => $collection)
-                <div class="my-2 overflow-hidden w-full dark:text-gray-200 text-gray-700">
-                    <div class="w-full p-2 text-sm rounded-lg font-semibold dark:bg-gray-900 bg-gray-200">{{__(title($group.'.titles.link'))}}</div>
-                    <div class="grid grid-cols-2 gap-4 px-4">
+                <div class="overflow-hidden w-full dark:text-gray-200 text-gray-700">
+                    <div class="w-full p-2 text-sm rounded-lg font-semibold dark:bg-gray-900 bg-gray-200">{{__('permissions.'.$group.'.title')}}</div>
+                    <div class="">
                         @foreach ($collection as $id => $permission)
-                        <div class="col-span-1 flex flex-col">
-                            <label class="flex flex-row items-center mt-3">
-                                <input wire:model.lazy="role_permissions.{{$id}}" id="permission-{{$group}}-{{$id}}" type="checkbox" class="form-checkbox h-4 w-4 text-gray-600" value="{{$permission->name}}">
-                                    <span class="ml-2 text-sm">{{$permission->display_name}}</span>
+                        <div class="flex space-x-2 items-center p-2">
+                            <div class="mb-auto">
+                                <input wire:model.lazy="role_permissions.{{$id}}" id="permission-{{$group}}-{{$id}}" type="checkbox" class="checkbox" value="{{$permission->name}}">
+                            </div>
+                            <label class="flex flex-col space-y-1" for="permission-{{$group}}-{{$id}}">
+                                <span class="text-sm">{{$permission->display_name}}</span>
+                                <span class="text-xs">{{$permission->description}}</span>
                             </label>
-                            <span class="mt-2 text-xs">{{$permission->description}}</span>
                         </div>
                         @endforeach
                     </div>
