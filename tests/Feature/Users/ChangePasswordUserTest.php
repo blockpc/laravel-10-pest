@@ -7,7 +7,6 @@ namespace Tests\Feature\Users;
 use App\Http\Livewire\Pages\ChangePassword;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Tests\TestBase;
 use Illuminate\Support\Str;
@@ -15,8 +14,6 @@ use Livewire\Livewire;
 
 final class ChangePasswordUserTest extends TestBase
 {
-    use RefreshDatabase;
-    
     private $token;
 
     protected function setUp(): void
@@ -48,8 +45,8 @@ final class ChangePasswordUserTest extends TestBase
             ->assertMethodWiredToForm('save');
     }
 
-    /** 
-     * @test 
+    /**
+     * @test
      * @dataProvider validationRules
      */
     public function check_errors_for_change_password_user($field, $value, $rule)
@@ -95,7 +92,7 @@ final class ChangePasswordUserTest extends TestBase
             ->assertHasNoErrors();
 
         $this->assertDatabaseMissing('password_resets', [
-            'token' => $this->token, 
+            'token' => $this->token,
             'email' => $user->email
         ]);
 

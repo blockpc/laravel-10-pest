@@ -9,7 +9,6 @@ use App\Models\Profile;
 use App\Models\User;
 use Blockpc\Events\ReSendLinkToChangePasswordEvent;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Livewire\Livewire;
 use Tests\Support\AuthenticationAdmin;
@@ -17,7 +16,6 @@ use Tests\TestBase;
 
 final class EditUserTest extends TestBase
 {
-    use RefreshDatabase;
     use AuthenticationAdmin;
 
     protected function setUp(): void
@@ -45,7 +43,7 @@ final class EditUserTest extends TestBase
     {
         $user = User::factory()->create();
         $user->assignRole('admin');
-        
+
         $this->authenticated()
             ->get( route('users.edit', $user) )
             ->assertOk();

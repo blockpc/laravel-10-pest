@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Pages;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Support\AuthenticationUser;
 use Tests\TestBase;
 
 final class RouteHomeTest extends TestBase
 {
-    use RefreshDatabase;
     use AuthenticationUser;
 
     /** @test */

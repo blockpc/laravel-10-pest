@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace Tests\Feature\Roles;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Support\AuthenticationAdmin;
 use Tests\TestBase;
 
 final class EditRoleTest extends TestBase
 {
-    use RefreshDatabase;
     use AuthenticationAdmin;
 
     private $role;

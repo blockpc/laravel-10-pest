@@ -7,7 +7,6 @@ namespace Tests\Feature\Users;
 use App\Http\Livewire\System\Users\FormUser;
 use App\Models\User;
 use Blockpc\Events\SendEmailForNewUserEvent;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Livewire\Livewire;
 use Tests\Support\AuthenticationAdmin;
@@ -15,7 +14,6 @@ use Tests\TestBase;
 
 final class CreateUsersTest extends TestBase
 {
-    use RefreshDatabase;
     use AuthenticationAdmin;
 
     private $user;
@@ -65,8 +63,8 @@ final class CreateUsersTest extends TestBase
             ->assertMethodWiredToForm('save');
     }
 
-    /** 
-     * @test 
+    /**
+     * @test
      * @dataProvider validationRules
      */
     public function check_errors_create_user($field, $value, $rule)

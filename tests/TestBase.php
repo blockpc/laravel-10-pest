@@ -8,13 +8,11 @@ use Spatie\Permission\PermissionRegistrar;
 use Tests\Support\CreatePermission;
 use Tests\Support\CreateRole;
 use Tests\Support\CreateUser;
-use Illuminate\Foundation\Testing\TestCase;
 
 abstract class TestBase extends TestCase
 {
-    use CreatesApplication;
     use CreateRole, CreatePermission, CreateUser;
-    
+
     protected function setUp():void
     {
         parent::setUp();
