@@ -24,6 +24,8 @@ final class ListUsersTest extends TestBase
         /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
         $user = User::factory()->create();
 
+        $this->assertFalse($user->hasPermissionTo('user list'));
+
         try {
             $this->actingAs($user);
             $response = $this->get(route('users.index'));

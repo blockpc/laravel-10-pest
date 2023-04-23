@@ -11,6 +11,10 @@ class Table extends Component
 {
     public User $user;
 
+    protected $listeners = [
+        'refresh' => '$refresh'
+    ];
+
     public $role_permissions;
     public $role;
 
@@ -54,7 +58,7 @@ class Table extends Component
 
     protected function permissions()
     {
-        if ( $this->user->hasRole('sudo') ) {
+        if ( $this->user->is_sudo() ) {
             return Permission::all();
         }
         return Permission::notAllowed()->get();

@@ -17,6 +17,8 @@ abstract class TestBase extends TestCase
     {
         parent::setUp();
         $this->app->make(PermissionRegistrar::class)->registerPermissions();
+
+        $this->new_permission('super admin');
     }
     /**
      * Boot the testing helper traits.

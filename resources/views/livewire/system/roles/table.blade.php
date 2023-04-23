@@ -61,7 +61,7 @@
                                     @if ( current_user()->can('role restore') )
                                     <div class="" x-data="{ showModal : false }">
                                         <button class="btn-sm btn-info" type="button" x-on:click="showModal = true" title="{{__('roles.titles.restore')}}"><x-bx-revision class="w-4 h-4" /></button>
-                                        <x-modals.mini class="border-2 border-blue-800">
+                                        <x-modals.mini class="w-full md:w-1/2 border-2 border-blue-800">
                                             <x-slot name="title">{{__('roles.titles.restore')}}</x-slot>
                                             <x-slot name="action">
                                                 <button x-on:click="showModal = false" class="btn btn-warning">{{__('common.cancel')}}</button>
@@ -82,7 +82,7 @@
                                     @if ( !in_array($role->name, $roles_base) && current_user()->can('role delete') && !current_user()->hasRole($role->name) )
                                     <div class="" x-data="{ showModal : false }">
                                         <button class="btn-sm btn-danger" type="button" x-on:click="showModal = true" title="{{__('roles.titles.delete')}}"><x-bx-x class="w-4 h-4" /></button>
-                                        <x-modals.mini class="border-2 border-red-800">
+                                        <x-modals.mini class="w-full md:w-1/2 border-2 border-red-800">
                                             <x-slot name="title">{{__('roles.titles.delete')}}</x-slot>
                                             <x-slot name="action">
                                                 <button x-on:click="showModal = false" class="btn btn-warning">{{__('common.cancel')}}</button>

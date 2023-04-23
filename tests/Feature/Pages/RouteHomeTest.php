@@ -11,6 +11,12 @@ final class RouteHomeTest extends TestBase
 {
     use AuthenticationUser;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->withoutExceptionHandling();
+    }
+
     /** @test */
     public function can_access_to_home_route()
     {
