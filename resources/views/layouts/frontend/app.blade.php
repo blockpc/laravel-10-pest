@@ -7,9 +7,9 @@
         <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-        
+
         <style>
-            [x-cloak] { 
+            [x-cloak] {
                 display: none !important;
             }
         </style>
@@ -24,11 +24,9 @@
             @include('layouts.frontend.navigation')
 
             <!-- Page Heading -->
-            <header class="shadow">
-                <div class="content">
-                    @include('layouts.frontend.messages')
-                    @yield('header')
-                </div>
+            <header class="content flex flex-col space-y-2 my-2">
+                @include('layouts.frontend.messages')
+                <span class="text-lg font-semibold">@yield('header')</span>
             </header>
 
             <main class="content">
