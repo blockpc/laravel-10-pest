@@ -11,7 +11,7 @@ use Tests\TestBase;
 class BlockpcPackageTest extends TestBase
 {
     use RefreshDatabase;
-    
+
     protected $package;
     protected $snake_name;
     protected $name;
@@ -43,11 +43,11 @@ class BlockpcPackageTest extends TestBase
             ->assertExitCode(0);
 
         $files = $this->getSourceFilePath();
-        
+
         foreach ($files as $key => $file) {
             $this->assertTrue($this->filesystem->exists(base_path($file)));
         }
-        
+
         $this->filesystem->deleteDirectory('Packages/' . $this->package);
         $this->assertTrue(!$this->filesystem->isDirectory(base_path('Packages/'. $this->package)));
 

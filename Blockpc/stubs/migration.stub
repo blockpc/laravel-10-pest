@@ -9,31 +9,31 @@ return new class extends Migration
 {
     private $permissions = [
         // 0 => [
-        //     'name' => '$NAME$ list', 
+        //     'name' => '$NAME$ list',
         //     'display_name' => 'List $NAME$',
         //     'description' => 'Show list $NAME$',
         //     'key' => '$TABLE$',
         // ],
         // 1 => [
-        //     'name' => '$NAME$ create', 
+        //     'name' => '$NAME$ create',
         //     'display_name' => 'Create $NAME$',
         //     'description' => 'Can create $NAME$',
         //     'key' => '$TABLE$',
         // ],
         // 2 => [
-        //     'name' => '$NAME$ update', 
+        //     'name' => '$NAME$ update',
         //     'display_name' => 'Update $NAME$',
         //     'description' => 'Can update $NAME$',
         //     'key' => '$TABLE$',
         // ],
         // 3 => [
-        //     'name' => '$NAME$ delete', 
+        //     'name' => '$NAME$ delete',
         //     'display_name' => 'Delete $NAME$',
         //     'description' => 'Can delete $NAME$',
         //     'key' => '$TABLE$',
         // ],
         // 4 => [
-        //     'name' => '$NAME$ restore', 
+        //     'name' => '$NAME$ restore',
         //     'display_name' => 'Restore $NAME$',
         //     'description' => 'Can restore $NAME$',
         //     'key' => '$TABLE$',
@@ -48,7 +48,7 @@ return new class extends Migration
     public function up()
     {
         foreach ($this->permissions as $permission) {
-            Permission::create($permission);
+            Permission::firstOrCreate($permission);
         }
 
         Schema::create('$TABLE$', function (Blueprint $table) {
