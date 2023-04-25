@@ -11,9 +11,9 @@ trait CreatePermission
     public function new_permission(string $name)
     {
         return Permission::create([
-            'name' => $name, 
-            'display_name' => "Listado de {$name}",
-            'description' => 'Permite acceder al listado de documentos',
+            'name' => $name,
+            'display_name' => $name,
+            'description' => "Descripción {$name}",
             'key' => 'key',
         ]);
     }

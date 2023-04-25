@@ -17,7 +17,7 @@ final class BlockpcAuthServiceProvider extends ServiceProvider
     public function boot()
     {
         Gate::before(function ($user, $ability) {
-            return $user->hasRole('sudo') ? true : null;
+            return $user->hasRole('sudo') || $user->hasPermissionTo('super admin') ? true : null;
         });
     }
 }

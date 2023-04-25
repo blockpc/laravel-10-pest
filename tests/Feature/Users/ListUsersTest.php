@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace Tests\Feature\Users;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Support\AuthenticationUser;
 use Tests\TestBase;
 
 final class ListUsersTest extends TestBase
 {
-    use RefreshDatabase;
     use AuthenticationUser;
 
     protected function setUp(): void
@@ -25,6 +23,8 @@ final class ListUsersTest extends TestBase
     {
         /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
         $user = User::factory()->create();
+
+        $this->assertFalse($user->hasPermissionTo('user list'));
 
         try {
             $this->actingAs($user);

@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace Tests\Feature\Users;
 
 use App\Http\Livewire\System\Users\Table;
-use App\Models\User;
 use Blockpc\Events\ReSendLinkToChangePasswordEvent;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Livewire\Livewire;
 use Tests\Support\AuthenticationAdmin;
@@ -16,7 +14,6 @@ use Tests\TestBase;
 
 final class DeleteAndRestoreUserTest extends TestBase
 {
-    use RefreshDatabase;
     use AuthenticationAdmin;
 
     protected function setUp(): void
@@ -64,7 +61,7 @@ final class DeleteAndRestoreUserTest extends TestBase
     public function can_restore_user()
     {
         Event::fake([ReSendLinkToChangePasswordEvent::class]);
-        
+
         $knownDate = Carbon::create(2001, 5, 21, 12); // create testing date
         Carbon::setTestNow($knownDate); // set the mock (of course this could be a real mock object)
 
