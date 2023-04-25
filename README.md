@@ -4,7 +4,7 @@
 
 This repo contains a frontend and bakend layouts for a laravel breeze  
 Contains:
-- Laravel 9 (With vite)
+- Laravel 10 (With vite)
 - Tailwind
 - Livewire
 - Alpine JS
