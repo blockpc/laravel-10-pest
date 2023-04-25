@@ -53,6 +53,13 @@ class User extends Authenticatable
         return 'name';
     }
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['profile'];
+
     // Relations
 
     public function profile() : HasOne
