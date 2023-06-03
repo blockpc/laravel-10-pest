@@ -37,6 +37,13 @@ And change some components from the original laravel install.
 first clone
 
     git clone https://github.com/blockpc/blockpcito _your-name-proyect_
+
+    or
+
+    git clone -b laravel-9 --single-branch https://github.com/blockpc/blockpcito _your-name-proyect_
+
+next
+
     cd _your-name-proyect_
     cp .env.example .env (Configure your app name, app url, database, email, etc)
     composer install
