@@ -130,4 +130,17 @@
     .color-selector input:checked + label {
         @apply ring-2 ring-primary;
     }
+
+    .textarea {
+        @apply block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg border dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white;
+    }
+    .checkbox {
+        @apply w-4 h-4 rounded-lg;
+    }
+    .checkbox-blue {
+        @apply text-blue-600 bg-gray-100  border-gray-800 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:border-gray-600;
+    }
+    .radio-button {
+        @apply inline-flex text-dark text-xs w-full p-2 bg-dark bg-white border border-gray-400 rounded-lg cursor-pointer bg-dark dark:border-gray-600 dark:peer-checked:text-blue-400 peer-checked:border-blue-600 peer-checked:text-blue-600;
+    }
 }
