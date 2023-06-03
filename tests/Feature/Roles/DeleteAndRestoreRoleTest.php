@@ -8,14 +8,12 @@ use App\Http\Livewire\System\Roles\Table;
 use App\Models\User;
 use Blockpc\App\Models\Role;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Tests\Support\AuthenticationAdmin;
 use Tests\TestBase;
 
 final class DeleteAndRestoreRoleTest extends TestBase
 {
-    use RefreshDatabase;
     use AuthenticationAdmin;
 
     private Role $role_user;
@@ -132,7 +130,7 @@ final class DeleteAndRestoreRoleTest extends TestBase
     {
         $knownDate = Carbon::create(2001, 5, 21, 12); // create testing date
         Carbon::setTestNow($knownDate); // set the mock
-        
+
         $livewire = Livewire::actingAs($this->admin)->test(Table::class);
 
         $this->assertDatabaseHas('roles', [

@@ -67,7 +67,7 @@
                                 @if ( isset($records_deleted) && $records_deleted)
                                 <div class="" x-data="{ showModal : false }">
                                     <button class="btn-sm btn-info" type="button" x-on:click="showModal = true" title="{{__('users.titles.restore')}}"><x-bx-revision class="w-4 h-4" /></button>
-                                    <x-modals.mini class="border-2 border-blue-800">
+                                    <x-modals.mini class="w-full md:w-1/2 border-2 border-blue-800">
                                         <x-slot name="title">{{__('users.titles.restore')}}</x-slot>
                                         <x-slot name="action">
                                             <button x-on:click="showModal = false" class="btn btn-warning">{{__('common.cancel')}}</button>
@@ -85,7 +85,7 @@
                                     @if ( current_user()->can('user delete') && current_user()->id != $user->id )
                                     <div class="" x-data="{ showModal : false }">
                                         <button class="btn-sm btn-danger" type="button" x-on:click="showModal = true" title="{{__('users.titles.delete')}}"><x-bx-x class="w-4 h-4" /></button>
-                                        <x-modals.mini class="border-2 border-red-800">
+                                        <x-modals.mini class="w-full md:w-1/2 border-2 border-red-800">
                                             <x-slot name="title">{{__('users.titles.delete')}}</x-slot>
                                             <x-slot name="action">
                                                 <button x-on:click="showModal = false" class="btn btn-warning">{{__('common.cancel')}}</button>
@@ -103,7 +103,7 @@
                     @empty
                     <x-tables.row wire:loading.class.delay="opacity-50">
                         <x-tables.td class="font-semibold text-center" colspan="5">
-                            <span>Sin registros encontrados 
+                            <span>Sin registros encontrados
                                 @if ($search)
                                     para <b>{{ $search }}</b>
                                 @endif

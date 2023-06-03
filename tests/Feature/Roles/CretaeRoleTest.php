@@ -6,14 +6,12 @@ namespace Tests\Feature\Roles;
 
 use App\Http\Livewire\System\Roles\FormRole;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Tests\Support\AuthenticationAdmin;
 use Tests\TestBase;
 
 final class CretaeRoleTest extends TestBase
 {
-    use RefreshDatabase;
     use AuthenticationAdmin;
 
     protected function setUp(): void
@@ -55,8 +53,8 @@ final class CretaeRoleTest extends TestBase
             ->assertMethodWiredToForm('save');
     }
 
-    /** 
-     * @test 
+    /**
+     * @test
      * @dataProvider validationRules
      */
     public function check_errors_create_role($field, $value, $rule)

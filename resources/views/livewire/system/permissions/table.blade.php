@@ -15,9 +15,9 @@
         @foreach ($permissions as $group => $collection)
         <div class="overflow-hidden w-full dark:text-gray-200 text-gray-700">
             <div class="w-full p-2 text-sm rounded-lg font-semibold dark:bg-gray-900 bg-gray-200">{{__('permissions.'.$group.'.title')}}</div>
-            <div class="">
+            <div class="flex flex-col">
                 @foreach ($collection as $id => $permission)
-                <div class="flex space-x-2 items-center p-2">
+                <div class="flex space-x-2 items-center p-2 hover:bg-gray-200 dark:hover:bg-gray-600">
                     <div class="mb-auto">
                         @if ( isset($role_permissions[$id]) )
                             <x-bx-check class="w-8 h-8 text-green-700 font-semibold" />
@@ -25,9 +25,14 @@
                             <x-bx-x class="w-8 h-8 text-red-500 font-semibold" />
                         @endif
                     </div>
-                    <div class="flex flex-col space-y-1">
-                        <span class="text-sm">{{$permission->display_name}}</span>
-                        <span class="text-xs">{{$permission->description}}</span>
+                    <div class="flex flex-col w-full">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm">{{$permission->display_name}}</span>
+                            @livewire('system.permissions.edit', ['permission_id' => $permission->id], key($permission->id))
+                        </div>
+                        <div class="">
+                            <span class="text-xs">{{$permission->description}}</span>
+                        </div>
                     </div>
                 </div>
                 @endforeach

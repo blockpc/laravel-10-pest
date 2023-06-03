@@ -5,18 +5,15 @@ declare(strict_types=1);
 namespace Tests\Feature\Users;
 
 use App\Http\Livewire\System\ProfileUser;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Livewire;
 use Tests\Support\AuthenticationUser;
 use Tests\TestBase;
-use Illuminate\Support\Str;
 
 final class UpdateProfileUserTest extends TestBase
 {
-    use RefreshDatabase;
     use AuthenticationUser;
 
     protected function setUp(): void
@@ -60,7 +57,7 @@ final class UpdateProfileUserTest extends TestBase
             ->test(ProfileUser::class)
             ->set('photo', $image)
             ->assertHasErrors(['photo']);
-        
+
         $photo = $livewire->get('photo');
         $this->assertNull($photo);
     }
@@ -72,7 +69,7 @@ final class UpdateProfileUserTest extends TestBase
         $file = UploadedFile::fake()->image('perfil.jpg');
 
         $name = mb_strtolower($this->user->name);
-    
+
         Livewire::actingAs($this->user)
             ->test(ProfileUser::class)
             ->set('photo', $file)

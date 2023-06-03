@@ -23,11 +23,12 @@ trait AuthenticationAdmin
 
             $permissions = $this->new_permissions_for([
                 'user list', 'user create', 'user update',
-                'role list', 'role create', 'role update'
+                'role list', 'role create', 'role update',
+                'permission list', 'permission update',
             ]);
 
             $this->role_admin->givePermissionTo([
-                $permissions, 
+                $permissions,
             ]);
 
             $this->admin = User::factory()->create();

@@ -53,15 +53,21 @@ class User extends Authenticatable
         return 'name';
     }
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['profile'];
+
+    // Relations
+
     public function profile() : HasOne
     {
         return $this->hasOne(Profile::class);
     }
 
-    public function isOnline()
-    {
-        return Cache::has('user-online-'.$this->id);
-    }
+    // Attributes
 
     public function getRoleIdAttribute() : int
     {
@@ -73,6 +79,8 @@ class User extends Authenticatable
         return $this->roles()->first()->display_name;
     }
 
+    // Scopes
+
     public function scopeAllowed($query)
     {
         $all_roles_except_sudo = Role::whereNotIn('name', ['sudo'])->get();
@@ -81,5 +89,25 @@ class User extends Authenticatable
         } else {
             return $query->role($all_roles_except_sudo);
         }
+    }
+
+    // Functions
+
+    /**
+     * Permite asignar al cache el id del usuario
+     * @return bool
+     */
+    public function isOnline() : bool
+    {
+        return Cache::has('user-online-'.$this->id);
+    }
+
+    /**
+     * permite detectar si un usuario tiene permisos de super usuario
+     * @return bool
+     */
+    public function is_sudo() : bool
+    {
+        return current_user()->hasRole('sudo') || current_user()->hasPermissionTo('super admin');
     }
 }
