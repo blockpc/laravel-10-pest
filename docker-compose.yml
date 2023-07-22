@@ -2,6 +2,7 @@
 version: '3'
 services:
     laravel.test:
+        container_name: laravel-pest
         build:
             context: ./vendor/laravel/sail/runtimes/8.1
             dockerfile: Dockerfile
@@ -25,6 +26,7 @@ services:
         depends_on:
             - mariadb
     mariadb:
+        container_name: mariadb
         image: 'mariadb:10'
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
@@ -45,6 +47,7 @@ services:
             retries: 3
             timeout: 5s
     mailhog:
+        container_name: mailhog
         image: 'mailhog/mailhog:latest'
         ports:
             - '${FORWARD_MAILHOG_PORT:-1025}:1025'
@@ -52,6 +55,7 @@ services:
         networks:
             - sail
     phpmyadmin:
+        container_name: phpmyadmin
         image: phpmyadmin/phpmyadmin:latest
         restart: always
         links:
