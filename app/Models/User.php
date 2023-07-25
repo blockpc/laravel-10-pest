@@ -71,12 +71,12 @@ class User extends Authenticatable
 
     public function getRoleIdAttribute() : int
     {
-        return $this->roles()->first()->id;
+        return $this->roles()->first()?->id ?? 0;
     }
 
     public function getCargoAttribute() : string
     {
-        return $this->roles()->first()->display_name;
+        return $this->roles()->first()?->display_name ?? 'Sin Cargo';
     }
 
     // Scopes
