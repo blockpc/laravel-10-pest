@@ -52,7 +52,7 @@ class RegisteredUserController extends Controller
             'lastname' => $request->lastname
         ]);
 
-        // event(new Registered($user));
+        event(new Registered($user));
 
         Auth::login($user);
 

@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use Illuminate\Support\Facades\Event;
+
 it('can get a regiter form', function() {
     $this->get('/registro')
         ->assertStatus(200);
@@ -18,48 +22,29 @@ it('can show errors when regiter new user')
         'name', 'email', 'password', 'firstname', 'lastname'
     ]);
 
-// it('can a regiter new user', function() {
-//     $this->post('/registro', [
-//         'name' => 'test',
-//         'email' => 'test@mail.com',
-//         'password' => 'password',
-//         'password_confirmation' => 'password',
-//         'firstname' => 'first',
-//         'lastname' => 'last'
-//     ])
-//         ->assertRedirect('/sistema/dashboard')
-//         ->assertStatus(302);
+it('can a regiter new user', function() {
+    Event::fake();
 
-//     $this->assertDatabaseHas('users', [
-//         'name' => 'test',
-//         'email' => 'test@mail.com',
-//     ]);
-
-//     $this->assertDatabaseHas('profiles', [
-//         'firstname' => 'first',
-//         'lastname' => 'last'
-//     ]);
-// });
-
-it('can a regiter new user')
-    ->defer(function() {
-        $this->post('/registro', [
-            'name' => 'test',
-            'email' => 'test@mail.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-            'firstname' => 'first',
-            'lastname' => 'last'
-        ])
-        ->assertRedirect('/sistema/dashboard')
-        ->assertStatus(302);
-    })
-    ->assertDatabaseHas('users', [
+    $this->post('/registro', [
         'name' => 'test',
         'email' => 'test@mail.com',
-    ])
-    ->assertDatabaseHas('profiles', [
+        'password' => 'password',
+        'password_confirmation' => 'password',
         'firstname' => 'first',
         'lastname' => 'last'
     ])
-    ->assertAuthenticated();
+        ->assertRedirect('/sistema/dashboard')
+        ->assertStatus(302);
+
+    $this->assertDatabaseHas('users', [
+        'name' => 'test',
+        'email' => 'test@mail.com',
+    ]);
+
+    $this->assertDatabaseHas('profiles', [
+        'firstname' => 'first',
+        'lastname' => 'last'
+    ]);
+
+    Event::assertListening(Registered::class, SendEmailVerificationNotification::class);
+});
