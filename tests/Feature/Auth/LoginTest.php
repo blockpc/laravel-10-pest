@@ -23,7 +23,8 @@ it('user can login', function() {
         'email' => 'test@mail.com'
     ]);
 
-    $this->actingAs($user)->get('/login')->assertStatus(302)->assertRedirect('/sistema/dashboard');
+    // $this->actingAs($user)->get('/login')->assertStatus(302)->assertRedirect('/sistema/dashboard');
+    expect($user)->toBeRedirectFor('/login', 'get');
 
     $this->assertAuthenticated();
 });
@@ -40,12 +41,14 @@ it('user can login form', function() {
         'email' => 'test@mail.com'
     ]);
 
-    $this->actingAs($user)->post('/login', [
-        'email' => 'test@mail.com',
-        'password' => 'password'
-    ])
-    ->assertStatus(302)
-    ->assertRedirect('/sistema/dashboard');
+    // $this->actingAs($user)->post('/login', [
+    //     'email' => 'test@mail.com',
+    //     'password' => 'password'
+    // ])
+    // ->assertStatus(302)
+    // ->assertRedirect('/sistema/dashboard');
+
+    expect($user)->toBeRedirectFor('/login', 'post');
 
     $this->assertAuthenticated();
 });

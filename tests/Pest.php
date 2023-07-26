@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Contracts\Auth\Authenticatable;
+
 uses(
     Tests\TestCase::class,
     // Illuminate\Foundation\Testing\RefreshDatabase::class,
@@ -31,8 +33,15 @@ uses(
 |
 */
 
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
+expect()->extend('toBeAdmin', function () {
+    return $this->toBe('admin');
+});
+
+expect()->extend('toBeRedirectFor', function (string $url, string $method = 'get') {
+
+    return actingAs($this->value)->{$method}($url)
+        ->assertStatus(302)
+        ->assertRedirect('/sistema/dashboard');
 });
 
 /*
@@ -46,7 +55,7 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function actingAs(Authenticatable $user)
 {
-    // ..
+    return test()->actingAs($user);
 }
