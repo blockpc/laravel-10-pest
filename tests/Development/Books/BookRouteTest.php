@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Profile;
-use App\Models\User;
 use Database\Seeders\RoleAndPermissionsSeeder;
 
 it('can not see route books', function () {
@@ -9,15 +7,22 @@ it('can not see route books', function () {
         ->assertStatus(302);
 });
 
+it('only allows authendticated users to get', function () {
+    $this->get('sistema/libros/nuevo')
+        ->assertStatus(302);
+});
+
+it('only allows authendticated users to post', function () {
+    $this->post('sistema/libros/nuevo')
+        ->assertStatus(302);
+});
+
 it('can see route books for user authenticated', function() {
     $this->seed(RoleAndPermissionsSeeder::class);
 
-    // Sign in
-    $user = User::factory()->create();
-    Profile::factory()->forUser($user)->create();
+    $user = new_user();
 
-    // get route Acting as
     $this->actingAs($user)
-        ->get('sistema/libros')
+        ->get('sistema/libros/nuevo')
         ->assertStatus(200);
 });

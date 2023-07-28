@@ -8,4 +8,6 @@ Route::middleware([
 ])->prefix('sistema/libros')->group(function () {
 
     Route::get('/', [BookController::class, 'index'])->name('book.index');
+    Route::get('/nuevo', [BookController::class, 'create'])->name('book.create');
+    Route::post('/nuevo', [BookController::class, 'store'])->name('book.store');
 });

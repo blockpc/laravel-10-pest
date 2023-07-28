@@ -11,6 +11,8 @@
 |
 */
 
+use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Contracts\Auth\Authenticatable;
 
 uses(
@@ -58,4 +60,12 @@ expect()->extend('toBeRedirectFor', function (string $url, string $method = 'get
 function actingAs(Authenticatable $user)
 {
     return test()->actingAs($user);
+}
+
+function new_user(array $user_data = [], array $user_profile = [])
+{
+    $user = User::factory()->create($user_data);
+    Profile::factory()->forUser($user)->create($user_profile);
+
+    return $user;
 }

@@ -12,12 +12,10 @@ it('can show errors when login user')
     ]);
 
 it('user can login', function() {
-    // Sign in
-    $user = User::factory()->create([
+    $user = new_user([
         'email' => 'test@mail.com',
         'password' => 'password'
     ]);
-    Profile::factory()->forUser($user)->create();
 
     $this->assertDatabaseHas('users', [
         'email' => 'test@mail.com'
@@ -30,12 +28,10 @@ it('user can login', function() {
 });
 
 it('user can login form', function() {
-    // Sign in
-    $user = User::factory()->create([
+    $user = new_user([
         'email' => 'test@mail.com',
         'password' => 'password'
     ]);
-    Profile::factory()->forUser($user)->create();
 
     $this->assertDatabaseHas('users', [
         'email' => 'test@mail.com'

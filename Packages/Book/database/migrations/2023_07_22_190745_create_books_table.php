@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Packages\Book\App\Models\Book;
 use Spatie\Permission\Models\Permission;
 
 return new class extends Migration
@@ -53,8 +55,17 @@ return new class extends Migration
 
         Schema::create('books', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('author');
+            $table->string('status');
             $table->softDeletes();
             $table->timestamps();
+        });
+
+        Schema::create('book_user', function (Blueprint $table) {
+            $table->foreignIdFor(Book::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->string('status');
         });
     }
 
