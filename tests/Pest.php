@@ -17,11 +17,8 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 uses(
     Tests\TestCase::class,
-    // Illuminate\Foundation\Testing\RefreshDatabase::class,
+    Illuminate\Foundation\Testing\RefreshDatabase::class,
 )
-// ->beforeAll(function () {
-//     $this->seed(RoleAndPermissionsSeeder::class);
-// })
 ->in('Feature', 'Development');
 
 /*

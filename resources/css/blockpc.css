@@ -143,4 +143,8 @@
     .radio-button {
         @apply inline-flex text-dark text-xs w-full p-2 bg-dark bg-white border border-gray-400 rounded-lg cursor-pointer bg-dark dark:border-gray-600 dark:peer-checked:text-blue-400 peer-checked:border-blue-600 peer-checked:text-blue-600;
     }
+
+    .select-sm {
+        @apply text-dark bg-dark w-full rounded-md border-gray-500 py-0 h-8;
+    }
 }

@@ -57,7 +57,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->string('status');
             $table->softDeletes();
             $table->timestamps();
         });

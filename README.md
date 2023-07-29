@@ -8,7 +8,8 @@
 - Se valida la ruta para registrar usuarios y el formulario. Se actualiza el archivo
 - Se valida la ruta para el login de usuarios y el formulario
 - Se conocen las functions() y expects() del archivo _pest_
-- Se aplican rutas y test para crear libros
+- Se aplican rutas y test para crear libros y errores
+- Se crea formulario y la vista de los libros
 
 ## Aplicando PEST
 

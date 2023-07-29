@@ -5,6 +5,7 @@ namespace App\Models;
 use Blockpc\App\Models\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,6 +13,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Cache;
 use Laravel\Sanctum\HasApiTokens;
+use Packages\Book\App\Models\Book;
+use Packages\Book\App\Models\Pivots\BookUser;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -109,5 +112,15 @@ class User extends Authenticatable
     public function is_sudo() : bool
     {
         return current_user()->hasRole('sudo') || current_user()->hasPermissionTo('super admin');
+    }
+
+    /**
+     * Boosk
+     */
+    public function books() : BelongsToMany
+    {
+        return $this->belongsToMany(Book::class)
+            ->using(BookUser::class)
+            ->withPivot(['status']);
     }
 }
