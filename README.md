@@ -11,6 +11,7 @@
 - Se aplican rutas y test para crear libros y errores
 - Se crea formulario y la vista de los libros
 - Se valida que los libros creados existan en _BookIndexTest_ y _BookWithDatasetsTest_
+- Se crea la funcion _expectGuest_
 
 ## Aplicando PEST
 

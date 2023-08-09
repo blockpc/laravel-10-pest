@@ -38,6 +38,10 @@ expect()->extend('toBeAdmin', function () {
 
 expect()->extend('toBeRedirectFor', function (string $url, string $method = 'get') {
 
+    if ( !$this->value ) {
+        return test()->{$method}($url)->assertStatus(302);
+    }
+
     return actingAs($this->value)->{$method}($url)
         ->assertStatus(302)
         ->assertRedirect('/sistema/dashboard');
@@ -57,6 +61,11 @@ expect()->extend('toBeRedirectFor', function (string $url, string $method = 'get
 function actingAs(Authenticatable $user)
 {
     return test()->actingAs($user);
+}
+
+function expectGuest()
+{
+    return test()->expect(null);
 }
 
 function new_user(array $user_data = [], array $user_profile = [])

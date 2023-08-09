@@ -7,15 +7,15 @@ beforeEach(function() {
 });
 
 it('only allows authendticated users to get', function () {
-    $this->get('sistema/books/create')
-        ->assertStatus(302)
-        ->assertRedirect('/login');
+
+    // $this->get('sistema/books/create')->assertStatus(302)->assertRedirect('/login');
+    expectGuest()->toBeRedirectFor('sistema/books/create', 'get');
 });
 
 it('only allows authendticated users to post', function () {
-    $this->post('sistema/books/create')
-        ->assertStatus(302)
-        ->assertRedirect('/login');
+
+    // $this->post('sistema/books/create')->assertStatus(302)->assertRedirect('/login');
+    expectGuest()->toBeRedirectFor('sistema/books/create', 'post');
 });
 
 it('show the avalaible statuses on the form', function() {
