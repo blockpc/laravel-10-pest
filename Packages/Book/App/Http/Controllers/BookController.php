@@ -44,4 +44,20 @@ final class BookController extends Controller
 
         return redirect(route('book.index'))->with('success', 'A book was created');
     }
+
+    public function edit(Book $book, Request $request)
+    {
+        if ( !$book = $request->user()->books->find($book->id) ) {
+            abort(403);
+        }
+
+        return view('book::edit', [
+            'book' => $book
+        ]);
+    }
+
+    public function update(Book $book)
+    {
+        return redirect(route('book.index'))->with('success', 'A book was edited');
+    }
 }

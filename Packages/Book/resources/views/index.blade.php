@@ -31,7 +31,9 @@
                     </div>
                     @forelse ($books as $book)
                         <x-book :book="$book">
-                            <x-slot name="links">Links</x-slot>
+                            <x-slot name="links">
+                                <a class="btn-sm btn-success" href="{{ route('book.edit', $book->id) }}">Edit</a>
+                            </x-slot>
                         </x-book>
                     @empty
                         <div class="col-span-2">No Books finded</div>

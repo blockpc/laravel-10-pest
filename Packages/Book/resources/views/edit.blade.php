@@ -16,20 +16,20 @@
         </div>
         <div class="col-span-2 flex flex-col space-y-4">
             <div class="flex justify-between items-center">
-                <h2 class="text-lg font-semibold">Add a Book</h2>
+                <h2 class="text-lg font-semibold">Edit a Book</h2>
                 <a class="btn-sm btn-default space-x-2" href="{{ route('book.index') }}">
                     <x-bx-left-arrow-alt class="w-4 h-4" />
                     <span>My Books</span>
                 </a>
             </div>
             <div class="">
-                <form action="{{ route('book.store') }}" method="POST">
+                <form action="{{ route('book.update', [$book->id]) }}" method="POST">
                 @csrf
                     <div class="flex flex-col space-y-2">
                         <div class="flex flex-col lg:flex-row text-xs font-semibold lg:text-sm space-y-2 sm:space-y-0">
                             <label class="w-full lg:w-1/3 label" for="title">{{__('Title')}} </label>
                             <div class="flex flex-col space-y-1 w-full lg:w-2/3 mt-1 lg:mt-0">
-                                <input name="title" id="title" class="input input-sm @error( 'title' ) border-error @enderror" type="text" placeholder="{{__('Title')}}" />
+                                <input name="title" id="title" class="input input-sm @error( 'title' ) border-error @enderror" type="text" placeholder="{{__('Title')}}" value="{{ old('title', $book->title) }}" />
                                 @error( 'title' )
                                     <div class="text-error">{{$message}}</div>
                                 @enderror
@@ -39,7 +39,7 @@
                         <div class="flex flex-col lg:flex-row text-xs font-semibold lg:text-sm space-y-2 sm:space-y-0">
                             <label class="w-full lg:w-1/3 label" for="author">{{__('Author')}} </label>
                             <div class="flex flex-col space-y-1 w-full lg:w-2/3 mt-1 lg:mt-0">
-                                <input name="author" id="author" class="input input-sm @error( 'author' ) border-error @enderror" type="text" placeholder="{{__('Author')}}" />
+                                <input name="author" id="author" class="input input-sm @error( 'author' ) border-error @enderror" type="text" placeholder="{{__('Author')}}" value="{{ old('author', $book->author) }}" />
                                 @error( 'author' )
                                     <div class="text-error">{{$message}}</div>
                                 @enderror
@@ -52,7 +52,7 @@
                                 <select class="select-sm text-sm @error( 'status' ) border-error @enderror" name="status" id="status">
                                     <option value="">{{ __('common.select') }}</option>
                                     @foreach (\Packages\Book\App\Models\Pivots\BookUser::$statuses as $key => $status)
-                                    <option value="{{ $key }}">{{ __($status) }}</option>
+                                    <option value="{{ $key }}" {{ $book->pivot->status == $key ? 'selected' : '' }}>{{ __($status) }}</option>
                                     @endforeach
                                 </select>
                                 @error( 'status' )
@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="flex justify-end mt-4">
-                        <button class="btn-sm btn-primary">Add Book</button>
+                        <button class="btn-sm btn-success">Edit Book</button>
                     </div>
                 </form>
             </div>

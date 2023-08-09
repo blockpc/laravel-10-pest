@@ -4,7 +4,7 @@ use Database\Seeders\RoleAndPermissionsSeeder;
 
 it('can not see route books', function () {
 
-    expectGuest()->toBeRedirectFor('sistema/books', 'get');
+    expectGuest()->toBeRedirectFor('sistema/books', 'get', 'login');
 
     // $this->get('sistema/books')->assertStatus(302);
 

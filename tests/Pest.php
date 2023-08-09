@@ -36,15 +36,18 @@ expect()->extend('toBeAdmin', function () {
     return $this->toBe('admin');
 });
 
-expect()->extend('toBeRedirectFor', function (string $url, string $method = 'get') {
+expect()
+    ->extend('toBeRedirectFor', function (string $url, string $method = 'get', string $path = '/sistema/dashboard') {
+
+    $reponse = null;
 
     if ( !$this->value ) {
-        return test()->{$method}($url)->assertStatus(302);
+        $reponse = test()->{$method}($url)->assertStatus(302);
+    } else {
+        $reponse = actingAs($this->value)->{$method}($url)->assertStatus(302);
     }
 
-    return actingAs($this->value)->{$method}($url)
-        ->assertStatus(302)
-        ->assertRedirect('/sistema/dashboard');
+    return $reponse->assertRedirect($path);
 });
 
 /*
@@ -70,6 +73,7 @@ function expectGuest()
 
 function new_user(array $user_data = [], array $user_profile = [])
 {
+    /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
     $user = User::factory()->create($user_data);
     Profile::factory()->forUser($user)->create($user_profile);
 

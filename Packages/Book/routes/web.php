@@ -5,9 +5,11 @@ use Packages\Book\App\Http\Controllers\BookController;
 
 Route::middleware([
     'web', 'auth'
-])->prefix('sistema/books')->group(function () {
+])->prefix('sistema/books')->controller(BookController::class)->group(function () {
 
-    Route::get('/', [BookController::class, 'index'])->name('book.index');
-    Route::get('/create', [BookController::class, 'create'])->name('book.create');
-    Route::post('/create', [BookController::class, 'store'])->name('book.store');
+    Route::get('/', 'index')->name('book.index');
+    Route::get('/create', 'create')->name('book.create');
+    Route::post('/create', 'store')->name('book.store');
+    Route::get('/edit/{book}', 'edit')->name('book.edit');
+    Route::post('/edit/{book}', 'update')->name('book.update');
 });

@@ -12,6 +12,7 @@
 - Se crea formulario y la vista de los libros
 - Se valida que los libros creados existan en _BookIndexTest_ y _BookWithDatasetsTest_
 - Se crea la funcion _expectGuest_
+- Se valida la vista de edicion _BookEditTest_
 
 ## Aplicando PEST
 
