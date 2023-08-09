@@ -26,6 +26,7 @@ it('show the avalaible statuses on the form', function() {
 });
 
 it('can create a book', function() {
+    $this->seed(RoleAndPermissionsSeeder::class);
 
     $this->actingAs($this->user)
         ->post('/sistema/books/create', [
@@ -49,6 +50,8 @@ it('can create a book', function() {
 });
 
 it('get errors when validation fail', function() {
+    $this->seed(RoleAndPermissionsSeeder::class);
+
     $this->actingAs($this->user)
         ->post('/sistema/books/create')
         ->assertSessionHasErrors(['title', 'author', 'status']);

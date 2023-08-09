@@ -23,7 +23,7 @@
                 </a>
             </div>
             <div class="">
-                <form action="{{ route('book.update', [$book->id]) }}" method="POST">
+                <form action="{{ route('book.update', $book->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                     <div class="flex flex-col space-y-2">

@@ -15,6 +15,7 @@
 - Se valida la vista de edicion _BookEditTest_
 - Se valida la edicion de un libro _BookUpdateTest_
 - Se crea un _AuthBookServiceProvider_ y una politica _BookPolicy_ para los libros
+- Se crea los requests _BookStoreRequest_ y _BookUpdateRequest_ para los libros
 
 ## Aplicando PEST
 
