@@ -79,6 +79,7 @@ return new class extends Migration
             Permission::where('name', $permission['name'])->where('key', 'books')->delete();
         }
 
+        Schema::dropIfExists('book_user');
         Schema::dropIfExists('books');
     }
 };
