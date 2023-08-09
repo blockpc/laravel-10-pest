@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 final class BookServiceProvider extends ServiceProvider
 {
     public $config;
-    
+
     /**
      * Register any application services.
      *
@@ -18,6 +18,9 @@ final class BookServiceProvider extends ServiceProvider
     public function register()
     {
         $package_dir = $this->getPath();
+
+        $this->app->register(AuthBookServiceProvider::class);
+
         $this->mergeConfigFrom($package_dir.'config/config.php', 'book');
         $this->config = $this->app->config->get('book.menus');
     }
@@ -33,7 +36,7 @@ final class BookServiceProvider extends ServiceProvider
 
         // Routes
         $this->loadRoutesFrom($package_dir.'routes/web.php');
-        
+
         // Views
         $this->loadViewsFrom($package_dir.'resources/views', 'book');
 

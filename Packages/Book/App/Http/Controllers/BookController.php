@@ -47,20 +47,22 @@ final class BookController extends Controller
 
     public function edit(Book $book, Request $request)
     {
-        if ( !$book = $request->user()->books->find($book->id) ) {
-            abort(403);
-        }
+        $this->authorize('update', $book);
+        // if ( !$book = $request->user()->books->find($book->id) ) {
+        //     abort(403);
+        // }
 
         return view('book::edit', [
-            'book' => $book
+            'book' => $request->user()->books->find($book->id)
         ]);
     }
 
     public function update(Request $request, Book $book)
     {
-        if ( !$book = $request->user()->books->find($book->id) ) {
-            abort(403);
-        }
+        $this->authorize('update', $book);
+        // if ( !$book = $request->user()->books->find($book->id) ) {
+        //     abort(403);
+        // }
 
         $this->validate($request, [
             'title' => 'required',
