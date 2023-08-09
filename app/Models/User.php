@@ -134,6 +134,23 @@ class User extends Authenticatable
     }
 
     /**
+     * Friend Of
+     */
+    public function friendOf() : BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')
+                    ->withPivot('accepted');
+    }
+
+    /**
+     * all friends
+     */
+    public function getFriendsAttribute()
+    {
+        return $this->acceptedFriendOfMine->merge($this->acceptedFriendOf);
+    }
+
+    /**
      * Add a Friend / Books
      */
     public function addFriend(User $friend)
@@ -141,6 +158,24 @@ class User extends Authenticatable
         $this->friendOfMine()->syncWithoutDetaching($friend, [
             'accepted' => false
         ]);
+    }
+
+    /**
+     * accept Friend
+     */
+    public function acceptFriend(User $friend)
+    {
+        $friend->friendOfMine()->updateExistingPivot($this->id, [
+            'accepted' => true
+        ]);
+    }
+
+    /**
+     * remove Friend
+     */
+    public function removeFriend(User $friend)
+    {
+        $this->friendOfMine()->detach($friend);
     }
 
     /**
@@ -162,15 +197,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Friend Of
-     */
-    public function friendOf() : BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')
-                    ->withPivot('accepted');
-    }
-
-    /**
      * pending Friend Of Mine
      * where accepted is false
      */
@@ -180,12 +206,10 @@ class User extends Authenticatable
     }
 
     /**
-     * accept Friend
+     * accepted Friend Of
      */
-    public function acceptFriend(User $friend)
+    public function acceptedFriendOf()
     {
-        $friend->friendOfMine()->updateExistingPivot($this->id, [
-            'accepted' => true
-        ]);
+        return $this->friendOf()->wherePivot('accepted', true);
     }
 }
