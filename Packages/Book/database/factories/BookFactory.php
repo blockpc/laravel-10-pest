@@ -18,6 +18,9 @@ final class BookFactory extends Factory
      */
     public function definition()
     {
-        //
+        return [
+            'title' => fake()->sentences(5, true),
+            'author' => fake()->name(),
+        ];
     }
 }
