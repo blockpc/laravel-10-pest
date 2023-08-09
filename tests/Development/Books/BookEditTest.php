@@ -51,3 +51,11 @@ it('show the book to edit', function() {
         ->assertSee('<option value="WANT_TO_READ" selected>Want to read</option>', false);
 
 });
+
+it('fails if the book does not exists', function() {
+    $this->seed(RoleAndPermissionsSeeder::class);
+
+    $user = new_user();
+
+    actingAs($user)->get('sistema/books/edit/1')->assertStatus(404);
+});

@@ -11,5 +11,5 @@ Route::middleware([
     Route::get('/create', 'create')->name('book.create');
     Route::post('/create', 'store')->name('book.store');
     Route::get('/edit/{book}', 'edit')->name('book.edit');
-    Route::post('/edit/{book}', 'update')->name('book.update');
+    Route::put('/edit/{book}', 'update')->name('book.update');
 });

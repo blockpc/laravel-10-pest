@@ -25,6 +25,7 @@
             <div class="">
                 <form action="{{ route('book.update', [$book->id]) }}" method="POST">
                 @csrf
+                @method('PUT')
                     <div class="flex flex-col space-y-2">
                         <div class="flex flex-col lg:flex-row text-xs font-semibold lg:text-sm space-y-2 sm:space-y-0">
                             <label class="w-full lg:w-1/3 label" for="title">{{__('Title')}} </label>

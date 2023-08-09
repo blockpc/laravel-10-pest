@@ -56,8 +56,28 @@ final class BookController extends Controller
         ]);
     }
 
-    public function update(Book $book)
+    public function update(Request $request, Book $book)
     {
+        if ( !$book = $request->user()->books->find($book->id) ) {
+            abort(403);
+        }
+
+        $this->validate($request, [
+            'title' => 'required',
+            'author' => 'required',
+            'status' => ['required', Rule::in(array_keys(BookUser::$statuses))],
+        ], [], [
+            'title' => 'titulo',
+            'author' => 'autor',
+            'status' => 'estado'
+        ]);
+
+        $book->update($request->only(['author', 'title']));
+
+        $book->users()->updateExistingPivot(current_user()->id, [
+            'status' => $request->status
+        ]);
+
         return redirect(route('book.index'))->with('success', 'A book was edited');
     }
 }

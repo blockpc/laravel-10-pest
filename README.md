@@ -13,6 +13,7 @@
 - Se valida que los libros creados existan en _BookIndexTest_ y _BookWithDatasetsTest_
 - Se crea la funcion _expectGuest_
 - Se valida la vista de edicion _BookEditTest_
+- Se valida la edicion de un libro _BookUpdateTest_
 
 ## Aplicando PEST
 
