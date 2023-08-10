@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Packages\Book\App\Http\Controllers\BookController;
+use Packages\Book\App\Http\Controllers\FriendController;
 
 Route::middleware([
     'web', 'auth'
@@ -12,4 +13,11 @@ Route::middleware([
     Route::post('/create', 'store')->name('book.store');
     Route::get('/edit/{book}', 'edit')->name('book.edit');
     Route::put('/edit/{book}', 'update')->name('book.update');
+});
+
+Route::middleware([
+    'web', 'auth'
+])->prefix('sistema/friends')->controller(FriendController::class)->group(function () {
+
+    Route::get('/', 'index')->name('friend.index');
 });

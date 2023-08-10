@@ -4,17 +4,12 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Support\Facades\Event;
 
+uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
+
 it('can get a regiter form', function() {
     $this->get('/registro')
         ->assertStatus(200);
 });
-
-// it('can show errors when regiter new user', function() {
-//     $this->post('/registro')
-//         ->assertSessionHasErrors([
-//             'name', 'email', 'password', 'firstname', 'lastname'
-//         ]);
-// });
 
 it('can show errors when regiter new user')
     ->post('/registro')

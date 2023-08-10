@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\Profile;
-use App\Models\User;
+uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 it('can show a login form')->get('/login')->assertStatus(200);
 
@@ -21,7 +20,6 @@ it('user can login', function() {
         'email' => 'test@mail.com'
     ]);
 
-    // $this->actingAs($user)->get('/login')->assertStatus(302)->assertRedirect('/sistema/dashboard');
     expect($user)->toBeRedirectFor('/login', 'get');
 
     $this->assertAuthenticated();
@@ -36,13 +34,6 @@ it('user can login form', function() {
     $this->assertDatabaseHas('users', [
         'email' => 'test@mail.com'
     ]);
-
-    // $this->actingAs($user)->post('/login', [
-    //     'email' => 'test@mail.com',
-    //     'password' => 'password'
-    // ])
-    // ->assertStatus(302)
-    // ->assertRedirect('/sistema/dashboard');
 
     expect($user)->toBeRedirectFor('/login', 'post');
 

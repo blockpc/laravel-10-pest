@@ -2,6 +2,8 @@
 
 use Database\Seeders\RoleAndPermissionsSeeder;
 
+uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
+
 it('can not see route books', function () {
 
     expectGuest()->toBeRedirectFor('sistema/books', 'get', 'login');

@@ -2,6 +2,8 @@
 
 use Packages\Book\App\Models\Pivots\BookUser;
 
+uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
+
 beforeEach(function() {
     $this->user = new_user();
 });

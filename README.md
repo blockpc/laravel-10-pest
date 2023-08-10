@@ -17,6 +17,7 @@
 - Se crea un _AuthBookServiceProvider_ y una politica _BookPolicy_ para los libros
 - Se crea los requests _BookStoreRequest_ y _BookUpdateRequest_ para los libros
 - Se crea el test unitario _FriendTest_ (Se agrega _can remove a friend_)
+- Se genera el archivo para validar rutas _FriendRouteTest_
 
 ## Aplicando PEST
 

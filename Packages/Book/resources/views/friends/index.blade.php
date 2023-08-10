@@ -17,28 +17,20 @@
         <div class="col-span-2 flex flex-col space-y-4">
             @include('layouts.backend.messages')
             <div class="flex justify-between items-center">
-                <h2 class="text-lg font-semibold">My Books</h2>
+                <h2 class="text-lg font-semibold">My Friends</h2>
                 <a class="btn-sm btn-default space-x-2" href="{{ route('book.create') }}">
                     <x-bx-plus class="w-4 h-4" />
                     <span>Add New</span>
                 </a>
             </div>
             <div class="flex flex-col space-y-4">
-                @foreach ($booksByStatuses as $status => $books)
-                <div class="flex flex-col space-y-4">
-                    <div class="col-span-2">
-                        <h2 class="text-ls font-semibold">{{ \Packages\Book\App\Models\Pivots\BookUser::$statuses[$status] }}</h2>
-                    </div>
-                    @forelse ($books as $book)
-                        <x-book :book="$book">
-                            <x-slot name="links">
-                                <a class="btn-sm btn-success" href="{{ route('book.edit', $book->id) }}">Edit</a>
-                            </x-slot>
-                        </x-book>
-                    @empty
-                        <div class="col-span-2">No Books finded</div>
-                    @endforelse
-                </div>
+                @foreach (\App\Models\User::class::all() as $friend)
+                    <x-friend :friend="$friend">
+                        <x-slot name="links">
+                            link
+                            {{-- <a class="btn-sm btn-success" href="{{ route('book.edit', $user->id) }}">Edit</a> --}}
+                        </x-slot>
+                    </x-friend>
                 @endforeach
             </div>
         </div>

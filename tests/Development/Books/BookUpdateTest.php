@@ -2,6 +2,8 @@
 
 use Packages\Book\App\Models\Book;
 
+uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
+
 it('redirect unathenticated user at route books edit')
     ->expectGuest()->toBeRedirectFor('sistema/books/edit/1', 'put', 'login');
 

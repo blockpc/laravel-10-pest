@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Packages\Book\App\Models\Book;
+
+uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 beforeEach(function() {
     $this->user = new_user();

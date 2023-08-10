@@ -35,8 +35,9 @@ if (! function_exists('avatar')) {
 }
 
 if (! function_exists('format_date')) {
-    function format_date($date, $format_out, $fomat_in = 'Y-m-d'){
-        return \Carbon\Carbon::createFromFormat($fomat_in, $date)->format($format_out);
+    function format_date($date, $format_out = 'Y-m-d', $fomat_in = 'Y-m-d H:i'){
+        return \Carbon\Carbon::parse($date)->format($format_out);
+        // return \Carbon\Carbon::createFromFormat($fomat_in, $date)->format($format_out);
     }
 }
 
