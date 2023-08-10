@@ -21,4 +21,5 @@ Route::middleware([
 
     Route::get('/', 'index')->name('friend.index');
     Route::get('/add-a-friend', 'add')->name('friend.add');
+    Route::post('/add-a-friend', 'store')->name('friend.store');
 });

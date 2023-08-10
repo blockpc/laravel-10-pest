@@ -31,3 +31,24 @@ it('user authenticated can see route for add a friends', function () {
     $this->actingAs($user)->get('sistema/friends/add-a-friend')->assertStatus(200);
 
 });
+
+it('guest can not see route for add a friends post', function () {
+
+    expectGuest()->toBeRedirectFor('sistema/friends/add-a-friend', 'post', 'login');
+
+});
+
+it('user authenticated can see route for add a friends post', function () {
+
+    $this->seed(RoleAndPermissionsSeeder::class);
+
+    $user = new_user();
+    $friend = new_user();
+
+    $this->actingAs($user)->post('sistema/friends/add-a-friend', [
+            'email' => $friend->email
+        ])
+        ->assertStatus(302)
+        ->assertRedirect('sistema/friends');
+
+});
