@@ -20,4 +20,5 @@ Route::middleware([
 ])->prefix('sistema/friends')->controller(FriendController::class)->group(function () {
 
     Route::get('/', 'index')->name('friend.index');
+    Route::get('/add-a-friend', 'add')->name('friend.add');
 });
