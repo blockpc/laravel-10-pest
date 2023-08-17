@@ -22,7 +22,7 @@ Route::middleware([
     Route::get('/', 'index')->name('friend.index');
     Route::get('/add-a-friend', 'add')->name('friend.add');
     Route::post('/add-a-friend', 'store')->name('friend.store');
-    Route::put('/friend/{friend}', 'accept')->name('friend.accept');
-    Route::delete('/friend/{friend}', 'cancel')->name('friend.cancel');
-    Route::delete('/friend/{friend}', 'remove')->name('friend.remove');
+    Route::put('/accept-a-friend/{friend}', 'accept')->name('friend.accept');
+    Route::delete('/cancel-a-friend/{friend}', 'cancel')->name('friend.cancel');
+    Route::delete('/remove-a-friend/{friend}', 'remove')->name('friend.remove');
 });

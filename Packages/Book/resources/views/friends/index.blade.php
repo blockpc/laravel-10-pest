@@ -29,7 +29,7 @@
                 @forelse ($acceptedFriendOfMines as $acceptedFriendOfMine)
                     <x-friend :friend="$acceptedFriendOfMine">
                         <x-slot name="links">
-                            <form action="{{ route('friend.remove', $acceptedFriendOfMine->id) }}" method="POST">
+                            <form action="{{ route('friend.remove', $acceptedFriendOfMine->name) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn-sm btn-danger">Remove</button>
@@ -51,7 +51,7 @@
                 @forelse ($pendingFriendOfMines as $pendingFriendOfMine)
                     <x-friend :friend="$pendingFriendOfMine">
                         <x-slot name="links">
-                            <form action="{{ route('friend.remove', $pendingFriendOfMine->id) }}" method="POST">
+                            <form action="{{ route('friend.remove', $pendingFriendOfMine->name) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn-sm btn-warning">Cancel</button>
@@ -73,7 +73,7 @@
                 @forelse ($pendingFriendOfs as $pendingFriendOf)
                     <x-friend :friend="$pendingFriendOf">
                         <x-slot name="links">
-                            <form action="{{ route('friend.accept', $pendingFriendOf->id) }}" method="POST">
+                            <form action="{{ route('friend.accept', $pendingFriendOf->name) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <button class="btn-sm btn-success">Accept</button>

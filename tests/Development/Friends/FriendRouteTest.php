@@ -73,13 +73,13 @@ it('user authenticated can accept a friend', function () {
 
     $friend->addFriend($user);
 
-    $this->actingAs($user)->put( route('friend.accept', $friend->id) )
+    $this->actingAs($user)->put( route('friend.accept', $friend->name) )
         ->assertStatus(302)
         ->assertRedirect(route('friend.index'));
 
     $this->assertDatabaseHas('friends', [
-        'user_id' => $user->id,
-        'friend_id' => $friend->id,
+        'user_id' => $friend->id,
+        'friend_id' => $user->id,
         'accepted' => true,
     ]);
 
@@ -100,7 +100,7 @@ it('user authenticated can cancel a request', function () {
 
     $user->addFriend($friend);
 
-    $this->actingAs($user)->delete( route('friend.cancel', $friend->id) )
+    $this->actingAs($user)->delete( route('friend.cancel', $friend->name) )
         ->assertStatus(302)
         ->assertRedirect(route('friend.index'));
 
@@ -109,7 +109,7 @@ it('user authenticated can cancel a request', function () {
         'friend_id' => $friend->id
     ]);
 
-})->skip();
+});
 
 it('guest can not remove a friend', function () {
 
@@ -126,7 +126,7 @@ it('user authenticated can remove a friend', function () {
 
     $user->addFriend($friend);
 
-    $this->actingAs($user)->delete( route('friend.remove', $friend->id) )
+    $this->actingAs($user)->delete( route('friend.remove', $friend->name) )
         ->assertStatus(302)
         ->assertRedirect(route('friend.index'));
 

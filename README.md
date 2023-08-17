@@ -24,7 +24,7 @@ https://www.youtube.com/watch?v=a23XxEgWOtU&list=PLfdtiltiRHWGJNse_fSSIXkY60ZWJW
 - Se genera el archivo para validar rutas _FriendRouteTest_
 - Se genera el archivo para validar el indice de amigos _FriendIndexTest_
 - Se genera el archivo para validar agregar amigos _FriendAddTest_
-- Temporal commit
+- Temporal commit II
 
 ## Aplicando PEST
 
