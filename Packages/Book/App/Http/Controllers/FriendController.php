@@ -13,10 +13,12 @@ final class FriendController extends Controller
 {
     public function index(Request $request)
     {
+        $user = $request->user();
+
         return view('book::friends.index', [
-            'pendingFriendOfMines' => $request->user()->pendingFriendOfMine,
-            'pendingFriendOfs' => $request->user()->pendingFriendOf,
-            'acceptedFriendOfMines' => $request->user()->acceptedFriendOfMine,
+            'pendingFriendOfMines' => $user->pendingFriendOfMine,
+            'pendingFriendOfs' => $user->pendingFriendOf,
+            'acceptedFriendOfMines' => $user->acceptedFriendOfMine,
         ]);
     }
 
@@ -36,5 +38,26 @@ final class FriendController extends Controller
         $request->user()->addFriend($friend);
 
         return redirect(route('friend.index'))->with('success', 'A friend was requested');
+    }
+
+    public function accept(Request $request, User $friend)
+    {
+        $request->user()->acceptFriend($friend);
+
+        return redirect(route('friend.index'))->with('success', 'A friend was accepted');
+    }
+
+    public function cancel(Request $request, User $friend)
+    {
+        $request->user()->removeFriend($friend);
+
+        return redirect(route('friend.index'))->with('info', 'A request was cancel');
+    }
+
+    public function remove(Request $request, User $friend)
+    {
+        $request->user()->removeFriend($friend);
+
+        return redirect(route('friend.index'))->with('info', 'A friend was remove');
     }
 }

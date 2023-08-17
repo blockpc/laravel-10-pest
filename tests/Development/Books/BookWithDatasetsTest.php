@@ -9,6 +9,7 @@ beforeEach(function() {
 });
 
 it('show all user books with th correct status', function($status, $heading) {
+    $this->seed(RoleAndPermissionsSeeder::class);
 
     $book = Book::factory()->create();
 
@@ -31,7 +32,7 @@ it('show all user books with th correct status', function($status, $heading) {
         ->assertSeeText($book->title);
 
 })->with(
-    ['status' => 'WANT_TO_READ', 'heading' => 'Want to read'],
-    ['status' => 'READING', 'heading' => 'Reading'],
-    ['status' => 'READ', 'heading' => 'Read'],
+    ['for Want to read' => ['WANT_TO_READ', 'Want to read'] ],
+    ['for Reading' => ['READING', 'Reading'] ],
+    ['for Read' => ['READ', 'Read'] ]
 );

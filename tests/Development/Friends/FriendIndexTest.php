@@ -16,7 +16,7 @@ it('show list for the user pending friends', function() {
 
     expect($user->pendingFriendOfMine)->toHaveCount(2);
 
-    actingAs($user)->get('sistema/friends')
+    actingAs($user)->get( route('friend.index') )
         ->assertSeeTextInOrder(array_merge(['Pending friends requests'], $friends->pluck('name')->toArray()));
 });
 
@@ -29,7 +29,7 @@ it('show list for the user friends', function() {
 
     $friends->each(fn ($friend) => $friend->addFriend($user));
 
-    actingAs($user)->get('sistema/friends')
+    actingAs($user)->get( route('friend.index') )
         ->assertSeeTextInOrder(array_merge(['Friends requests'], $friends->pluck('name')->toArray()));
 });
 
@@ -44,6 +44,6 @@ it('show list for the user accepted friends', function() {
 
     $friends->first()->acceptFriend($user);
 
-    actingAs($user)->get('sistema/friends')
+    actingAs($user)->get( route('friend.index') )
         ->assertSeeTextInOrder(array_merge(['Accepted Friends'], $user->acceptedFriendOfMine->pluck('name')->toArray()));
 });

@@ -17,6 +17,7 @@
         <div class="col-span-2 flex flex-col space-y-4">
             @include('layouts.backend.messages')
 
+            {{-- Accepted Friends --}}
             <div class="flex justify-between items-center">
                 <h2 class="text-lg font-semibold">Accepted Friends</h2>
                 <a class="btn-sm btn-default space-x-2" href="{{ route('friend.add') }}">
@@ -28,8 +29,11 @@
                 @forelse ($acceptedFriendOfMines as $acceptedFriendOfMine)
                     <x-friend :friend="$acceptedFriendOfMine">
                         <x-slot name="links">
-                            link
-                            {{-- <a class="btn-sm btn-success" href="{{ route('book.edit', $user->id) }}">Edit</a> --}}
+                            <form action="{{ route('friend.remove', $acceptedFriendOfMine->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn-sm btn-danger">Remove</button>
+                            </form>
                         </x-slot>
                     </x-friend>
                 @empty
@@ -39,6 +43,7 @@
                 @endforelse
             </div>
 
+            {{-- Pending friends requests --}}
             <div class="flex justify-between items-center">
                 <h2 class="text-lg font-semibold">Pending friends requests</h2>
             </div>
@@ -46,8 +51,11 @@
                 @forelse ($pendingFriendOfMines as $pendingFriendOfMine)
                     <x-friend :friend="$pendingFriendOfMine">
                         <x-slot name="links">
-                            link
-                            {{-- <a class="btn-sm btn-success" href="{{ route('book.edit', $user->id) }}">Edit</a> --}}
+                            <form action="{{ route('friend.remove', $pendingFriendOfMine->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn-sm btn-warning">Cancel</button>
+                            </form>
                         </x-slot>
                     </x-friend>
                 @empty
@@ -57,6 +65,7 @@
                 @endforelse
             </div>
 
+            {{-- Friends requests --}}
             <div class="flex justify-between items-center">
                 <h2 class="text-lg font-semibold">Friends requests</h2>
             </div>
@@ -64,8 +73,11 @@
                 @forelse ($pendingFriendOfs as $pendingFriendOf)
                     <x-friend :friend="$pendingFriendOf">
                         <x-slot name="links">
-                            link
-                            {{-- <a class="btn-sm btn-success" href="{{ route('book.edit', $user->id) }}">Edit</a> --}}
+                            <form action="{{ route('friend.accept', $pendingFriendOf->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button class="btn-sm btn-success">Accept</button>
+                            </form>
                         </x-slot>
                     </x-friend>
                 @empty

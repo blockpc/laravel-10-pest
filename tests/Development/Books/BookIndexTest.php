@@ -9,6 +9,7 @@ beforeEach(function() {
 });
 
 it('show books the user want to read', function() {
+    $this->seed(RoleAndPermissionsSeeder::class);
 
     $book = Book::factory()->create();
 
@@ -32,6 +33,7 @@ it('show books the user want to read', function() {
 });
 
 it('show books the user reading', function() {
+    $this->seed(RoleAndPermissionsSeeder::class);
 
     $book = Book::factory()->create();
 
@@ -55,6 +57,7 @@ it('show books the user reading', function() {
 });
 
 it('show books the user read', function() {
+    $this->seed(RoleAndPermissionsSeeder::class);
 
     $book = Book::factory()->create();
 

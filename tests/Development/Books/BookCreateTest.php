@@ -22,6 +22,7 @@ it('only allows authendticated users to post', function () {
 
 it('show the avalaible statuses on the form', function() {
     $this->seed(RoleAndPermissionsSeeder::class);
+    
     $this->actingAs($this->user)
         ->get('/sistema/books/create')
         ->assertSeeTextInOrder(BookUser::$statuses);
